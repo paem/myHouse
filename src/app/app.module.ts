@@ -6,6 +6,7 @@ import {AngularFireModule} from 'angularfire2';
 import {routing} from './app.routing';
 import { LoginComponent } from './pages/login/login.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import {AuthGuard} from './shared/guard/auth.guard';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyA2V_AQd1R2lbCDfjHzAoSXgg7mNPZCzhs',
@@ -27,7 +28,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     routing,
   ],
-  providers: [FirebaseService],
+  providers: [FirebaseService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
