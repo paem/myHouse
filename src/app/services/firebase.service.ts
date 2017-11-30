@@ -1,13 +1,15 @@
 import {Injectable} from '@angular/core';
 import * as firebase from 'firebase';
-import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable, FirebaseAuthState} from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
 import { Subject} from 'rxjs/Subject';
 import {Router} from '@angular/router';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+
+
 @Injectable()
 export class FirebaseService {
   private _dbRoot: firebase.database.Reference;
-  constructor(private af: AngularFire, private router: Router) { }
+  constructor(private afDb: AngularFireDatabase, private router: Router) { }
 
   isAuthenticated(): Observable<boolean> {
     const subject = new Subject<boolean>();
