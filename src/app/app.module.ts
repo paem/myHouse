@@ -1,10 +1,11 @@
+import { FirebaseService } from './services/firebase.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {AngularFireModule} from 'angularfire2';
 import {routing} from './app.routing';
-import { SidemenuComponent } from './sidemenu/sidemenu.component';
-
+import { LoginComponent } from './pages/login/login.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyA2V_AQd1R2lbCDfjHzAoSXgg7mNPZCzhs',
@@ -15,19 +16,18 @@ export const firebaseConfig = {
   messagingSenderId: '178332113016'
 };
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
-    SidemenuComponent
+    LoginComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
     routing,
   ],
-  providers: [],
+  providers: [FirebaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
