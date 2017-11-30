@@ -1,3 +1,4 @@
+import { YoutubeService } from './../../services/youtube.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InformationcenterComponent implements OnInit {
 
-  constructor() { }
+  query: any;
+  videoList: any;
+  message: any;
 
-  ngOnInit() {
+  constructor(private videos: YoutubeService) {
+    this.getVideos();
+    console.log(this.getVideos());
   }
 
+  ngOnInit() {
+ this.getVideos();
+  }
+  clicked() {
+     console.log(this.query);
+    console.log(this.videoList); }
+  getVideos() {
+    if (this.query == null) {
+      this.message = 'Sök efter videos';
+    }
+    else if(this.query != null) {
+   this.videos.youtubeSearch(this.query).subscribe(data => { this.videoList = data
+    });
+  }
+}
 }

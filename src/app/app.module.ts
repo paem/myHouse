@@ -17,7 +17,10 @@ import {
   MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatSidenavModule,
   MatToolbarModule, MatTooltipModule, MatProgressSpinnerModule
 } from '@angular/material';
-
+import { YoutubeService } from './services/youtube.service';
+import { HttpModule } from '@angular/http';
+import { SafePipe } from './shared/pipes/safe.pipe';
+import { FormsModule } from '@angular/forms';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyA2V_AQd1R2lbCDfjHzAoSXgg7mNPZCzhs',
@@ -49,10 +52,12 @@ const materialModules = [
     HomeComponent,
     InformationcenterComponent,
     StepbystepComponent,
-    ProfessionalhelpComponent
+    ProfessionalhelpComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
     routing,
     BrowserAnimationsModule,
@@ -61,6 +66,8 @@ const materialModules = [
   ],
   providers: [FirebaseService, AuthGuard],
   bootstrap: [AppComponent],
-  exports: [materialModules]
+  exports: [materialModules, FormsModule],
+  providers: [FirebaseService, AuthGuard, YoutubeService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
