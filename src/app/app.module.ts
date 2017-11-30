@@ -11,6 +11,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { InformationcenterComponent } from './pages/informationcenter/informationcenter.component';
 import { StepbystepComponent } from './pages/stepbystep/stepbystep.component';
 import { ProfessionalhelpComponent } from './pages/professionalhelp/professionalhelp.component';
+import { YoutubeService } from './services/youtube.service';
+import { HttpModule } from '@angular/http';
+import { SafePipe } from './shared/pipes/safe.pipe';
+import { FormsModule }   from '@angular/forms';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyA2V_AQd1R2lbCDfjHzAoSXgg7mNPZCzhs',
@@ -29,14 +33,17 @@ export const firebaseConfig = {
     HomeComponent,
     InformationcenterComponent,
     StepbystepComponent,
-    ProfessionalhelpComponent
+    ProfessionalhelpComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
     routing,
+    FormsModule,
   ],
-  providers: [FirebaseService, AuthGuard],
+  providers: [FirebaseService, AuthGuard, YoutubeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
