@@ -1,8 +1,12 @@
+import { FirebaseService } from './services/firebase.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {AngularFireModule} from 'angularfire2';
 import {routing} from './app.routing';
+import { LoginComponent } from './pages/login/login.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+
 
 
 export const firebaseConfig = {
@@ -18,14 +22,16 @@ export const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
     routing,
   ],
-  providers: [],
+  providers: [FirebaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
