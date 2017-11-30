@@ -1,3 +1,52 @@
-<p>
-  login works!
-</p>
+<div class="custom-background">
+  <a class="navbar-brand" href="https://equilab.horse/"><img class="equilabName"
+                                                             src="assets/images/equilabName.png"
+                                                             height="25px"/></a>
+  <div align=center class="container">
+
+
+    <div *ngIf="error" class="alert alert-warning" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      {{error}}
+    </div>
+
+    <mat-card class="example-card" [@slideUp]="'true'">
+      <h2 *ngIf="!isLoading" style="font-size: 22px;"><img
+        src="assets/images/equilabFavicon.png" height="60" width="60"/></h2>
+      <h2 *ngIf="isLoading" style="font-size: 22px;"><img src="assets/images/equilabFavicon.png" height="200"
+                                                          width="200"/></h2>
+
+
+      <form *ngIf="!isLoading" class="example-form" #signInForm="ngForm" (ngSubmit)="loginWithEmail(signInForm)">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" type="email" name="email" class="email" ngModel required>
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Lösenord" type="password" name="password" class="password"  ngModel required>
+        </mat-form-field>
+        <br>
+        <div class="text-center">
+          <button mat-raised-button type="submit">Login</button>
+          <br>
+          <p *ngIf="error" class="error-text">{{errorMessage}}</p>
+        </div>
+        <button mat-raised-button  style="margin-top: 10px;" (click)="logInWithFacebook()">Login with Facebook</button>
+
+        <a href="#" style="font-size: 15px;"> Forgot your password?</a>
+
+      </form>
+
+      <div *ngIf="isLoading" class="text-center">
+        <mat-progress-spinner mode="indeterminate" color="primary">Loading</mat-progress-spinner>
+      </div>
+
+    </mat-card>
+
+  </div>
+
+</div>
+
+

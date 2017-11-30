@@ -11,6 +11,13 @@ import { HomeComponent } from './pages/home/home.component';
 import { InformationcenterComponent } from './pages/informationcenter/informationcenter.component';
 import { StepbystepComponent } from './pages/stepbystep/stepbystep.component';
 import { ProfessionalhelpComponent } from './pages/professionalhelp/professionalhelp.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import {
+  MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatSidenavModule,
+  MatToolbarModule, MatTooltipModule, MatProgressSpinnerModule
+} from '@angular/material';
+
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyA2V_AQd1R2lbCDfjHzAoSXgg7mNPZCzhs',
@@ -20,6 +27,19 @@ export const firebaseConfig = {
   storageBucket: 'myhouse-58a88.appspot.com',
   messagingSenderId: '178332113016'
 };
+
+const materialModules = [
+  MatButtonModule,
+  MatMenuModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatCardModule,
+  MatSidenavModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatTooltipModule,
+  MatProgressSpinnerModule
+];
 
 @NgModule({
   declarations: [
@@ -35,8 +55,12 @@ export const firebaseConfig = {
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
     routing,
+    BrowserAnimationsModule,
+    FormsModule,
+    materialModules,
   ],
   providers: [FirebaseService, AuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [materialModules]
 })
 export class AppModule { }
