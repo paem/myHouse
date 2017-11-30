@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {AngularFireModule} from 'angularfire2';
 import {routing} from './app.routing';
+import { SidemenuComponent } from './sidemenu/sidemenu.component';
 
 
 export const firebaseConfig = {
@@ -18,7 +19,8 @@ export const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SidemenuComponent
   ],
   imports: [
     BrowserModule,
