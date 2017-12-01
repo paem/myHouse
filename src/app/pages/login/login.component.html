@@ -8,38 +8,34 @@
 
   <div align=center class="container" id="content">
 
-    <mat-button-toggle-group [(ngModel)]="selectedAuthType" style="color: white" >
-      <mat-button-toggle value="signin">Sign In
-      </mat-button-toggle>
-      <mat-button-toggle value="signup">Sign Up
-      </mat-button-toggle>
-      
-      
-    </mat-button-toggle-group>
-<div>
-    <div class="checkbox" >
-        <input [(ngModel)]="selectedAuthType" type="radio" value="signin" id="signin">
-        <label for="signin">
-              <span>Sign In</span>
-          </label>
-      
-        <input [(ngModel)]="selectedAuthType" type="radio" value="signup" id="signup">
-        <label for="signup">
-              
-              <span>Sign Up</span>
+<mat-card style="background-color: transparent;">
+    <div class="checkbox btn-group btn-group-justified" >
+      <div class="btn-group">
+        <input [(ngModel)]="selectedAuthType" class="btn btn-primary" type="radio" value="signin" id="signin">
+        <label for="signin" style="font-size: 24px;">
+              <span>Logga in</span>
           </label>
       </div>
-</div>
+      <div class="btn-group">
+        <input [(ngModel)]="selectedAuthType" class="btn btn-primary" type="radio" value="signup" id="signup">
+        <label for="signup" style="font-size: 24px;">
+              <span>Skapa konto</span>
+          </label>
+      </div>
+    </div>
+</mat-card>
     <div *ngIf="error" class="alert alert-warning" role="alert">
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
       <span class="sr-only">Error:</span>
       {{error}}
     </div>
 
-
     <div [ngSwitch]="selectedAuthType">
 
       <div *ngSwitchCase="'signin'">
+
+        <h2 [@fadeIn]="'true'" style="color: #fff; margin-top: 40px">Logga in på ditt konto</h2>
+
         <mat-card class="example-card" [@slideUp]="'true'">
           <form *ngIf="!isLoading" class="example-form" #signInForm="ngForm" (ngSubmit)="loginWithEmail(signInForm)">
             <mat-form-field class="example-full-width">
@@ -69,7 +65,7 @@
 
 
       <div *ngSwitchCase="'signup'">
-
+        <h2 [@fadeIn]="'true'" style="color: #fff; margin-top: 40px">Skapa ett konto</h2>
         <mat-card class="example-card" [@slideUp]="'true'">
           <form #signUpForm="ngForm" (ngSubmit)="onSignUpWithEmail(signUpForm)">
             <mat-form-field class="example-full-width">

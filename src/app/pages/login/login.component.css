@@ -4,7 +4,9 @@
   margin: 140px;
   margin-left: 150px;
   font-size: 20px;
-  background: transparent;
+  background: white;
+  border: solid 0.5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 @media screen and (max-width: 750px){
@@ -13,8 +15,8 @@
     margin: 0;
     margin-left: 0;
     font-size: 20px;
-    background: transparent;
-    padding-top: 100px;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 }
 
@@ -29,11 +31,10 @@
 
 .example-full-width {
   width: 100%;
-  color: #FFFFFF;
 }
 
 .mat-card {
-  color: #FFFFFF;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 button {
@@ -79,9 +80,16 @@ div.cover {
   background-size: cover;
 }
 
+
+.checkbox{
+  color: #FFFFFF;
+}
+
 .checkbox input{
   display: none;
 }
 .checkbox input:checked + label{
   color: #16B67F;
 }
+
+
