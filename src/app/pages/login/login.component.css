@@ -79,3 +79,9 @@ div.cover {
   background-size: cover;
 }
 
+.checkbox input{
+  display: none;
+}
+.checkbox input:checked + label{
+  color: #16B67F;
+}

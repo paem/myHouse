@@ -8,14 +8,28 @@
 
   <div align=center class="container" id="content">
 
-    <mat-button-toggle-group style="color: white" [(ngModel)]="selectedAuthType">
+    <mat-button-toggle-group [(ngModel)]="selectedAuthType" style="color: white" >
       <mat-button-toggle value="signin">Sign In
       </mat-button-toggle>
       <mat-button-toggle value="signup">Sign Up
       </mat-button-toggle>
+      
+      
     </mat-button-toggle-group>
-
-
+<div>
+    <div class="checkbox" >
+        <input [(ngModel)]="selectedAuthType" type="radio" value="signin" id="signin">
+        <label for="signin">
+              <span>Sign In</span>
+          </label>
+      
+        <input [(ngModel)]="selectedAuthType" type="radio" value="signup" id="signup">
+        <label for="signup">
+              
+              <span>Sign Up</span>
+          </label>
+      </div>
+</div>
     <div *ngIf="error" class="alert alert-warning" role="alert">
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
       <span class="sr-only">Error:</span>
