@@ -1,23 +1,10 @@
+
 .example-card {
   width: 400px;
   margin: 140px;
   margin-left: 150px;
   font-size: 20px;
   background: transparent;
-
-}
-
-.equilabName {
-  margin-left: 5px;
-  margin-top: 5px;
-}
-
-.navbar-brand {
-  float: left;
-  height: 50px;
-  padding: 15px 15px;
-  font-size: 18px;
-  line-height: 20px;
 }
 
 @media screen and (max-width: 750px){
@@ -29,6 +16,15 @@
     background: transparent;
     padding-top: 100px;
   }
+}
+
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .example-full-width {
@@ -46,7 +42,6 @@ button {
   background-color: #ED6C44;
   color: #FFFFFF !important;
   font-size: 18px;
-
 }
 
 .newAccount {
@@ -54,7 +49,7 @@ button {
 
 }
 
-md-progress-spinner {
+mat-progress-spinner {
   margin-top: 20px;
   height: 150px;
   width: inherit;
@@ -65,13 +60,18 @@ md-progress-spinner {
   color: red;
 }
 
-div.custom-background {
-  padding: 0 0;
-  margin-bottom: 0;
-  color: #FFFFFF;
-  height: 100vh;
-  z-index: 3000;
+.custom-background {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  background-size: cover;
-
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background: linear-gradient(to bottom, rgba(55, 63, 72, 0.8) 100%, rgba(55, 63, 72, 0.8) 100%, rgba(55, 63, 72, 0.8) 100%, rgba(55, 63, 72, 0.8) 100%), url(https://www.nighthelper.com/wp-content/uploads/2017/01/moneyfall2.png.jpg);
 }
+
+
+
+

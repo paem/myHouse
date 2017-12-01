@@ -1,8 +1,18 @@
-<div class="custom-background">
+<img id="bg" class="custom-background">
   <a class="navbar-brand" href="https://equilab.horse/"><img class="equilabName"
                                                              src="assets/images/equilabName.png"
                                                              height="25px"/></a>
-  <div align=center class="container">
+
+
+
+  <div align=center class="container" id="content">
+
+    <mat-button-toggle-group style="color: white" [(ngModel)]="selectedAuthType">
+      <mat-button-toggle value="signin">Sign In
+      </mat-button-toggle>
+      <mat-button-toggle value="signup">Sign Up
+      </mat-button-toggle>
+    </mat-button-toggle-group>
 
 
     <div *ngIf="error" class="alert alert-warning" role="alert">
@@ -11,42 +21,68 @@
       {{error}}
     </div>
 
-    <mat-card class="example-card" [@slideUp]="'true'">
-      <h2 *ngIf="!isLoading" style="font-size: 22px;"><img
-        src="assets/images/equilabFavicon.png" height="60" width="60"/></h2>
-      <h2 *ngIf="isLoading" style="font-size: 22px;"><img src="assets/images/equilabFavicon.png" height="200"
-                                                          width="200"/></h2>
 
 
-      <form *ngIf="!isLoading" class="example-form" #signInForm="ngForm" (ngSubmit)="loginWithEmail(signInForm)">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email" type="email" name="email" class="email" ngModel required>
-        </mat-form-field>
+    <div [ngSwitch]="selectedAuthType">
+
+      <div *ngSwitchCase="'signin'">
+        <mat-card class="example-card" [@slideUp]="'true'">
+          <form *ngIf="!isLoading" class="example-form" #signInForm="ngForm" (ngSubmit)="loginWithEmail(signInForm)">
+            <mat-form-field class="example-full-width">
+              <input matInput="true" placeholder="Email" type="email" name="email" class="email" ngModel required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
 
 
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Lösenord" type="password" name="password" class="password"  ngModel required>
-        </mat-form-field>
-        <br>
-        <div class="text-center">
-          <button mat-raised-button type="submit">Login</button>
-          <br>
-          <p *ngIf="error" class="error-text">{{errorMessage}}</p>
-        </div>
-        <button mat-raised-button  style="margin-top: 10px;" (click)="logInWithFacebook()">Login with Facebook</button>
+            <mat-form-field class="example-full-width" style="margin-top: 50px">
+              <input matInput="true" placeholder="Lösenord" type="password" name="password" class="password" ngModel required>
+            </mat-form-field>
+            <br>
 
-        <a href="#" style="font-size: 15px;"> Forgot your password?</a>
+            <div class="text-center">
+              <button mat-raised-button type="submit">Login</button>
+              <br>
+              <p *ngIf="error" class="error-text">{{errorMessage}}</p>
+            </div>
+            <button mat-raised-button  style="margin-top: 10px;" (click)="logInWithFacebook()">Login with Facebook</button>
 
-      </form>
+            <a href="#" style="font-size: 15px;"> Forgot your password?</a>
 
-      <div *ngIf="isLoading" class="text-center">
-        <mat-progress-spinner mode="indeterminate" color="primary">Loading</mat-progress-spinner>
+          </form>
+        </mat-card>
+
       </div>
 
-    </mat-card>
+
+      <div *ngSwitchCase="'signup'">
+
+        <mat-card class="example-card" [@slideUp]="'true'">
+          <form #signUpForm="ngForm" (ngSubmit)="onSignUpWithEmail(signUpForm)">
+            <mat-form-field class="example-full-width">
+              <input matInput="true" placeholder="Email" type="email" name="email" class="email" ngModel required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field class="example-full-width" style="margin-top: 50px">
+              <input matInput="true" placeholder="Lösenord" type="password" name="password" class="password" ngModel required>
+            </mat-form-field>
+            <br>
+
+            <div class="text-center">
+              <button mat-raised-button type="submit">Skapa konto</button>
+              <br>
+              <p *ngIf="error" class="error-text">{{errorMessage}}</p>
+            </div>
+          </form>
+        </mat-card>
+
+      </div>
+    </div>
+
 
   </div>
 
-</div>
+
 
 

@@ -9,7 +9,19 @@ import {Router} from '@angular/router';
 @Injectable()
 export class FirebaseService {
   private _dbRoot: firebase.database.Reference;
-  constructor(private router: Router) { }
+
+
+  firebaseConfig = {
+    apiKey: 'AIzaSyA2V_AQd1R2lbCDfjHzAoSXgg7mNPZCzhs',
+    authDomain: 'myhouse-58a88.firebaseapp.com',
+    databaseURL: 'https://myhouse-58a88.firebaseio.com',
+    projectId: 'myhouse-58a88',
+    storageBucket: 'myhouse-58a88.appspot.com',
+    messagingSenderId: '178332113016'
+  };
+  constructor(private router: Router) {
+    firebase.initializeApp(this.firebaseConfig);
+  }
 
   isAuthenticated(): Observable<boolean> {
     const subject = new Subject<boolean>();
@@ -23,6 +35,22 @@ export class FirebaseService {
     return subject.asObservable();
   }
 
+
+  createUserWithEmailAndPassword(email, password) {
+    return firebase.auth().createUserWithEmailAndPassword(email, password);
+  }
+
+
+  loginWithPassword(email, password) {
+    return firebase.auth().signInWithEmailAndPassword(email, password).then(authState => {
+
+      // Creates or Updates /users/uid
+      firebase.database().ref('/').child('/users/' + authState.uid).update({
+        uid: authState.uid,
+        email: authState.email
+      });
+    });
+  }
   logInWithFacebook() {
     const provider = new firebase.auth.FacebookAuthProvider();
 
