@@ -21,7 +21,6 @@ import { YoutubeService } from './services/youtube.service';
 import { HttpModule } from '@angular/http';
 import { SafePipe } from './shared/pipes/safe.pipe';
 
-
 export const firebaseConfig = {
   apiKey: 'AIzaSyA2V_AQd1R2lbCDfjHzAoSXgg7mNPZCzhs',
   authDomain: 'myhouse-58a88.firebaseapp.com',
@@ -64,10 +63,10 @@ const materialModules = [
     routing,
     BrowserAnimationsModule,
     FormsModule,
-    materialModules,
+    materialModules
   ],
   providers: [FirebaseService, AuthGuard, YoutubeService],
   bootstrap: [AppComponent],
-  exports: [materialModules, FormsModule],
+  exports: [FormsModule],
 })
 export class AppModule { }
