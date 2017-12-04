@@ -1,8 +1,8 @@
 
 <div id="bg" class="custom-background cover">
-  <a class="navbar-brand" href="https://equilab.horse/"><img class="equilabName"
+  <!-- <a class="navbar-brand" href="https://equilab.horse/"><img class="equilabName"
                                                              src="assets/images/equilabName.png"
-                                                             height="25px"/></a>
+                                                             height="25px"/></a> -->
 
 
 
@@ -39,13 +39,17 @@
         <mat-card class="example-card" [@slideUp]="'true'">
           <form *ngIf="!isLoading" class="example-form" #signInForm="ngForm" (ngSubmit)="loginWithEmail(signInForm)">
             <mat-form-field class="example-full-width">
-              <input matInput="true" placeholder="Email" type="email" name="email" class="email" ngModel required>
+              <label>Email</label>
+              <!-- placeholder="Email"  buggad atm-->
+              <input matInput type="email" name="email" class="email" ngModel required>
               <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
 
 
             <mat-form-field class="example-full-width" style="margin-top: 50px">
-              <input matInput="true" placeholder="Lösenord" type="password" name="password" class="password" ngModel required>
+             <label>Lösenord</label>
+             <!-- placeholder="Lösenord"   buggad atm -->
+              <input matInput type="password" name="password" class="password" ngModel required>
             </mat-form-field>
             <br>
 
@@ -69,16 +73,20 @@
         <mat-card class="example-card" [@slideUp]="'true'">
           <form #signUpForm="ngForm" (ngSubmit)="onSignUpWithEmail(signUpForm)">
             <mat-form-field class="example-full-width">
-              <input matInput="true" placeholder="Email" type="email" name="email" class="email" ngModel required>
+              <label>Email</label>
+                <!-- placeholder="Email" bugged atm -->
+              <input matInput type="email" name="email" class="email" ngModel required>
               <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
 
 
             <mat-form-field class="example-full-width" style="margin-top: 50px">
-              <input matInput="true" placeholder="Lösenord" type="password" name="password" class="password" ngModel required>
+              <label>Lösenord</label>
+              <!--  placeholder="Lösenord" bugged atm -->
+              <input matInput type="password" name="password" class="password" ngModel required>
             </mat-form-field>
             <br>
-
+            <br>
             <div class="text-center">
               <button mat-raised-button type="submit">Skapa konto</button>
               <br>

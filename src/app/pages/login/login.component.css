@@ -92,4 +92,14 @@ div.cover {
   color: #16B67F;
 }
 
+input{
+  border-bottom: solid;
+}
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
 
+.example-container > * {
+  width: 100%;
+}
