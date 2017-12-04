@@ -14,9 +14,10 @@ import { ProfessionalhelpComponent } from './pages/professionalhelp/professional
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import {
-  MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatSidenavModule,
-  MatToolbarModule, MatTooltipModule, MatProgressSpinnerModule, MatTabsModule, MatButtonToggleModule
+  MatButtonModule,MatProgressBarModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatSidenavModule,
+  MatToolbarModule, MatTooltipModule, MatProgressSpinnerModule, MatTabsModule, MatButtonToggleModule, MatListModule, MatCheckboxModule
 } from '@angular/material';
+
 import { YoutubeService } from './services/youtube.service';
 import { HttpModule } from '@angular/http';
 import { SafePipe } from './shared/pipes/safe.pipe';
@@ -42,7 +43,10 @@ const materialModules = [
   MatTooltipModule,
   MatProgressSpinnerModule,
   MatTabsModule,
-  MatButtonToggleModule
+  MatButtonToggleModule,
+  MatProgressBarModule,
+  MatListModule,
+  MatCheckboxModule
 ];
 
 @NgModule({
