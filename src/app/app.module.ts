@@ -15,7 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import {
   MatButtonModule,MatProgressBarModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatSidenavModule,
-  MatToolbarModule, MatTooltipModule, MatProgressSpinnerModule, MatTabsModule, MatButtonToggleModule, MatListModule, MatCheckboxModule
+  MatToolbarModule, MatTooltipModule, MatProgressSpinnerModule, MatTabsModule, MatButtonToggleModule, MatListModule, MatCheckboxModule, MatStepperModule
 } from '@angular/material';
 
 import { YoutubeService } from './services/youtube.service';
@@ -46,7 +46,8 @@ const materialModules = [
   MatButtonToggleModule,
   MatProgressBarModule,
   MatListModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatStepperModule
 ];
 
 @NgModule({
