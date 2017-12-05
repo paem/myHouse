@@ -1,63 +1,33 @@
 <h1>Steg för steg</h1>
 <div class="row">
-  <h1>kanske bättre och ha en componet hus o en bostad så innehållet byts ut när man klickar på det.</h1>
     <div class="col-sm-2"></div>
       <div class="col-sm-8">
         <br>
           <mat-progress-bar mode="determinate" value="0"></mat-progress-bar>
-          <mat-horizontal-stepper [linear]="isLinear">
-              <mat-step [stepControl]="firstFormGroup">
-                <form [formGroup]="firstFormGroup">
-                  <ng-template matStepLabel>Fill out your name</ng-template>
-                  <div class="row">
-                      <h1>Välj typ av köp</h1>
-                      <br>
-                     
-                        <div class="col-sm-6">
-                          <button mat-button matStepperNext>
-                            <mat-card>
-                                <img mat-card-image src="https://cdn.houseplans.com/product/o2d2ui14afb1sov3cnslpummre/w1024.jpg?v=15" alt="House">
-                                <mat-card-content><h1>Hus</h1></mat-card-content>
-                              </mat-card>
-                            </button>
-                         </div>
-                         <div class="col-sm-6">
-                           <button mat-button matStepperNext> 
-                            <mat-card>
-                                <img mat-card-image src="https://cdn.houseplans.com/product/o2d2ui14afb1sov3cnslpummre/w1024.jpg?v=15" alt="House">
-                                <mat-card-content>
-                                  <h1>Bostad</h1>
-                                  </mat-card-content>
-                              </mat-card></button>
-                         </div>
-                        
-                         </div>
-                  <div>
-                  </div>
-                </form>
-              </mat-step>
-              
-              <mat-step [stepControl]="secondFormGroup">
-                <form [formGroup]="secondFormGroup">
-                  <ng-template matStepLabel>Fill out your address</ng-template>
-                  <mat-form-field>
-                    <input matInput placeholder="Address" formControlName="secondCtrl" required>
-                  </mat-form-field>
-                  <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
-                  </div>
-                </form>
-              </mat-step>
-              <mat-step>
-                <ng-template matStepLabel>Done</ng-template>
-                You are now done.
-                <div>
-                  <button mat-button matStepperPrevious>Back</button>
-                </div>
-              </mat-step>
-            </mat-horizontal-stepper>
-            
+            <div class="row">
+              <h1>Välj typ av köp</h1>
+              <br>
+             
+                <div class="col-sm-6">
+                  <a class="hover" [routerLink]="['../house']" routerLinkActive="active" href="#">                            
+                    <mat-card>
+                        <img mat-card-image src="https://cdn.houseplans.com/product/o2d2ui14afb1sov3cnslpummre/w1024.jpg?v=15" alt="House">
+                        <mat-card-content><h1>Hus</h1></mat-card-content>
+                      </mat-card>
+                    </a>
+                 </div>
+                 <div class="col-sm-6">
+                  <a class="hover" [routerLink]="['../bostad']" routerLinkActive="active" href="#">
+                    <mat-card>
+                        <img mat-card-image src="https://cdn.houseplans.com/product/o2d2ui14afb1sov3cnslpummre/w1024.jpg?v=15" alt="House">
+                        <mat-card-content>
+                          <h1>Bostad</h1>
+                          </mat-card-content>
+                      </mat-card></a>
+                 </div>
+                 </div>
+          <div>
+          </div>
       <div class="col-sm-2"></div>
 </div>
 </div>

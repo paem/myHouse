@@ -1,3 +1,4 @@
+import { BostadComponent } from './bostad/bostad.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FirebaseService } from './services/firebase.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,6 +20,7 @@ import { MaterialModule } from './material.module';
 import { YoutubeService } from './services/youtube.service';
 import { HttpModule } from '@angular/http';
 import { SafePipe } from './shared/pipes/safe.pipe';
+import { HouseComponent } from './house/house.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyA2V_AQd1R2lbCDfjHzAoSXgg7mNPZCzhs',
@@ -39,7 +41,9 @@ export const firebaseConfig = {
     StepbystepComponent,
     ProfessionalhelpComponent,
     SafePipe,
-    ProfileComponent
+    ProfileComponent,
+    BostadComponent,
+    HouseComponent
   ],
   imports: [
     BrowserModule,

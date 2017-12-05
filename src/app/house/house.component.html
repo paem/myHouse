@@ -1,0 +1,53 @@
+<h1>Hus</h1>
+<div class="row">
+    <div class="col-sm-2">
+    </div>
+      <div class="col-sm-8">
+        <br>
+          <mat-progress-bar mode="determinate" value="10"></mat-progress-bar>
+          <mat-horizontal-stepper [linear]="isLinear">
+              <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Innan köpet</ng-template>
+                    
+                  <div class="row">
+                      <a class="hover" [routerLink]="['/stegforsteg']" routerLinkActive="active" href="#">
+                        <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                      </a>
+                    
+                         </div>
+                  <div>
+                  </div>
+                </form>   
+              </mat-step>
+           
+              
+              <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                  <ng-template matStepLabel>Under köpet</ng-template>
+              
+                  <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step [stepControl]="secondFormGroup">
+                  <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Efter köpet</ng-template>
+     
+                    <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                      <button mat-button matStepperNext>Next</button>
+                    </div>
+                  </form>
+                </mat-step>
+             
+            </mat-horizontal-stepper>
+            
+      <div class="col-sm-2"></div>
+</div>
+</div>
+
+
+
