@@ -39,17 +39,13 @@
         <mat-card class="example-card" [@slideUp]="'true'">
           <form *ngIf="!isLoading" class="example-form" #signInForm="ngForm" (ngSubmit)="loginWithEmail(signInForm)">
             <mat-form-field class="example-full-width">
-              <label>Email</label>
-              <!-- placeholder="Email"  buggad atm-->
-              <input matInput type="email" name="email" class="email" ngModel required>
+              <i style="float:right;" class="fa fa-envelope fa-fw"></i>
+              <input matInput placeholder="Email"  type="email" name="email" class="email" ngModel required>
               <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
-
-
             <mat-form-field class="example-full-width" style="margin-top: 50px">
-             <label>Lösenord</label>
-             <!-- placeholder="Lösenord"   buggad atm -->
-              <input matInput type="password" name="password" class="password" ngModel required>
+              <i style="float:right;" class="fa fa-key fa-fw"></i>
+              <input matInput type="password" placeholder="Lösenord"  name="password" class="password" ngModel required>
             </mat-form-field>
             <br>
 
@@ -63,6 +59,7 @@
             <a href="#" style="font-size: 15px;"> Forgot your password?</a>
 
           </form>
+          <mat-spinner *ngIf="isLoading"></mat-spinner>
         </mat-card>
 
       </div>
@@ -71,19 +68,15 @@
       <div *ngSwitchCase="'signup'">
         <h2 [@fadeIn]="'true'" style="color: #fff; margin-top: 40px">Skapa ett konto</h2>
         <mat-card class="example-card" [@slideUp]="'true'">
-          <form #signUpForm="ngForm" (ngSubmit)="onSignUpWithEmail(signUpForm)">
+          <form *ngIf="!isLoading" #signUpForm="ngForm" (ngSubmit)="onSignUpWithEmail(signUpForm)">
             <mat-form-field class="example-full-width">
-              <label>Email</label>
-                <!-- placeholder="Email" bugged atm -->
-              <input matInput type="email" name="email" class="email" ngModel required>
+              <i style="float:right;" class="fa fa-envelope fa-fw"></i>
+              <input matInput type="email" placeholder="Email"  name="email" class="email" ngModel required>
               <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
-
-
             <mat-form-field class="example-full-width" style="margin-top: 50px">
-              <label>Lösenord</label>
-              <!--  placeholder="Lösenord" bugged atm -->
-              <input matInput type="password" name="password" class="password" ngModel required>
+              <i style="float:right;" class="fa fa-key fa-fw"></i>
+              <input matInput type="password" placeholder="Lösenord" name="password" class="password" ngModel required>
             </mat-form-field>
             <br>
             <br>
@@ -93,6 +86,7 @@
               <p *ngIf="error" class="error-text">{{errorMessage}}</p>
             </div>
           </form>
+          <mat-spinner *ngIf="isLoading"></mat-spinner>
         </mat-card>
 
       </div>

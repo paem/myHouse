@@ -12,12 +12,9 @@ import { InformationcenterComponent } from './pages/informationcenter/informatio
 import { StepbystepComponent } from './pages/stepbystep/stepbystep.component';
 import { ProfessionalhelpComponent } from './pages/professionalhelp/professionalhelp.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
-import {
-  MatButtonModule,MatProgressBarModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatSidenavModule,
-  MatToolbarModule, MatTooltipModule, MatProgressSpinnerModule, MatTabsModule, MatButtonToggleModule, MatListModule, MatCheckboxModule, MatStepperModule
-} from '@angular/material';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import 'hammerjs';
+import { MaterialModule } from './material.module';
 import { YoutubeService } from './services/youtube.service';
 import { HttpModule } from '@angular/http';
 import { SafePipe } from './shared/pipes/safe.pipe';
@@ -30,25 +27,6 @@ export const firebaseConfig = {
   storageBucket: 'myhouse-58a88.appspot.com',
   messagingSenderId: '178332113016'
 };
-
-const materialModules = [
-  MatButtonModule,
-  MatMenuModule,
-  MatToolbarModule,
-  MatIconModule,
-  MatCardModule,
-  MatSidenavModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatTooltipModule,
-  MatProgressSpinnerModule,
-  MatTabsModule,
-  MatButtonToggleModule,
-  MatProgressBarModule,
-  MatListModule,
-  MatCheckboxModule,
-  MatStepperModule
-];
 
 @NgModule({
   declarations: [
@@ -68,7 +46,8 @@ const materialModules = [
     routing,
     BrowserAnimationsModule,
     FormsModule,
-    materialModules
+    ReactiveFormsModule,
+    MaterialModule
   ],
   providers: [FirebaseService, AuthGuard, YoutubeService],
   bootstrap: [AppComponent],

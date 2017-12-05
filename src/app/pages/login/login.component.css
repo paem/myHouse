@@ -2,11 +2,13 @@
 .example-card {
   width: 400px;
   margin: 40px;
-
   font-size: 20px;
   background: white;
   border: solid 0.5px;
+  border-radius: 25px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 0 3px #ccc;
+  -webkit-box-shadow: 0 0 3px #ccc;
 }
 
 @media screen and (max-width: 750px){
@@ -16,6 +18,7 @@
     margin-left: 0;
     font-size: 20px;
     background: white;
+    border-radius: 25px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 }
@@ -93,8 +96,9 @@ div.cover {
 }
 
 input{
-  border-bottom: solid;
+  color: #FFFFFF;
 }
+
 .example-container {
   display: flex;
   flex-direction: column;
