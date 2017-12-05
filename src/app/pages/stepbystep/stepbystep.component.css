@@ -6,3 +6,7 @@ h1{
     margin-right: 0px;
     margin-left: 0px;
 }
+.mat-button{
+    padding:0px;
+    bottom: 1px;
+}

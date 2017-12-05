@@ -13,4 +13,4 @@ export const slideUpAnimation =
     ]),
     transition(':leave', [style({opacity: 0, transform: 'translateY(-50%)'}), animate('1s ease-out')
     ])
-  ]);
+  ]);  
