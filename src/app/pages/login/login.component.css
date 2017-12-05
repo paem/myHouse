@@ -92,7 +92,7 @@ div.cover {
   display: none;
 }
 .checkbox input:checked + label{
-  color: #16B67F;
+  color: #673AB7;
 }
 
 input{
