@@ -1,3 +1,4 @@
+import { ProfileComponent } from './profile/profile.component';
 import { FirebaseService } from './services/firebase.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -37,7 +38,8 @@ export const firebaseConfig = {
     InformationcenterComponent,
     StepbystepComponent,
     ProfessionalhelpComponent,
-    SafePipe
+    SafePipe,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
