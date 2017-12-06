@@ -1,3 +1,4 @@
+import { BostadComponent } from './bostad/bostad.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FirebaseService } from './services/firebase.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -25,6 +26,7 @@ import { HttpModule } from '@angular/http';
 import { SafePipe } from './shared/pipes/safe.pipe';
 import { AgmCoreModule } from '@agm/core';
 import {GeoService} from './services/geo.service';
+import { HouseComponent } from './house/house.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import {GeoService} from './services/geo.service';
     StepbystepComponent,
     ProfessionalhelpComponent,
     SafePipe,
-    ProfileComponent
+    ProfileComponent,
+    BostadComponent,
+    HouseComponent
   ],
   imports: [
     BrowserModule,

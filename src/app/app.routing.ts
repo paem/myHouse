@@ -6,6 +6,8 @@ import {HomeComponent} from './pages/home/home.component';
 import {InformationcenterComponent} from './pages/informationcenter/informationcenter.component';
 import {StepbystepComponent} from './pages/stepbystep/stepbystep.component';
 import {ProfessionalhelpComponent} from './pages/professionalhelp/professionalhelp.component';
+import { HouseComponent } from './house/house.component';
+import { BostadComponent } from './bostad/bostad.component';
 
 const APP_ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
@@ -14,6 +16,9 @@ const APP_ROUTES: Routes = [
   { path: 'stegforsteg', component: StepbystepComponent, canActivate: [AuthGuard] },
   { path: 'naradig', component: ProfessionalhelpComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'house', component: HouseComponent, canActivate: [AuthGuard] },
+  { path: 'bostad', component: BostadComponent, canActivate: [AuthGuard] },
   { path: '',   redirectTo: '/hem', pathMatch: 'full' },
 ];
 
