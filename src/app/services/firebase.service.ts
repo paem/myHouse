@@ -20,7 +20,7 @@ export class FirebaseService {
     messagingSenderId: '178332113016'
   };
   constructor(private router: Router) {
-    firebase.initializeApp(this.firebaseConfig);
+
   }
 
   isAuthenticated(): Observable<boolean> {

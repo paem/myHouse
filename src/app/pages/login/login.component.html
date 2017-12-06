@@ -40,8 +40,13 @@
           <form *ngIf="!isLoading" class="example-form" #signInForm="ngForm" (ngSubmit)="loginWithEmail(signInForm)">
             <mat-form-field class="example-full-width">
               <i style="float:right;" class="fa fa-envelope fa-fw"></i>
-              <input matInput placeholder="Email"  type="email" name="email" class="email" ngModel required>
-              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+              <input matInput [formControl]="emailFormControl"  [errorStateMatcher]="matcher" placeholder="Email"  type="email" name="email" class="email" ngModel required>
+              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width" style="margin-top: 50px">
               <i style="float:right;" class="fa fa-key fa-fw"></i>
@@ -50,11 +55,11 @@
             <br>
 
             <div class="text-center">
-              <button mat-raised-button type="submit">Login</button>
+              <button mat-raised-button type="submit">Logga in med email</button>
               <br>
               <p *ngIf="error" class="error-text">{{errorMessage}}</p>
             </div>
-            <button class="button-f" mat-raised-button  style="margin-top: 10px;" (click)="logInWithFacebook()">Login with Facebook</button>
+            <button class="button-f" mat-raised-button style="margin-top: 10px;" (click)="logInWithFacebook()"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>Logga in med Facebook</button>
 
             <a href="#" style="font-size: 15px;"> Forgot your password?</a>
 
@@ -71,8 +76,13 @@
           <form *ngIf="!isLoading" #signUpForm="ngForm" (ngSubmit)="onSignUpWithEmail(signUpForm)">
             <mat-form-field class="example-full-width">
               <i style="float:right;" class="fa fa-envelope fa-fw"></i>
-              <input matInput type="email" placeholder="Email"  name="email" class="email" ngModel required>
-              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+              <input matInput [formControl]="emailFormControl" type="email" placeholder="Email"  name="email" class="email" ngModel required>
+              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width" style="margin-top: 50px">
               <i style="float:right;" class="fa fa-key fa-fw"></i>

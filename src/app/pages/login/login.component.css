@@ -83,6 +83,12 @@ div.cover {
   background-size: cover;
 }
 
+.checkbox label, .radio label {
+  min-height: 20px;
+  padding: 0!important;
+  margin-bottom: 0;
+  cursor: pointer;
+}
 
 .checkbox{
   color: #FFFFFF;
@@ -93,10 +99,11 @@ div.cover {
 }
 .checkbox input:checked + label{
   color: #673AB7;
+  border-bottom: solid!important;
 }
 
 input{
-  color: #FFFFFF;
+
 }
 
 .example-container {

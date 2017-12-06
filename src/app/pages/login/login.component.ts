@@ -2,9 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {FirebaseService} from '../../services/firebase.service';
 import {slideUpAnimation} from '../../shared/animations/slideUp.animation';
-import {NgForm} from '@angular/forms';
 import {fadeInAnimation} from '../../shared/animations/fadeIn.animation';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material';
+
+
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
+
 
 @Component({
   selector: 'app-login',
@@ -17,8 +27,15 @@ export class LoginComponent implements OnInit {
   isLoading = false;
   public error: any;
   email = new FormControl('', [Validators.required, Validators.email]);
-  constructor(private _firebaseService: FirebaseService, private router: Router) { }
+  constructor(private _firebaseService: FirebaseService, private router: Router) {
+  }
 
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
+  matcher = new MyErrorStateMatcher();
   ngOnInit() {
   }
   loginWithEmail(form: NgForm) {

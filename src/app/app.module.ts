@@ -4,6 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabase} from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth';
 import {routing} from './app.routing';
 import { LoginComponent } from './pages/login/login.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -19,15 +23,8 @@ import { MaterialModule } from './material.module';
 import { YoutubeService } from './services/youtube.service';
 import { HttpModule } from '@angular/http';
 import { SafePipe } from './shared/pipes/safe.pipe';
-
-export const firebaseConfig = {
-  apiKey: 'AIzaSyA2V_AQd1R2lbCDfjHzAoSXgg7mNPZCzhs',
-  authDomain: 'myhouse-58a88.firebaseapp.com',
-  databaseURL: 'https://myhouse-58a88.firebaseio.com',
-  projectId: 'myhouse-58a88',
-  storageBucket: 'myhouse-58a88.appspot.com',
-  messagingSenderId: '178332113016'
-};
+import { AgmCoreModule } from '@agm/core';
+import {GeoService} from './services/geo.service';
 
 @NgModule({
   declarations: [
@@ -44,14 +41,26 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     HttpModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp({
+      apiKey: 'AIzaSyA2V_AQd1R2lbCDfjHzAoSXgg7mNPZCzhs',
+      authDomain: 'myhouse-58a88.firebaseapp.com',
+      databaseURL: 'https://myhouse-58a88.firebaseio.com',
+      projectId: 'myhouse-58a88',
+      storageBucket: 'myhouse-58a88.appspot.com',
+      messagingSenderId: '178332113016'
+    }),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     routing,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCQbC86Nv2dHAU3hNBJZ1hOVn4O1NYj7Gg'
+    })
   ],
-  providers: [FirebaseService, AuthGuard, YoutubeService],
+  providers: [FirebaseService, AuthGuard, YoutubeService, GeoService],
   bootstrap: [AppComponent],
   exports: [FormsModule],
 })
