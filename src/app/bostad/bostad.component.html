@@ -1,4 +1,4 @@
-<h1>Hus</h1>
+<h1>Bostadsrätt</h1>
 <div class="row">
     <div class="col-sm-2"></div>
       <div class="col-sm-8">
@@ -8,54 +8,57 @@
               <mat-step [stepControl]="firstFormGroup">
                 <form [formGroup]="firstFormGroup">
                   <ng-template matStepLabel>Innan köpet</ng-template>
+                  <div class="row">                      
+                    <br>
+                    <h1>1. Skaffa Bostadslån!</h1>
+                    <h3>Innan du köper är det viktigt att försäkra sig.</h3>
+                  </div>
                   <div class="row">
-                      <a class="hover" [routerLink]="['/stegforsteg']" routerLinkActive="active" href="#">
-                        <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
-                      </a>
-                      <br>
-                            <h1>1. Skaffa Bostadslån!</h1>
-                            <h3>Innan du köper är det viktigt att försäkra sig.</h3>
-                         </div>
-                         <div class="row">
-                            <h1>Steg 2. Leta bostad</h1>
-                          
-                         </div>
+                    <h1>Steg 2. Leta bostad</h1>
+                  </div>
                   <div>
                   </div>
                 </form>
+                <div class="row">   
+                  <a class="hover" [routerLink]="['/stegforsteg']" routerLinkActive="active" href="#">
+                    <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                  </a>
+                  <button style="float:right;" matStepperNext>
+                    <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                  </button>
+                </div>
               </mat-step>
               
               <mat-step [stepControl]="secondFormGroup">
                 <form [formGroup]="secondFormGroup">
                   <ng-template matStepLabel>Under köpet</ng-template>
-                  <mat-form-field>
-                    <input matInput placeholder="Address" formControlName="secondCtrl" required>
-                  </mat-form-field>
                   <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
+                    <div class="row">   
+                      <button matStepperPrevious>
+                          <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                      </button>
+                        <button style="float:right;" matStepperNext>
+                          <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                        </button>
+                      </div>
                   </div>
                 </form>
               </mat-step>
-              <mat-step>
-               <mat-step [stepControl]="secondFormGroup">
-                <form [formGroup]="secondFormGroup">
-                  <ng-template matStepLabel>Efter köpet</ng-template>
-                  <mat-form-field>
-                    <input matInput placeholder="Address" formControlName="secondCtrl" required>
-                  </mat-form-field>
-                  <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
-                  </div>
-                </form>
-              </mat-step>
-                <ng-template matStepLabel>Done</ng-template>
-                You are now done.
-                <div>
-                  <button mat-button matStepperPrevious>Back</button>
-                </div>
-              </mat-step>
+              <mat-step [stepControl]="secondFormGroup">
+                  <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Efter köpet</ng-template>
+                    <div>
+                      <div class="row">   
+                        <button matStepperPrevious>
+                          <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                        </button>
+                        <button style="float:right;" matStepperNext>
+                          <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                        </button>
+                     </div>
+                    </div>
+                  </form>
+                </mat-step>
             </mat-horizontal-stepper>
             
       <div class="col-sm-2"></div>

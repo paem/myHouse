@@ -1,53 +1,82 @@
 <h1>Hus</h1>
 <div class="row">
-    <div class="col-sm-2">
-    </div>
+    <div class="col-sm-2"></div>
       <div class="col-sm-8">
         <br>
           <mat-progress-bar mode="determinate" value="10"></mat-progress-bar>
           <mat-horizontal-stepper [linear]="isLinear">
               <mat-step [stepControl]="firstFormGroup">
                 <form [formGroup]="firstFormGroup">
-                    <ng-template matStepLabel>Innan köpet</ng-template>
-                    
-                  <div class="row">
-                      <a class="hover" [routerLink]="['/stegforsteg']" routerLinkActive="active" href="#">
-                        <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
-                      </a>
-                    
-                         </div>
-                  <div>
+                  <ng-template matStepLabel>Innan köpet</ng-template>
+                  <div class="row">       
+                    <h2>1. Bolån - Lånelöfte</h2>
+                    <h3>Skaffa lånelöfte</h3>
+                    <p></p> 
+                    <h2>2. Hitta drömhuset</h2> 
+                    <h3>Gå på visningar</h3>
+                    <p></p> 
+                    <h3>Lär känna området</h3>
+                    <p></p> 
+                    <h3>Vad är rätt pris för dig?</h3>
+                    <p></p>    
+                    <h3>Undersök huset!</h3> 
+                    <p></p>    
+                    <h2>3. Skapa budget</h2> 
+                    <p></p>    
+                    <h2>4. Budgivning</h2>        
+                    <p></p>   
+                    <h2>5. Besiktning</h2>        
+                    <p></p>  
+                    <h2>6. Skriv Kontrakt</h2>        
+                    <p></p>   
+                    <h2>7. Flytta in!</h2>       
+                    <p></p> 
                   </div>
-                </form>   
+                </form>
+                <div class="row">   
+                  <a class="hover" [routerLink]="['/stegforsteg']" routerLinkActive="active" href="#">
+                    <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                  </a>
+                  <button style="float:right;" matStepperNext>
+                    <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                  </button>
+                </div>
               </mat-step>
-           
               
               <mat-step [stepControl]="secondFormGroup">
                 <form [formGroup]="secondFormGroup">
                   <ng-template matStepLabel>Under köpet</ng-template>
-              
                   <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
+                    <div class="row">   
+                      <button matStepperPrevious>
+                          <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                      </button>
+                        <button style="float:right;" matStepperNext>
+                          <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                        </button>
+                      </div>
                   </div>
                 </form>
               </mat-step>
               <mat-step [stepControl]="secondFormGroup">
                   <form [formGroup]="secondFormGroup">
                     <ng-template matStepLabel>Efter köpet</ng-template>
-     
                     <div>
-                      <button mat-button matStepperPrevious>Back</button>
-                      <button mat-button matStepperNext>Next</button>
+                      <div class="row">   
+                        <button matStepperPrevious>
+                          <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                        </button>
+                        <button style="float:right;" matStepperNext>
+                          <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                        </button>
+                     </div>
                     </div>
                   </form>
                 </mat-step>
-             
             </mat-horizontal-stepper>
             
       <div class="col-sm-2"></div>
 </div>
 </div>
-
 
 
