@@ -74,6 +74,11 @@ export class FirebaseService {
         accessToken: accessToken,
         uid: user.uid,
         email: user.email,
+        name: result.additionalUserInfo.profile.name,
+        profilePicture: result.additionalUserInfo.profile.picture.data.url,
+        gender: result.additionalUserInfo.profile.gender,
+        link: result.additionalUserInfo.profile.link
+
       });
     });
   }
