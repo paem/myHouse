@@ -1,53 +1,135 @@
-<div class="well" style="margin-left: 50px; margin-top: 10px;">
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
-    <li><a href="#profile" data-toggle="tab">Password</a></li>
+<div class="container" style="margin-top: 10px;">
+
+  <div class="row">
+  <div class="col-md-3">
+  <ul class="nav nav-pills nav-stacked admin-menu">
+    <li class="active"><a href="#home" data-toggle="tab"><i class="glyphicon glyphicon-user"></i>&nbsp; Profil</a></li>
+    <li><a href="#profile" data-toggle="tab"><i class="glyphicon glyphicon-lock"></i>&nbsp; Byt lösenord</a></li>
+    <li><a href="#email-address" data-toggle="tab"><i class="glyphicon glyphicon-envelope"></i>&nbsp; Byt email-adress</a></li>
   </ul>
+  </div>
   <div id="myTabContent" class="tab-content">
     <div class="tab-pane active in" id="home">
+      <div class="col-md-9" >
       <form id="tab">
-        <mat-form-field>
-          <input matInput [formControl]="emailFormControl" type="email" name="email" class="email" [(ngModel)]="email">
-          <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-envelope fa-fw"></i> <i>Email</i></mat-placeholder>
-          <button mat-button *ngIf="email" matSuffix mat-icon-button aria-label="Clear" (click)="email=''">
-            <mat-icon>close</mat-icon>
-          </button>
-          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-            Please enter a valid email address
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput type="text" name="address" class="address" [(ngModel)]="adress">
-          <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-envelope fa-fw"></i> <i>Adress</i></mat-placeholder>
-          <button mat-button *ngIf="adress" matSuffix mat-icon-button aria-label="Clear" (click)="adress=''">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
-        <div>
-          <button class="btn btn-primary">Update</button>
+        <div class="panel panel-info" style="margin: 1em;">
+          <div class="panel-heading">
+            <h3 class="panel-title"><label class="control-label panel-title">Namn</label></h3>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="col-sm-10">
+               <p>Placeholder name</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-info" style="margin: 1em;">
+          <div class="panel-heading">
+            <h3 class="panel-title"><label class="control-label panel-title">Email</label></h3>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="col-sm-10">
+              <p>placeholder@gmail.com</p>
+              </div>
+            </div>
+          </div>
         </div>
       </form>
     </div>
+    </div>
+
     <div class="tab-pane fade" id="profile">
+      <div class="col-md-9" >
       <form id="tab2">
-        <mat-form-field class="example-full-width">
-          <input matInput type="password" name="password" class="password" [(ngModel)]="oldPassword"  required>
-          <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-key fa-fw"></i><i>Ditt gamla lösenord</i></mat-placeholder>
-          <button mat-button *ngIf="oldPassword" matSuffix mat-icon-button aria-label="Clear" (click)="oldPassword=''">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <input matInput type="password" name="password" class="password" [(ngModel)]="newPassword"  required>
-          <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-key fa-fw"></i><i>Ditt nya lösenord</i></mat-placeholder>
-          <button mat-button *ngIf="newPassword" matSuffix mat-icon-button aria-label="Clear" (click)="newPassword=''">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
-        <div>
-          <button class="btn btn-primary">Update</button>
+        <div class="panel panel-info" style="margin: 1em;">
+          <div class="panel-heading">
+            <h3 class="panel-title"><label class="control-label panel-title">Nytt lösenord</label></h3>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="col-sm-10">
+                <mat-form-field class="example-full-width">
+                  <input matInput type="password" name="password" class="password" [(ngModel)]="newPassword"  required>
+                  <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-key fa-fw"></i><i>Nytt lösenord</i></mat-placeholder>
+                  <button mat-button *ngIf="newPassword" matSuffix mat-icon-button aria-label="Clear" (click)="newPassword=''">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-info" style="margin: 1em;">
+          <div class="panel-heading">
+            <h3 class="panel-title"><label class="control-label panel-title">Gammalt lösenord (för verifiering)</label></h3>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="col-sm-10">
+                <mat-form-field class="example-full-width">
+                  <input matInput type="password" name="password" class="password" [(ngModel)]="oldPassword"  required>
+                  <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-key fa-fw"></i><i>Gamla lösenord</i></mat-placeholder>
+                  <button mat-button *ngIf="oldPassword" matSuffix mat-icon-button aria-label="Clear" (click)="oldPassword=''">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-info border" style="margin: 1em;">
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="pull-left">
+                <button class="btn btn-primary">Uppdatera</button>
+              </div>
+            </div>
+          </div>
         </div>
       </form>
     </div>
+  </div>
+
+    <div class="tab-pane fade" id="email-address">
+      <div class="col-md-9" >
+        <form id="tab3">
+          <div class="panel panel-info" style="margin: 1em;">
+            <div class="panel-heading">
+              <h3 class="panel-title"><label class="control-label panel-title">Byt email-adress</label></h3>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <div class="col-sm-10">
+                  <mat-form-field>
+                    <input matInput [formControl]="emailFormControl" type="email" name="email" class="email" [(ngModel)]="email">
+                    <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-envelope fa-fw"></i> <i>Email</i></mat-placeholder>
+                    <button mat-button *ngIf="email" matSuffix mat-icon-button aria-label="Clear" (click)="email=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                      Please enter a valid email address
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-info border" style="margin: 1em;">
+            <div class="panel-body">
+              <div class="form-group">
+                <div class="pull-left">
+                  <button class="btn btn-primary">Uppdatera</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
   </div>
 </div>
