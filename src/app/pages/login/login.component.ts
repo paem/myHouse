@@ -4,17 +4,6 @@ import {FirebaseService} from '../../services/firebase.service';
 import {slideUpAnimation} from '../../shared/animations/slideUp.animation';
 import {fadeInAnimation} from '../../shared/animations/fadeIn.animation';
 import {FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material';
-
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
-
 
 @Component({
   selector: 'app-login',
@@ -23,19 +12,17 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   animations: [slideUpAnimation, fadeInAnimation],
 })
 export class LoginComponent implements OnInit {
+  public email: string;
+  public password: string;
   selectedAuthType = 'signin';
   isLoading = false;
   public error: any;
-  email = new FormControl('', [Validators.required, Validators.email]);
   constructor(private _firebaseService: FirebaseService, private router: Router) {
   }
-
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
-
-  matcher = new MyErrorStateMatcher();
   ngOnInit() {
   }
   loginWithEmail(form: NgForm) {
@@ -44,7 +31,7 @@ export class LoginComponent implements OnInit {
     this._firebaseService.loginWithPassword(form.value.email, form.value.password).then((data) => {
       console.log('SIGNED IN WITH EMAIL', data);
       this.isLoading = false;
-      this.router.navigate(['/mystable']);
+      this.router.navigate(['/hem']);
     }).catch((error: any) => {
       if (error) {
         this.isLoading = false;
@@ -57,20 +44,28 @@ export class LoginComponent implements OnInit {
     this.isLoading = true;
     this._firebaseService.logInWithFacebook().then(authState => {
       console.log('SIGNED IN WITH FACEBOOK');
-      this.router.navigate(['/informationscenter']);
+      this.router.navigate(['/profile']);
     }).catch(error => {
       this.isLoading = false;
-      this.router.navigate(['/hem']);
+      this.router.navigate(['/login']);
     });
   }
-  onSignUpWithEmail(form: NgForm) {
-    this._firebaseService.createUserWithEmailAndPassword(form.value.email, form.value.password).then(authState => {
-    }).catch(error => {
+  onSignUpWithEmail() {
+    const account = {
+      email: this.email,
+      password: this.password
+    };
+    this.isLoading = true;
+    this._firebaseService.createUserWithEmailAndPassword(account).then(authState => {
+      this.isLoading = false;
+      this.router.navigate(['/profile']);
+    }).catch((error: any) => {
+      if (error) {
+        this.isLoading = false;
+        this.error = error;
+        console.log(this.error);
+        this.router.navigate(['/login']);
+      }
     });
-  }
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-      this.email.hasError('email') ? 'Not a valid email' :
-        '';
   }
 }

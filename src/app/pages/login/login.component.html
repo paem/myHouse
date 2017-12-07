@@ -39,8 +39,8 @@
         <mat-card class="example-card" [@slideUp]="'true'">
           <form *ngIf="!isLoading" class="example-form" #signInForm="ngForm" (ngSubmit)="loginWithEmail(signInForm)">
             <mat-form-field class="example-full-width">
-              <i style="float:right;" class="fa fa-envelope fa-fw"></i>
-              <input matInput [formControl]="emailFormControl"  [errorStateMatcher]="matcher" placeholder="Email"  type="email" name="email" class="email" ngModel required>
+              <input matInput [formControl]="emailFormControl" type="email" name="email" class="email" ngModel required>
+              <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-envelope fa-fw"></i> <i>Email</i></mat-placeholder>
               <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                 Please enter a valid email address
               </mat-error>
@@ -49,11 +49,10 @@
               </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width" style="margin-top: 50px">
-              <i style="float:right;" class="fa fa-key fa-fw"></i>
-              <input matInput type="password" placeholder="Lösenord"  name="password" class="password" ngModel required>
+              <input matInput type="password" name="password" class="password" ngModel  required>
+              <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-key fa-fw"></i><i>Lösenord</i></mat-placeholder>
             </mat-form-field>
             <br>
-
             <div class="text-center">
               <button mat-raised-button type="submit">Logga in med email</button>
               <br>
@@ -73,10 +72,13 @@
       <div *ngSwitchCase="'signup'">
         <h2 [@fadeIn]="'true'" style="color: #fff; margin-top: 40px">Skapa ett konto</h2>
         <mat-card class="example-card" [@slideUp]="'true'">
-          <form *ngIf="!isLoading" #signUpForm="ngForm" (ngSubmit)="onSignUpWithEmail(signUpForm)">
+          <form *ngIf="!isLoading">
             <mat-form-field class="example-full-width">
-              <i style="float:right;" class="fa fa-envelope fa-fw"></i>
-              <input matInput [formControl]="emailFormControl" type="email" placeholder="Email"  name="email" class="email" ngModel required>
+              <input matInput [formControl]="emailFormControl" type="email" name="email" class="email" [(ngModel)]="email"  required>
+              <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-envelope fa-fw"></i> <i>Email</i></mat-placeholder>
+              <button mat-button *ngIf="email" matSuffix mat-icon-button aria-label="Clear" (click)="email=''">
+                <mat-icon>close</mat-icon>
+              </button>
               <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                 Please enter a valid email address
               </mat-error>
@@ -85,13 +87,16 @@
               </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width" style="margin-top: 50px">
-              <i style="float:right;" class="fa fa-key fa-fw"></i>
-              <input matInput type="password" placeholder="Lösenord" name="password" class="password" ngModel required>
+              <input matInput type="password" name="password" class="password" [(ngModel)]="password"  required>
+              <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-key fa-fw"></i><i>Lösenord</i></mat-placeholder>
+              <button mat-button *ngIf="password" matSuffix mat-icon-button aria-label="Clear" (click)="password=''">
+                <mat-icon>close</mat-icon>
+              </button>
             </mat-form-field>
             <br>
             <br>
             <div class="text-center">
-              <button mat-raised-button type="submit">Skapa konto</button>
+              <button mat-raised-button (click)="onSignUpWithEmail()">Skapa konto</button>
               <br>
               <p *ngIf="error" class="error-text">{{errorMessage}}</p>
             </div>

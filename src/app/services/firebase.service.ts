@@ -3,13 +3,11 @@ import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
 import { Subject} from 'rxjs/Subject';
 import {Router} from '@angular/router';
-// import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+// import { AngularFireDatabase } from 'angularfire2/database';
 
 
 @Injectable()
 export class FirebaseService {
-  private _dbRoot: firebase.database.Reference;
-
 
   firebaseConfig = {
     apiKey: 'AIzaSyA2V_AQd1R2lbCDfjHzAoSXgg7mNPZCzhs',
@@ -20,7 +18,7 @@ export class FirebaseService {
     messagingSenderId: '178332113016'
   };
   constructor(private router: Router) {
-
+  firebase.initializeApp(this.firebaseConfig);
   }
 
   isAuthenticated(): Observable<boolean> {
@@ -36,10 +34,19 @@ export class FirebaseService {
   }
 
 
-  createUserWithEmailAndPassword(email, password) {
-    return firebase.auth().createUserWithEmailAndPassword(email, password);
-  }
+  createUserWithEmailAndPassword(account: {}) {
 
+    return firebase.auth().createUserWithEmailAndPassword(account['email'], account['password']).then(() =>  {
+
+      firebase.auth().signInWithEmailAndPassword(account['email'], account['password']).then(authenticatedUser =>  {
+
+        firebase.database().ref('/').child('/users/' + authenticatedUser.uid).update( {
+          email: account['email'],
+        });
+      });
+    });
+
+  }
 
   loginWithPassword(email, password) {
     return firebase.auth().signInWithEmailAndPassword(email, password).then(authState => {
@@ -63,7 +70,7 @@ export class FirebaseService {
       const user = result.user;
 
       // Creates or Updates /users/uid
-      this._dbRoot.child('/users/' + user.uid).update({
+      firebase.database().ref('/').child('/users/' + user.uid).update({
         accessToken: accessToken,
         uid: user.uid,
         email: user.email,
