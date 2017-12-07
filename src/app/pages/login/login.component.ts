@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {FirebaseService} from '../../services/firebase.service';
 import {slideUpAnimation} from '../../shared/animations/slideUp.animation';
 import {fadeInAnimation} from '../../shared/animations/fadeIn.animation';
-import {FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
+import {FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +12,9 @@ import {FormControl, Validators, FormGroupDirective, NgForm } from '@angular/for
   animations: [slideUpAnimation, fadeInAnimation],
 })
 export class LoginComponent implements OnInit {
+  public name: string;
+  public loginEmail: string;
+  public loginPassword: string;
   public email: string;
   public password: string;
   selectedAuthType = 'signin';
@@ -25,10 +28,13 @@ export class LoginComponent implements OnInit {
   ]);
   ngOnInit() {
   }
-  loginWithEmail(form: NgForm) {
+  loginWithEmail() {
+    const account = {
+      email: this.loginEmail,
+      password: this.loginPassword
+    };
     this.isLoading = true;
-
-    this._firebaseService.loginWithPassword(form.value.email, form.value.password).then((data) => {
+    this._firebaseService.loginWithPassword(account).then((data) => {
       console.log('SIGNED IN WITH EMAIL', data);
       this.isLoading = false;
       this.router.navigate(['/hem']);
@@ -53,7 +59,8 @@ export class LoginComponent implements OnInit {
   onSignUpWithEmail() {
     const account = {
       email: this.email,
-      password: this.password
+      password: this.password,
+      name: this.name
     };
     this.isLoading = true;
     this._firebaseService.createUserWithEmailAndPassword(account).then(authState => {

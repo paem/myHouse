@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 
 @Injectable()
 export class FirebaseService {
-
+  userData: any;
   firebaseConfig = {
     apiKey: 'AIzaSyA2V_AQd1R2lbCDfjHzAoSXgg7mNPZCzhs',
     authDomain: 'myhouse-58a88.firebaseapp.com',
@@ -33,6 +33,12 @@ export class FirebaseService {
     return subject.asObservable();
   }
 
+  updatePassword(providedPassword, newPassword) {
+  return firebase.auth().currentUser.reauthenticateWithCredential(
+    firebase.auth.EmailAuthProvider.credential(firebase.auth().currentUser.email, providedPassword)).then( () => {
+      firebase.auth().currentUser.updatePassword(newPassword);
+    });
+}
 
   createUserWithEmailAndPassword(account: {}) {
 
@@ -42,19 +48,20 @@ export class FirebaseService {
 
         firebase.database().ref('/').child('/users/' + authenticatedUser.uid).update( {
           email: account['email'],
+          name:  account['name']
         });
       });
     });
 
   }
 
-  loginWithPassword(email, password) {
-    return firebase.auth().signInWithEmailAndPassword(email, password).then(authState => {
+  loginWithPassword(account: {}) {
+    return firebase.auth().signInWithEmailAndPassword(account['email'], account['password']).then(authState => {
 
       // Creates or Updates /users/uid
       firebase.database().ref('/').child('/users/' + authState.uid).update({
         uid: authState.uid,
-        email: authState.email
+        email: account['email']
       });
     });
   }

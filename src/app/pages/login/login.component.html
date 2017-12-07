@@ -37,30 +37,36 @@
         <h2 [@fadeIn]="'true'" style="color: #fff; margin-top: 40px">Logga in på ditt konto</h2>
 
         <mat-card class="example-card" [@slideUp]="'true'">
-          <form *ngIf="!isLoading" class="example-form" #signInForm="ngForm" (ngSubmit)="loginWithEmail(signInForm)">
+          <form *ngIf="!isLoading" class="example-form">
             <mat-form-field class="example-full-width">
-              <input matInput [formControl]="emailFormControl" type="email" name="email" class="email" ngModel required>
+              <input matInput [formControl]="emailFormControl" type="email" name="email" class="email" [(ngModel)]="loginEmail" required>
               <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-envelope fa-fw"></i> <i>Email</i></mat-placeholder>
+              <button mat-button *ngIf="loginEmail" matSuffix mat-icon-button aria-label="Clear" (click)="loginEmail=''">
+                <mat-icon>close</mat-icon>
+              </button>
               <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                Please enter a valid email address
+                Var god ange en giltig email-adress
               </mat-error>
               <mat-error *ngIf="emailFormControl.hasError('required')">
                 Email is <strong>required</strong>
               </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width" style="margin-top: 50px">
-              <input matInput type="password" name="password" class="password" ngModel  required>
+              <input matInput type="password" name="password" class="password" [(ngModel)]="loginPassword"  required>
               <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-key fa-fw"></i><i>Lösenord</i></mat-placeholder>
+              <button mat-button *ngIf="loginPassword" matSuffix mat-icon-button aria-label="Clear" (click)="loginPassword=''">
+                <mat-icon>close</mat-icon>
+              </button>
             </mat-form-field>
             <br>
             <div class="text-center">
-              <button mat-raised-button type="submit">Logga in med email</button>
+              <button mat-raised-button (click)="loginWithEmail()">Logga in med email</button>
               <br>
               <p *ngIf="error" class="error-text">{{errorMessage}}</p>
             </div>
             <button class="button-f" mat-raised-button style="margin-top: 10px;" (click)="logInWithFacebook()"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>Logga in med Facebook</button>
 
-            <a href="#" style="font-size: 15px;"> Forgot your password?</a>
+            <a href="#" style="font-size: 15px;"> Glömt ditt lösenord?</a>
 
           </form>
           <mat-spinner *ngIf="isLoading"></mat-spinner>
@@ -74,16 +80,23 @@
         <mat-card class="example-card" [@slideUp]="'true'">
           <form *ngIf="!isLoading">
             <mat-form-field class="example-full-width">
+              <input matInput type="text" name="name" class="name" [(ngModel)]="name"  required>
+              <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-user fa-fw"></i><i>Namn</i></mat-placeholder>
+              <button mat-button *ngIf="name" matSuffix mat-icon-button aria-label="Clear" (click)="name=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" style="margin-top: 50px">
               <input matInput [formControl]="emailFormControl" type="email" name="email" class="email" [(ngModel)]="email"  required>
               <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-envelope fa-fw"></i> <i>Email</i></mat-placeholder>
               <button mat-button *ngIf="email" matSuffix mat-icon-button aria-label="Clear" (click)="email=''">
                 <mat-icon>close</mat-icon>
               </button>
               <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                Please enter a valid email address
+                Var god ange en giltig email-adress
               </mat-error>
               <mat-error *ngIf="emailFormControl.hasError('required')">
-                Email is <strong>required</strong>
+                Email är <strong>krävd</strong>
               </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width" style="margin-top: 50px">
