@@ -57,7 +57,7 @@ export class GeoService {
       });
   }
 
-  createBroker(key: string, coords: Array<number>, name: string, description: string, contactInformation: Array<string>) {
+  createBroker(key: string, coords: Array<string>, name: string, description: string, contactInformation: Array<string>) {
     this.geoFireBroker.update(key, coords, name, description, contactInformation)
       .then(_ => console.log('location updated')).catch(err => console.log(err));
   }

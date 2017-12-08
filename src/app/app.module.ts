@@ -11,7 +11,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 import {routing} from './app.routing';
 import { LoginComponent } from './pages/login/login.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
 import {AuthGuard} from './shared/guard/auth.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { InformationcenterComponent } from './pages/informationcenter/informationcenter.component';
@@ -29,12 +28,12 @@ import {GeoService} from './services/geo.service';
 import { HouseComponent } from './house/house.component';
 import { CreateHouseInfoComponent } from './house/create-house-info/create-house-info.component';
 import { UpdateHouseInfoComponent } from './house/update-house-info/update-house-info.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SidenavComponent,
     HomeComponent,
     InformationcenterComponent,
     StepbystepComponent,
@@ -44,7 +43,8 @@ import { UpdateHouseInfoComponent } from './house/update-house-info/update-house
     BostadComponent,
     HouseComponent,
     CreateHouseInfoComponent,
-    UpdateHouseInfoComponent
+    UpdateHouseInfoComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,

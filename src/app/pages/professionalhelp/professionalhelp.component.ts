@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { GeoService } from '../../services/geo.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-professionalhelp',
@@ -7,11 +8,21 @@ import { GeoService } from '../../services/geo.service';
   styleUrls: ['./professionalhelp.component.css']
 })
 export class ProfessionalhelpComponent implements OnInit, OnDestroy {
-  lat: number;
-  lng: number;
+  public lat: number;
+  public lng: number;
+  public inputLat: number;
+  public inputLng: number;
+  public brokerName: string;
+  public brokerDescription: string;
+  public brokerPhone: string;
+  public brokerAddress: string;
+  public brokerEmail: string;
+  coordArray = [];
+  contactinformationArray = [];
   markers: any;
   subscription: any;
   isLoading: any;
+  newBrokerKey = firebase.database().ref('/locations/brokers/').push().key;
   constructor(private geo: GeoService) {
   }
 
@@ -34,8 +45,10 @@ export class ProfessionalhelpComponent implements OnInit, OnDestroy {
     }
   }
 
-  createBroker(key: string, coords: Array<number>, name: string, description: string, contactInformation: Array<string>) {
-    this.geo.createBroker(key, coords, name, description, contactInformation);
+  createBroker() {
+    this.coordArray.push(this.inputLat, this.inputLng);
+    this.contactinformationArray.push(this.brokerPhone, this.brokerAddress, this.brokerEmail);
+    this.geo.createBroker(this.newBrokerKey, this.coordArray, this.brokerName, this.brokerDescription, this.contactinformationArray);
   }
 
   private seedDatabase() {

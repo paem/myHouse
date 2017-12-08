@@ -1,13 +1,50 @@
 
-
-<app-sidenav></app-sidenav>
-
-
-<main>
-  <div class="content">
-    <!-- Page content goes here  -->
-    <router-outlet></router-outlet>
+<div id="wrapper">
+  <div class="overlay"></div>
+  <!-- Sidebar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav">
+      <li class="sidebar-brand">
+        <a href="#">
+          Brand
+        </a>
+      </li>
+      <li>
+        <a *ngIf="isAuthenticated" [routerLink]="['/profile']" routerLinkActive="active" href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp; Profil</a>
+      </li>
+      <li>
+        <a [routerLink]="['/informationscenter']" routerLinkActive="active" href="#"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>&nbsp; Informationscenter</a>
+      </li>
+      <li>
+        <a [routerLink]="['/stegforsteg']" routerLinkActive="active" href="#"><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i>&nbsp; Steg för steg</a>
+      </li>
+      <li>
+        <a [routerLink]="['/naradig']" routerLinkActive="active" href="#"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>&nbsp; Byggfirmor&Mäklarfirmor nära dig</a>
+      </li>
+      <li>
+        <a *ngIf="!isAuthenticated" [routerLink]="['/login']" routerLinkActive="active" href="#"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i>&nbsp; Logga in</a>
+      </li>
+      <li>
+        <a *ngIf="isAuthenticated" (click)="onSignOut()" href="#"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp; Logga ut</a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /#sidebar-wrapper -->
+  <div id="page-content-wrapper">
+    <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+      <span class="hamb-top"></span>
+      <span class="hamb-middle"></span>
+      <span class="hamb-bottom"></span>
+    </button>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-</main>
+</div>
+<!-- /#wrapper -->
+
+
+
+
 
 

@@ -10,28 +10,3 @@
 
 
 
-<mat-card class="example-card">
-  <form *ngIf="!isLoading" class="example-form" #signInForm="ngForm" (ngSubmit)="loginWithEmail(signInForm)">
-    <mat-form-field class="example-full-width">
-      <i style="float:right;" class="fa fa-envelope fa-fw"></i>
-      <input matInput placeholder="Email"  type="" name="" class="email" ngModel required>
-      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>
-    <mat-form-field class="example-full-width" style="margin-top: 50px">
-      <i style="float:right;" class="fa fa-key fa-fw"></i>
-      <input matInput type="password" placeholder="Lösenord"  name="password" class="password" ngModel required>
-    </mat-form-field>
-    <br>
-
-    <div class="text-center">
-      <button mat-raised-button type="submit">Login</button>
-      <br>
-      <p *ngIf="error" class="error-text">{{errorMessage}}</p>
-    </div>
-    <button class="button-f" mat-raised-button  style="margin-top: 10px;" (click)="logInWithFacebook()">Login with Facebook</button>
-
-    <a href="#" style="font-size: 15px;"> Forgot your password?</a>
-
-  </form>
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
-</mat-card>
