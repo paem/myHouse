@@ -3,8 +3,8 @@ import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
 import { Subject} from 'rxjs/Subject';
 import {Router} from '@angular/router';
-// import { AngularFireDatabase } from 'angularfire2/database';
-
+import { Item } from '../shared/classes/item'; 
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 @Injectable()
 export class FirebaseService {
@@ -17,8 +17,31 @@ export class FirebaseService {
     storageBucket: 'myhouse-58a88.appspot.com',
     messagingSenderId: '178332113016'
   };
-  constructor(private router: Router) {
-  firebase.initializeApp(this.firebaseConfig);
+
+  items: Observable<Item[]> = null;
+  itemsRef: AngularFireList<Item> = null;  
+
+  constructor(private router: Router, private afDb:AngularFireDatabase) {
+  if(!firebase.apps.length){
+    firebase.initializeApp(this.firebaseConfig);      
+  }
+  }
+
+  getInfo(): Observable<Item[]>{
+    this.itemsRef = this.afDb.list('Information/');    
+    this.items = this.itemsRef.snapshotChanges().map(changes => {
+      return changes.map(c => ({key: c.payload.key, ...c.payload.val()}));
+    })
+    return this.items;
+  }
+  createInfo(item: Item): void{
+    this.itemsRef.push(item);
+    }
+  updateInfo(key: string, value:any):void{
+    this.itemsRef.update(key, value);
+  }
+  deleteInfo(key: string):void{
+    this.itemsRef.remove(key); 
   }
 
   isAuthenticated(): Observable<boolean> {

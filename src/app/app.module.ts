@@ -27,6 +27,8 @@ import { SafePipe } from './shared/pipes/safe.pipe';
 import { AgmCoreModule } from '@agm/core';
 import {GeoService} from './services/geo.service';
 import { HouseComponent } from './house/house.component';
+import { CreateHouseInfoComponent } from './house/create-house-info/create-house-info.component';
+import { UpdateHouseInfoComponent } from './house/update-house-info/update-house-info.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { HouseComponent } from './house/house.component';
     SafePipe,
     ProfileComponent,
     BostadComponent,
-    HouseComponent
+    HouseComponent,
+    CreateHouseInfoComponent,
+    UpdateHouseInfoComponent
   ],
   imports: [
     BrowserModule,

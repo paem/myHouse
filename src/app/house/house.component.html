@@ -1,4 +1,5 @@
 <h1>Hus</h1>
+<app-create-house-info></app-create-house-info>
 <div class="row">
     <div class="col-sm-2"></div>
       <div class="col-sm-8">
@@ -7,31 +8,16 @@
           <mat-horizontal-stepper [linear]="isLinear">
               <mat-step [stepControl]="firstFormGroup">
                 <form [formGroup]="firstFormGroup">
+                    <div *ngFor="let item of items | async">
+                        
                   <ng-template matStepLabel>Innan köpet</ng-template>
-                  <div class="row">       
-                    <h2>1. Bolån - Lånelöfte</h2>
-                    <h3>Skaffa lånelöfte</h3>
-                    <p></p> 
-                    <h2>2. Hitta drömhuset</h2> 
-                    <h3>Gå på visningar</h3>
-                    <p></p> 
-                    <h3>Lär känna området</h3>
-                    <p></p> 
-                    <h3>Vad är rätt pris för dig?</h3>
-                    <p></p>    
-                    <h3>Undersök huset!</h3> 
-                    <p></p>    
-                    <h2>3. Skapa budget</h2> 
-                    <p></p>    
-                    <h2>4. Budgivning</h2>        
-                    <p></p>   
-                    <h2>5. Besiktning</h2>        
-                    <p></p>  
-                    <h2>6. Skriv Kontrakt</h2>        
-                    <p></p>   
-                    <h2>7. Flytta in!</h2>       
-                    <p></p> 
+                  <div class="row">   
+                    <h2>{{item.title}}</h2> 
+                    <p>{{item.body}}</p>
+                    <h3>{{item.subTitle}}</h3>
+                    <p>{{item.subBody}}</p>
                   </div>
+                </div>
                 </form>
                 <div class="row">   
                   <a class="hover" [routerLink]="['/stegforsteg']" routerLinkActive="active" href="#">
@@ -77,6 +63,7 @@
             
       <div class="col-sm-2"></div>
 </div>
+
 </div>
 
 
