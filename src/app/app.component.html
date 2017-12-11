@@ -19,16 +19,16 @@
         <a [routerLink]="['/stegforsteg']" routerLinkActive="active" href="#"><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i>&nbsp; Steg för steg</a>
       </li>
       <li>
-        <a [routerLink]="['/naradig']" routerLinkActive="active" href="#"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>&nbsp; Byggfirmor&Mäklarfirmor nära dig</a>
+        <a [routerLink]="['/naradig']" routerLinkActive="active" href="#"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>&nbsp; Hjälp nära dig</a>
       </li>
       <li>
         <a [routerLink]="['/adminpanel']" routerLinkActive="active" href="#"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>&nbsp; Admin Panel</a>
       </li>
-      <li>
-        <a *ngIf="!isAuthenticated" [routerLink]="['/login']" routerLinkActive="active" href="#"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i>&nbsp; Logga in</a>
+      <li *ngIf="!isAuthenticated">
+        <a [routerLink]="['/login']" routerLinkActive="active" href="#"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i>&nbsp; Logga in</a>
       </li>
-      <li>
-        <a *ngIf="isAuthenticated" (click)="onSignOut()" href="#"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp; Logga ut</a>
+      <li *ngIf="isAuthenticated">
+        <a data-toggle="modal" data-target="#logoutModal" href="#"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp; Logga ut</a>
       </li>
     </ul>
   </nav>
@@ -39,9 +39,7 @@
       <span class="hamb-middle"></span>
       <span class="hamb-bottom"></span>
     </button>
-    <div class="container">
       <router-outlet></router-outlet>
-    </div>
   </div>
 </div>
 <!-- /#wrapper -->
@@ -49,5 +47,21 @@
 
 
 
-
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Logga ut</h4>
+      </div>
+      <div class="modal-body">
+        <p>Är du säker på att du vill logga ut?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Nej</button>
+        <button id="logoutButton" type="button" (click)="onSignOut()" data-dismiss="modal" class="btn btn-success">Ja</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 

@@ -41,10 +41,11 @@ export class ProfessionalhelpComponent implements OnInit, OnDestroy {
     this.getUserLocation();
     this.subscription = this.geo.hits
       .subscribe(hits => this.markers = hits);
-    this.loadBrokers = this.geo.brokers.subscribe(items => {
+   /* this.loadBrokers = this.geo.brokers.subscribe(items => {
       console.log(items);
     });
     console.log(this.loadBrokers);
+    */
   }
 
   ngOnDestroy() {

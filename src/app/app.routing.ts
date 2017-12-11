@@ -18,11 +18,10 @@ const APP_ROUTES: Routes = [
   { path: 'stegforsteg', component: StepbystepComponent, canActivate: [AuthGuard] },
   { path: 'naradig', component: ProfessionalhelpComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'house', component: HouseComponent, canActivate: [AuthGuard] },
   { path: 'bostad', component: BostadComponent, canActivate: [AuthGuard] },
-  { path: 'adminpanel', component: AdminPanelComponent, canActivate: [AuthGuard] }, 
-  { path: 'edit/:key', component: UpdateInfoComponent, canActivate: [AuthGuard]},   
+  { path: 'adminpanel', component: AdminPanelComponent, canActivate: [AuthGuard] },
+  { path: 'edit/:key', component: UpdateInfoComponent, canActivate: [AuthGuard]},
   { path: '',   redirectTo: '/hem', pathMatch: 'full' },
 ];
 
