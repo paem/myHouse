@@ -1,3 +1,19 @@
 agm-map {
   height: 300px;
 }
+
+
+.example-full-width {
+  width: 100%;
+}
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}

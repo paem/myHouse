@@ -1,6 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { GeoService } from '../../services/geo.service';
 import * as firebase from 'firebase';
+import {FormControl, Validators} from '@angular/forms';
+import {AngularFireDatabase} from 'angularfire2/database';
 
 @Component({
   selector: 'app-professionalhelp',
@@ -17,19 +19,32 @@ export class ProfessionalhelpComponent implements OnInit, OnDestroy {
   public brokerPhone: string;
   public brokerAddress: string;
   public brokerEmail: string;
+  loadBrokers: any;
+  alert = false;
+  error: any;
   coordArray = [];
   contactinformationArray = [];
   markers: any;
   subscription: any;
   isLoading: any;
-  newBrokerKey = firebase.database().ref('/locations/brokers/').push().key;
-  constructor(private geo: GeoService) {
+  brokers = false;
+  contractors = false;
+  constructor(private geo: GeoService, private afDb: AngularFireDatabase) {
   }
-
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+  disableBrokers = new FormControl(false);
+  disableContractors = new FormControl(true);
   ngOnInit() {
     this.getUserLocation();
     this.subscription = this.geo.hits
       .subscribe(hits => this.markers = hits);
+    this.loadBrokers = this.geo.brokers.subscribe(items => {
+      console.log(items);
+    });
+    console.log(this.loadBrokers);
   }
 
   ngOnDestroy() {
@@ -40,15 +55,49 @@ export class ProfessionalhelpComponent implements OnInit, OnDestroy {
       navigator.geolocation.getCurrentPosition(position => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
-        this.geo.getLocationsBroker(500, [this.lat, this.lng]);
+        console.log(this.lat, this.lng);
+        this.geo.getLocationsBroker(100, [this.lat, this.lng]);
       });
     }
   }
 
+  getBrokers() {
+    this.contractors = false;
+    this.brokers = true;
+  }
+  getContractors() {
+    this.contractors = true;
+    this.brokers = false;
+  }
   createBroker() {
-    this.coordArray.push(this.inputLat, this.inputLng);
-    this.contactinformationArray.push(this.brokerPhone, this.brokerAddress, this.brokerEmail);
-    this.geo.createBroker(this.newBrokerKey, this.coordArray, this.brokerName, this.brokerDescription, this.contactinformationArray);
+    this.isLoading = true;
+   this.coordArray.push(this.inputLat, this.inputLng);
+   this.contactinformationArray.push(this.brokerPhone, this.brokerAddress, this.brokerEmail);
+    this.geo.createBroker(this.coordArray, this.brokerName, this.brokerDescription, this.contactinformationArray).then( () => {
+      this.alert = true;
+      this.isLoading = false;
+      this.coordArray = null;
+      this.contactinformationArray = null;
+      this.brokerName = null;
+      this.brokerDescription = null;
+      this.brokerEmail = null;
+      this.brokerAddress = null;
+      this.brokerPhone = null;
+      this.inputLat = null;
+      this.inputLng = null;
+    }).catch(err => {
+      this.error = err;
+      this.isLoading = false;
+      this.coordArray = null;
+      this.contactinformationArray = null;
+      this.brokerName = null;
+      this.brokerDescription = null;
+      this.brokerEmail = null;
+      this.brokerAddress = null;
+      this.brokerPhone = null;
+      this.inputLat = null;
+      this.inputLng = null;
+    });
   }
 
   private seedDatabase() {
