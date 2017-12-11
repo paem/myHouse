@@ -20,6 +20,7 @@ export class FirebaseService {
 
   items: Observable<Item[]> = null;
   itemsRef: AngularFireList<Item> = null;  
+  // keyInfo:any;
 
   constructor(private router: Router, private afDb:AngularFireDatabase) {
   if(!firebase.apps.length){
@@ -34,6 +35,11 @@ export class FirebaseService {
     })
     return this.items;
   }
+  // getInfoByKey(key: string){
+  //   const afObj = this.afDb.object('Information/'+key);    
+  //   this.keyInfo = afObj.valueChanges();
+  //   this.keyInfo.subscribe(a => { return a; });  
+  // }
   createInfo(item: Item): void{
     this.itemsRef.push(item);
     }

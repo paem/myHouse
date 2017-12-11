@@ -1,0 +1,21 @@
+h1{
+    text-align: center;
+}
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+a:hover{
+    text-decoration: none;
+}
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
+    font-family: sans-serif;
+}
+
+i:hover{
+    color:purple;
+}

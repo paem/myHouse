@@ -1,3 +1,5 @@
+import { ShowInfoComponent } from './admin-panel/show-info/show-info.component';
+import { CreateInfoComponent } from './admin-panel/create-info/create-info.component';
 import { BostadComponent } from './bostad/bostad.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FirebaseService } from './services/firebase.service';
@@ -26,9 +28,8 @@ import { SafePipe } from './shared/pipes/safe.pipe';
 import { AgmCoreModule } from '@agm/core';
 import {GeoService} from './services/geo.service';
 import { HouseComponent } from './house/house.component';
-import { CreateHouseInfoComponent } from './house/create-house-info/create-house-info.component';
-import { UpdateHouseInfoComponent } from './house/update-house-info/update-house-info.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { UpdateInfoComponent } from './admin-panel/update-info/update-info.component';
 
 @NgModule({
   declarations: [
@@ -42,9 +43,10 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     ProfileComponent,
     BostadComponent,
     HouseComponent,
-    CreateHouseInfoComponent,
-    UpdateHouseInfoComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    CreateInfoComponent,
+    UpdateInfoComponent,
+    ShowInfoComponent
   ],
   imports: [
     BrowserModule,

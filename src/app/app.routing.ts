@@ -8,6 +8,8 @@ import {StepbystepComponent} from './pages/stepbystep/stepbystep.component';
 import {ProfessionalhelpComponent} from './pages/professionalhelp/professionalhelp.component';
 import { HouseComponent } from './house/house.component';
 import { BostadComponent } from './bostad/bostad.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { UpdateInfoComponent } from './admin-panel/update-info/update-info.component';
 
 const APP_ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,6 +21,8 @@ const APP_ROUTES: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'house', component: HouseComponent, canActivate: [AuthGuard] },
   { path: 'bostad', component: BostadComponent, canActivate: [AuthGuard] },
+  { path: 'adminpanel', component: AdminPanelComponent, canActivate: [AuthGuard] }, 
+  { path: 'edit/:key', component: UpdateInfoComponent, canActivate: [AuthGuard]},   
   { path: '',   redirectTo: '/hem', pathMatch: 'full' },
 ];
 

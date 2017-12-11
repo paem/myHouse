@@ -1,0 +1,45 @@
+<div class="form-group">
+  <div class="col-sm-8">
+    <fieldset>
+      
+        <mat-form-field>
+         
+            <mat-select [(ngModel)]="type" placeholder="{{(info | async)?.type}}" multiple>
+              <mat-option *ngFor="let type of types" [value]="type">
+                {{type}}
+              </mat-option>
+            </mat-select>
+          
+          </mat-form-field>
+      <mat-form-field>
+          <mat-select [(ngModel)]="tab" placeholder="{{(info | async)?.tab}}" multiple>
+            <mat-option *ngFor="let tab of tabs" [value]="tab">
+              {{tab}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> <br>
+      <mat-form-field>
+        <input matInput placeholder="{{(info | async)?.title}}"
+        [(ngModel)]="title">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea  [(ngModel)]="body" matInput placeholder="{{(info | async)?.body}}" ></textarea>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput  [(ngModel)]="subTitle" placeholder="{{(info | async)?.subTitle}}"
+          >
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput  [(ngModel)]="subBody" placeholder="{{(info | async)?.subBody}}"
+        ></textarea>
+      </mat-form-field>
+      
+    </fieldset>
+    <a class="hover" [routerLink]="['/adminpanel']" routerLinkActive="active" href="#">
+      <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+    </a>
+    <button style="float:right;" class="btn btn-primary" (click)="updateInfo()">Update</button>      
+  </div>
+    </div>
+        
