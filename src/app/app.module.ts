@@ -1,3 +1,4 @@
+import { InformationSearchService } from './services/information-search.service';
 import { ShowInfoComponent } from './admin-panel/show-info/show-info.component';
 import { CreateInfoComponent } from './admin-panel/create-info/create-info.component';
 import { BostadComponent } from './bostad/bostad.component';
@@ -30,6 +31,7 @@ import {GeoService} from './services/geo.service';
 import { HouseComponent } from './house/house.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { UpdateInfoComponent } from './admin-panel/update-info/update-info.component';
+import { GoogleSearchService } from './services/google-search.service';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,7 @@ import { UpdateInfoComponent } from './admin-panel/update-info/update-info.compo
       apiKey: 'AIzaSyCQbC86Nv2dHAU3hNBJZ1hOVn4O1NYj7Gg'
     })
   ],
-  providers: [FirebaseService, AuthGuard, YoutubeService, GeoService],
+  providers: [FirebaseService, AuthGuard, YoutubeService, GeoService, GoogleSearchService, InformationSearchService],
   bootstrap: [AppComponent],
   exports: [FormsModule],
 })

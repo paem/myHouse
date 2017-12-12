@@ -26,8 +26,9 @@
         <input type="checkbox" value="text">Textformat<br>
         <input type="checkbox" value="video">Videoformat
     </div>
-  </div>
-
+  </div>  
+  <div class="google-media-search" [innerHTML]="gcsesearch"></div>
+  
   <div class="row">
   <div class="col-sm-3">
       <h1>Information</h1>
@@ -44,4 +45,18 @@
    <h1>Information</h1>
    <p> I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was a greater artist than now. When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary, I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown plants are noticed by me: when I hear the buzz </p>
   </div>
+</div>
+<h1>Search</h1>
+<input class="form-control" type="text" (keydown)="search($event)" placeholder="What u searchafor?">
+<div *ngFor="let i of info">
+  <h4>{{i?.title}}</h4>
+  <p>
+    {{i?.body}}
+  </p>
+</div>
+<div *ngIf="info?.length < 1">
+  <hr>
+  <p>
+    No results
+  </p>
 </div>
