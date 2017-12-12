@@ -16,7 +16,9 @@ export class GeoService {
   geoFireBroker: any;
   geoFireContractor: any;
   loadBrokers: any;
-  brokers: any;
+  loadContractors: any;
+  contractors = new BehaviorSubject([]);
+  brokers= new BehaviorSubject([]);
   hits = new BehaviorSubject([]);
   constructor(private afDb: AngularFireDatabase) {
     this.dbrefBrokers = firebase.database().ref('/brokers');
@@ -42,13 +44,16 @@ export class GeoService {
       radius: radius
     })
       .on('key_entered', (key, location, distance) => {
-        const brokerRef: AngularFireList<any> = this.afDb.list('brokers/' + key);
-        this.brokers = brokerRef.snapshotChanges().map(actions => {
-          return actions.map(action => ({ key: action.payload.key, ... action.payload.val() }));
-        }).subscribe(items => {
-          // får inte ur värdena bara nyckelnamnet om jag tar bort det som ligger under här
-          // så blir allt uppdelat så konstigt..sen vet jag inte hur man ska hämta dem i professionalhelp.ts sen heller men
-          console.log(items.map(item => item.key));
+        const brokerRef: any = this.afDb.object('brokers/' + key);
+        brokerRef.valueChanges().subscribe(items => { this.loadBrokers = {
+          contactInformation: items.contactInformation,
+          name: items.name,
+          description: items.description
+        };
+          const currentBrokers = this.brokers.value;
+          currentBrokers.push(this.loadBrokers);
+          this.brokers.next(currentBrokers);
+          console.log(this.brokers);
         });
         const hit = {
           location: location,
@@ -67,13 +72,25 @@ export class GeoService {
       radius: radius
     })
       .on('key_entered', (key, location, distance) => {
-        const hit = {
-          location: location,
-          distance: distance
+        const contractorRef: any = this.afDb.object('contractors/' + key);
+        contractorRef.valueChanges().subscribe(items => { this.loadContractors = {
+          contactInformation: items.contactInformation,
+          name: items.name,
+          description: items.description
         };
-        const currentHits = this.hits.value;
-        currentHits.push(hit);
-        this.hits.next(currentHits);
+          const currentContractors = this.contractors.value;
+          currentContractors.push(this.loadContractors);
+          this.contractors.next(currentContractors);
+          console.log(this.contractors);
+          const hit = {
+            location: location,
+            distance: distance,
+            name: items.name
+          };
+          const currentHits = this.hits.value;
+          currentHits.push(hit);
+          this.hits.next(currentHits);
+        });
       });
   }
 
@@ -86,6 +103,18 @@ export class GeoService {
           contactInformation: contactInformation
         });
         console.log('brokers updated');
+      }).catch(err => console.log(err));
+  }
+
+  createContractor(coords: Array<string>, name: string, description: string, contactInformation: Array<string>) {
+    return this.geoFireContractor.set(this.contractorId, coords)
+      .then(_ => {
+        this.dbrefContractors.child(this.contractorId).update( {
+          name : name,
+          description: description,
+          contactInformation: contactInformation
+        });
+        console.log('contractors updated');
       }).catch(err => console.log(err));
   }
 }

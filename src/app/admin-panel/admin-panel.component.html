@@ -3,6 +3,8 @@
   <div class="col-md-3">
   <ul class="nav nav-pills nav-stacked admin-menu">
     <li class="active"><a href="#home" data-toggle="tab"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp; Create/Manage Info</a></li>
+    <li ><a href="#broker" data-toggle="tab"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp; Lägg till Mäklarfirma</a></li>
+    <li ><a href="#contractor" data-toggle="tab"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp; Lägg till Byggfirma</a></li>
   </ul>
   </div>
   <div id="myTabContent" class="tab-content">
@@ -38,4 +40,257 @@
     </div>
     </div>
 
-    
+    <div class="tab-pane fade" id="broker">
+      <div class="col-md-9" >
+          <form class="example-form">
+            <div class="panel panel-info" style="margin: 1em;">
+              <div class="panel-heading">
+                <h3 class="panel-title"><label class="control-label panel-title">Namn och beskrivning</label></h3>
+              </div>
+              <div class="panel-body">
+                <div class="form-group">
+                  <div class="col-sm-10">
+                    <mat-form-field class="example-full-width">
+                      <input matInput type="text" name="text" class="text" [(ngModel)]="brokerName" required>
+                      <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-map fa-fw"></i> <i>Namn</i></mat-placeholder>
+                      <button mat-button *ngIf="brokerName" matSuffix mat-icon-button aria-label="Clear" (click)="brokerName=''">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                      <textarea matInput placeholder="Beskrivning" name="description" [(ngModel)]="brokerDescription" required> </textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-info" style="margin: 1em;">
+              <div class="panel-heading">
+                <h3 class="panel-title"><label class="control-label panel-title">Platsposition Lat/Lng</label></h3>
+              </div>
+              <div class="panel-body">
+                <div class="form-group">
+                  <div class="col-sm-10">
+                    <mat-form-field class="example-full-width">
+                      <input matInput type="number" name="number" class="number" [(ngModel)]="brokerInputLat" required>
+                      <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-map-marker fa-fw"></i> <i>Latitude</i></mat-placeholder>
+                      <button mat-button *ngIf="brokerInputLat" matSuffix mat-icon-button aria-label="Clear" (click)="brokerInputLat=''">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                      <input matInput type="number" name="number" class="number" [(ngModel)]="brokerInputLng" required>
+                      <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-map-marker fa-fw"></i> <i>Langitude</i></mat-placeholder>
+                      <button mat-button *ngIf="brokerInputLng" matSuffix mat-icon-button aria-label="Clear" (click)="brokerInputLng=''">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" (click)="getCoordsBroker()">Coordinates</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-info" style="margin: 1em;">
+              <div class="panel-heading">
+                <h3 class="panel-title"><label class="control-label panel-title">Kontaktinformation</label></h3>
+              </div>
+              <div class="panel-body">
+                <div class="form-group">
+                  <div class="col-sm-10">
+                    <mat-form-field class="example-full-width">
+                      <input matInput type="text" name="text" class="text" [(ngModel)]="brokerPhone"  required>
+                      <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-phone fa-fw"></i><i>Telefon Nummer</i></mat-placeholder>
+                      <button mat-button *ngIf="brokerPhone" matSuffix mat-icon-button aria-label="Clear" (click)="brokerPhone=''">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                      <input matInput type="text" name="text" class="text" [(ngModel)]="brokerAddress"  required>
+                      <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-location-arrow fa-fw"></i><i>Adress</i></mat-placeholder>
+                      <button mat-button *ngIf="brokerAddress" matSuffix mat-icon-button aria-label="Clear" (click)="brokerAddress=''">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                      <input matInput [formControl]="emailFormControl" type="text" name="text" class="text" [(ngModel)]="brokerEmail"  required>
+                      <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-envelope fa-fw"></i><i>Email</i></mat-placeholder>
+                      <button mat-button *ngIf="brokerEmail" matSuffix mat-icon-button aria-label="Clear" (click)="brokerEmail=''">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                        Var god ange en giltig email-adress
+                      </mat-error>
+                      <mat-error *ngIf="emailFormControl.hasError('required')">
+                        Email är <strong>krävd</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-info border" style="margin: 1em;">
+              <div class="panel-body">
+                <div class="form-group">
+                  <div class="pull-left">
+                    <div *ngIf="error" class="alert alert-warning alert-dismissable" role="alert">
+                      <a class="panel-close close" data-dismiss="alert">×</a>
+                      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                      <span class="sr-only">Error:</span>
+                      {{error}}
+                    </div>
+                    <div *ngIf="brokerFillInValuesAlert" class="alert alert-warning alert-dismissable" role="alert">
+                      <a class="panel-close close" data-dismiss="alert">×</a>
+                      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                      <span class="sr-only">Success:</span>
+                      Var god fyll i alla värden!
+                    </div>
+                    <div *ngIf="brokerAlert" class="alert alert-success alert-dismissable" role="alert">
+                      <a class="panel-close close" data-dismiss="alert">×</a>
+                      <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                      <span class="sr-only">Success:</span>
+                      Informationen har sparats!
+                    </div>
+                    <button color="primary" *ngIf="!isLoading" mat-raised-button (click)="createBroker()">Ok</button>
+                    <mat-error *ngIf="error">
+                      {{error}}
+                    </mat-error>
+                    <mat-spinner *ngIf="isLoading"></mat-spinner>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="contractor">
+      <div class="col-md-9" >
+        <form class="example-form">
+
+          <div class="panel panel-info" style="margin: 1em;">
+            <div class="panel-heading">
+              <h3 class="panel-title"><label class="control-label panel-title">Namn och beskrivning</label></h3>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <div class="col-sm-10">
+                  <mat-form-field class="example-full-width">
+                    <input matInput type="text" name="text" class="text" [(ngModel)]="contractorName" required>
+                    <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-map fa-fw"></i> <i>Namn</i></mat-placeholder>
+                    <button mat-button *ngIf="contractorName" matSuffix mat-icon-button aria-label="Clear" (click)="contractorName=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="Beskrivning" name="description" [(ngModel)]="contractorDescription" required> </textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-info" style="margin: 1em;">
+            <div class="panel-heading">
+              <h3 class="panel-title"><label class="control-label panel-title">Platsposition Lat/Lng</label></h3>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <div class="col-sm-10">
+                  <mat-form-field class="example-full-width">
+                    <input matInput type="number" name="number" class="number" [(ngModel)]="contractorInputLat" required>
+                    <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-map-marker fa-fw"></i> <i>Latitude</i></mat-placeholder>
+                    <button mat-button *ngIf="contractorInputLat" matSuffix mat-icon-button aria-label="Clear" (click)="contractorInputLat=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <input matInput type="number" name="number" class="number" [(ngModel)]="contractorInputLng" required>
+                    <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-map-marker fa-fw"></i> <i>Langitude</i></mat-placeholder>
+                    <button mat-button *ngIf="contractorInputLng" matSuffix mat-icon-button aria-label="Clear" (click)="contractorInputLng=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </mat-form-field>
+                  <button mat-raised-button color="primary" (click)="getCoordsContractor()">Coordinates</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-info" style="margin: 1em;">
+            <div class="panel-heading">
+              <h3 class="panel-title"><label class="control-label panel-title">Kontaktinformation</label></h3>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <div class="col-sm-10">
+                  <mat-form-field class="example-full-width">
+                    <input matInput type="text" name="text" class="text" [(ngModel)]="contractorPhone"  required>
+                    <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-phone fa-fw"></i><i>Telefon Nummer</i></mat-placeholder>
+                    <button mat-button *ngIf="contractorPhone" matSuffix mat-icon-button aria-label="Clear" (click)="contractorPhone=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <input matInput type="text" name="text" class="text" [(ngModel)]="contractorAddress"  required>
+                    <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-location-arrow fa-fw"></i><i>Adress</i></mat-placeholder>
+                    <button mat-button *ngIf="contractorAddress" matSuffix mat-icon-button aria-label="Clear" (click)="contractorAddress=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <input matInput [formControl]="emailFormControl" type="text" name="text" class="text" [(ngModel)]="contractorEmail"  required>
+                    <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-envelope fa-fw"></i><i>Email</i></mat-placeholder>
+                    <button mat-button *ngIf="contractorEmail" matSuffix mat-icon-button aria-label="Clear" (click)="contractorEmail=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                      Var god ange en giltig email-adress
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                      Email är <strong>krävd</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-info border" style="margin: 1em;">
+            <div class="panel-body">
+              <div class="form-group">
+                <div class="pull-left">
+                  <div *ngIf="error" class="alert alert-warning alert-dismissable" role="alert">
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    {{error}}
+                  </div>
+                  <div *ngIf="contractorAlert" class="alert alert-success alert-dismissable" role="alert">
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Success:</span>
+                    Informationen har sparats!
+                  </div>
+                  <div *ngIf="contractorFillInValuesAlert" class="alert alert-warning alert-dismissable" role="alert">
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Success:</span>
+                    Var god fyll i alla värden!
+                  </div>
+                  <button color="primary" *ngIf="!isLoading" mat-raised-button (click)="createContractor()">Ok</button>
+                  <mat-error *ngIf="error">
+                    {{error}}
+                  </mat-error>
+                  <mat-spinner *ngIf="isLoading"></mat-spinner>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</div>
