@@ -10,12 +10,28 @@
                     <div *ngFor="let item of items | async">
                         
                   <ng-template matStepLabel>Innan köpet</ng-template>
-                  <div class="row">   
+                  <div class="row"
+                  *ngIf="item.tab == 'Innan Köp' || 
+                  item.tab == 'Innan Köp,Under Köp' || 
+                  item.tab == 'Under Köp,Innan Köp' ||
+                  item.tab == 'Innan Köp,Under Köp,Efter Köp' ||
+                  item.tab == 'Innan Köp,Efter Köp,Ufter Köp' ||
+                  item.tab == 'Unnan Köp,Innan Köp,Efter Köp'||
+                  item.tab == 'Efter Köp,Innan Köp,Under Köp'||
+                  item.tab == 'Efter Köp,Under Köp,Innan Köp'">
+                  <div *ngIf="item.type == 'Hus' || 
+                  item.type == 'Hus,Bostadsrätt' ||
+                  item.type == 'Bostadsrätt,Hus'">
+                 
+        
                     <h2>{{item.title}}</h2> 
                     <p>{{item.body}}</p>
                     <h3>{{item.subTitle}}</h3>
                     <p>{{item.subBody}}</p>
+                    <!-- {{item.tab}}
+                    {{item.type}} -->
                   </div>
+                </div>
                 </div>
                 </form>
                 <div class="row">   
@@ -30,33 +46,79 @@
               
               <mat-step [stepControl]="secondFormGroup">
                 <form [formGroup]="secondFormGroup">
+                    <div *ngFor="let item of items | async">
+                        
                   <ng-template matStepLabel>Under köpet</ng-template>
-                  <div>
-                    <div class="row">   
-                      <button matStepperPrevious>
-                          <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
-                      </button>
-                        <button style="float:right;" matStepperNext>
-                          <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                        </button>
-                      </div>
+                  <div class="row"
+                  *ngIf="item.tab == 'Under Köp' || 
+                  item.tab == 'Innan Köp,Under Köp' || 
+                  item.tab == 'Under Köp,Innan Köp' ||
+                  item.tab == 'Innan Köp,Under Köp,Efter Köp' ||
+                  item.tab == 'Innan Köp,Efter Köp,Ufter Köp' ||
+                  item.tab == 'Unnan Köp,Innan Köp,Efter Köp'||
+                  item.tab == 'Efter Köp,Innan Köp,Under Köp'||
+                  item.tab == 'Efter Köp,Under Köp,Innan Köp'">
+                  <div *ngIf="item.type == 'Hus' || 
+                  item.type == 'Hus,Bostadsrätt' ||
+                  item.type == 'Bostadsrätt,Hus'">
+                 
+        
+                    <h2>{{item.title}}</h2> 
+                    <p>{{item.body}}</p>
+                    <h3>{{item.subTitle}}</h3>
+                    <p>{{item.subBody}}</p>
+                    <!-- {{item.tab}}
+                    {{item.type}} -->
                   </div>
+                </div>
+                </div>
                 </form>
+                <div class="row">   
+                    <button matStepperPrevious>
+                        <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                    </button>
+                      <button style="float:right;" matStepperNext>
+                        <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                      </button>
+                    </div>
               </mat-step>
               <mat-step [stepControl]="secondFormGroup">
                   <form [formGroup]="secondFormGroup">
+                      <div *ngFor="let item of items | async">
+                          
                     <ng-template matStepLabel>Efter köpet</ng-template>
-                    <div>
-                      <div class="row">   
-                        <button matStepperPrevious>
-                          <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
-                        </button>
-                        <button style="float:right;" matStepperNext>
-                          <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                        </button>
-                     </div>
+                    <div class="row"
+                    *ngIf="item.tab == 'Efter Köp' || 
+                    item.tab == 'Innan Köp,Under Köp' || 
+                    item.tab == 'Under Köp,Innan Köp' ||
+                    item.tab == 'Innan Köp,Under Köp,Efter Köp' ||
+                    item.tab == 'Innan Köp,Efter Köp,Ufter Köp' ||
+                    item.tab == 'Unnan Köp,Innan Köp,Efter Köp'||
+                    item.tab == 'Efter Köp,Innan Köp,Under Köp'||
+                    item.tab == 'Efter Köp,Under Köp,Innan Köp'">
+                    <div *ngIf="item.type == 'Hus' || 
+                    item.type == 'Hus,Bostadsrätt' ||
+                    item.type == 'Bostadsrätt,Hus'">
+                   
+          
+                      <h2>{{item.title}}</h2> 
+                      <p>{{item.body}}</p>
+                      <h3>{{item.subTitle}}</h3>
+                      <p>{{item.subBody}}</p>
+                      <!-- {{item.tab}}
+                      {{item.type}} -->
                     </div>
+                  </div>
+                  </div>
                   </form>
+                  <div class="row">   
+                      <button matStepperPrevious>
+                        <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                      </button>
+                      <button style="float:right;" matStepperNext>
+                        <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                      </button>
+                   </div>
                 </mat-step>
             </mat-horizontal-stepper>
             
