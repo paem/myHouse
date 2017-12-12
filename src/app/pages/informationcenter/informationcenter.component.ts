@@ -1,8 +1,8 @@
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { InformationSearchService } from './../../services/information-search.service';
 import { YoutubeService } from './../../services/youtube.service';
 import { Component, OnInit } from '@angular/core';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
-import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-informationcenter',
@@ -16,8 +16,8 @@ export class InformationcenterComponent implements OnInit {
   message: any;
   gcsesearch: SafeHtml;
   info:any;
-  startAt = new Subject();
-  endAt = new Subject();
+  startAt: BehaviorSubject<string|null> = new BehaviorSubject("");
+  endAt: BehaviorSubject<string|null> = new BehaviorSubject("\uf8ff");
   lastKeypress: number = 0;
 
   constructor(private videos: YoutubeService, private ISS:InformationSearchService, private sanitizer:DomSanitizer) {
@@ -45,12 +45,11 @@ export class InformationcenterComponent implements OnInit {
   }
   
 search($event) {
-  if ($event.timeStamp - this.lastKeypress > 200) {
+ 
     let q = $event.target.value
     this.startAt.next(q)
     this.endAt.next(q+"\uf8ff")
-  }
-  this.lastKeypress = $event.timeStamp
+
 }
   clicked() {
      console.log(this.query);
