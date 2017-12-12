@@ -11,6 +11,7 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 })
 export class InformationcenterComponent implements OnInit {
 
+  show:boolean;
   query: any;
   videoList: any;
   message: any;
@@ -33,6 +34,18 @@ export class InformationcenterComponent implements OnInit {
     gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(gcse, s);
+  }
+  
+  filter(){
+    this.show = true;
+    // if(this.show == true){
+    //   console.log(this.show = false);
+    // }if(this.show == false){
+    //   console.log(this.show = false);
+    // }
+  }
+  filter2(){
+    this.show = false;
   }
 
   ngOnInit() {

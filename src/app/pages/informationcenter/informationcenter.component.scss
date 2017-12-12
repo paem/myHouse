@@ -9,3 +9,24 @@ h1{
 .centerSearch{
     text-align: center;
 }
+a:hover{
+    text-decoration: none;
+}
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
+    font-family: sans-serif;
+}
+button{
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
+    font-family: sans-serif;
+    border:0px;
+    padding: 0px;
+    background: transparent;
+}
+i:hover{
+    color:purple;
+}
