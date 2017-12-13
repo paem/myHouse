@@ -5,9 +5,7 @@
   <nav *ngIf="isAuth()" class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav">
       <li class="sidebar-brand">
-        <a href="#">
-          LOGGA
-        </a>
+          <a [routerLink]="['/hem']" routerLinkActive="active" href="#">Logga</a>          
       </li>
       <li>
         <a *ngIf="isAuthenticated" [routerLink]="['/profile']" routerLinkActive="active" href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp; Profil</a>

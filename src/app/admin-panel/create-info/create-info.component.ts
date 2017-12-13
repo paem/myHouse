@@ -30,6 +30,8 @@ tab:any;
     constructor(private fbService: FirebaseService) { }
   
     ngOnInit() {
+      //default
+      this.item.image = 'http://www.casas-bostad.com/wp-content/uploads/2015/07/slide-1-1024x512.jpg'
     }
     createInfo(){
       this.item.tab = this.tab;

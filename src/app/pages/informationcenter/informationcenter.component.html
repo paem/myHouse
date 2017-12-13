@@ -37,8 +37,8 @@
 </div>
 
   <div class="row">
-
-  <div class="col-sm-3">
+<div class="col-sm-1"></div>
+  <div class="col-sm-4">
       <h2>Firebase Sök</h2>
       <input class="form-control" type="text" (keydown)="search($event)" placeholder="What u searchafor?">
       <br>
@@ -57,6 +57,9 @@
             </div>
             <button type="button" class="btn btn-primary" [disabled]="!s.form.valid" (click)="getGoogleInfo()">Search</button>
           </form>
+          <br>
+                  <div class="google-media-search" [innerHTML]="gcsesearch"></div>
+          
   </div>
   <div class="col-sm-6">
 
@@ -83,13 +86,8 @@
         </div>
 
     </div>
-  <div class="col-sm-3">
-      <div class="content" id="content">
-          <div class="centerSearch">
-              <div class="google-media-search" [innerHTML]="gcsesearch"></div>
-
-          </div>
-        </div>
+  <div class="col-sm-1">
+   
 
 
   </div>
