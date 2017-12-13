@@ -1,3 +1,4 @@
+import { ContractorComponent } from './admin-panel/contractor/contractor.component';
 import { HouseComponent } from './pages/stepbystep/house/house.component';
 import { BostadComponent } from './pages/stepbystep/bostad/bostad.component';
 import { InformationSearchService } from './services/information-search.service';
@@ -49,7 +50,8 @@ import { GoogleSearchService } from './services/google-search.service';
     AdminPanelComponent,
     CreateInfoComponent,
     UpdateInfoComponent,
-    ShowInfoComponent
+    ShowInfoComponent,
+    ContractorComponent
   ],
   imports: [
     BrowserModule,

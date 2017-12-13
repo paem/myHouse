@@ -1,3 +1,4 @@
+import { FileItem } from './../shared/classes/file-item';
 import { Component, OnInit } from '@angular/core';
 import {GeoService} from '../services/geo.service';
 import {FormControl, Validators} from '@angular/forms';
@@ -16,27 +17,22 @@ export class AdminPanelComponent implements OnInit {
   public brokerDescription: string = '';
   public brokerPhone: string = '';
   public brokerAddress: string = '';
-  public brokerEmail: string = '';
-  public brokerImage: string = '';
+  public brokerEmail: string;
+  public brokerImage: FileItem;
   brokerCoordArray = [];
   brokerContactInformationArray = [];
   brokerAlert = false;
-  public contractorInputLat: number;
-  public contractorInputLng: number;
-  public contractorName: string;
-  public contractorDescription: string;
-  public contractorPhone: string;
-  public contractorAddress: string;
-  public contractorEmail: string;
-  public contractorImage: string;
+  
   contractorCoordArray = [];
-  contractorContactInformationArray = [];
   contractorAlert = false;
   brokerFillInValuesAlert: any;
   contractorFillInValuesAlert: any;
   error: any;
   isLoading: any;
   proceed: any;
+  
+  selectedFiles: FileList;
+  currentUpload: FileItem;
 
   constructor(private geo: GeoService) { }
   emailFormControl = new FormControl('', [
@@ -57,33 +53,60 @@ export class AdminPanelComponent implements OnInit {
       });
     }
   }
-  getCoordsContractor() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.contractorInputLat = position.coords.latitude;
-        this.contractorInputLng = position.coords.longitude;
-      });
-    }
+
+
+  detectFiles(event) {
+    this.selectedFiles = event.target.files;
   }
-  createBroker() {
+    
+  uploadSingle() {
+    let file = this.selectedFiles.item(0)
+    this.currentUpload = new FileItem(file);
+    this.upload(this.currentUpload)
+  
+  }
+
+  upload(fileItem:FileItem){
+    let storageRef = firebase.storage().ref();
+    let uploadTask = storageRef.child(`Images/${fileItem.file.name}`).put(fileItem.file);
+  
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+      (snapshot) =>  {
+        // upload in progress
+         fileItem.progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100
+      },
+      (error) => {
+        // upload failed
+        console.log(error)
+      },
+      () => {
+        // upload success
+        fileItem.url = uploadTask.snapshot.downloadURL
+        fileItem.name = fileItem.file.name
+        this.saveFileData(fileItem)
+      }
+    );
+  }
+  
+  createBroker(){
+    let file = this.selectedFiles.item(0)
+    this.currentUpload = new FileItem(file);
+    this.upload(this.currentUpload)
+  }
+
+
+  saveFileData(item: FileItem) {
    /* if (typeof this.brokerName || this.brokerDescription || this.brokerEmail || this.brokerAddress || this.brokerPhone === 'undefined' || null) {
       this.brokerFillInValuesAlert = true;
     }
     */
-
-   // ska funka men nepp...
     this.isLoading = true;
-    const filename = this.brokerImage;
-    const storageRef = firebase.storage().ref().child(`images/` + filename);
-    const uploadTask = storageRef.put(this.brokerImage);
 
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, (snapshot) =>  (error) => {}, () => {
-      const downloadURL = uploadTask.snapshot.downloadURL;
-      console.log(downloadURL);
+    this.brokerImage = item;
 
       this.brokerCoordArray.push(this.brokerInputLat, this.brokerInputLng);
       this.brokerContactInformationArray.push(this.brokerPhone, this.brokerAddress, this.brokerEmail);
-      this.geo.createBroker(this.brokerCoordArray, this.brokerName, this.brokerDescription, this.brokerContactInformationArray, downloadURL).then( () => {
+      this.geo.createBroker(this.brokerCoordArray, this.brokerName, this.brokerDescription, this.brokerContactInformationArray, this.brokerImage).then( () => {
         this.brokerAlert = true;
         this.isLoading = false;
         this.brokerCoordArray = null;
@@ -108,46 +131,6 @@ export class AdminPanelComponent implements OnInit {
         this.brokerInputLat = null;
         this.brokerInputLng = null;
       });
-    });
-  }
-  createContractor() {
-   /* if (this.contractorName || this.contractorDescription || this.contractorEmail || this.contractorAddress || this.contractorPhone == null) {
-      this.contractorFillInValuesAlert = true;
-    }
-    */
-      this.isLoading = true;
-    const storageRef = firebase.storage().ref();
-    const filename = Math.floor(Date.now() / 1000);
-    const imageRef = storageRef.child(`images/${filename}.jpg`);
-
-    imageRef.putString(this.contractorImage, firebase.storage.StringFormat.DATA_URL).then((savedPicture) => {
-      this.contractorCoordArray.push(this.contractorInputLat, this.contractorInputLng);
-      this.contractorContactInformationArray.push(this.contractorPhone, this.contractorAddress, this.contractorEmail);
-      this.geo.createContractor(this.contractorCoordArray, this.contractorName, this.contractorDescription, this.contractorContactInformationArray, savedPicture.downloadURL).then( () => {
-        this.contractorAlert = true;
-        this.isLoading = false;
-        this.contractorCoordArray = null;
-        this.contractorContactInformationArray = null;
-        this.contractorName = '';
-        this.contractorDescription = '';
-        this.contractorEmail = '';
-        this.contractorAddress = '';
-        this.contractorPhone = '';
-        this.contractorInputLat = null;
-        this.contractorInputLng = null;
-      }).catch(err => {
-        this.error = err;
-        this.isLoading = false;
-        this.contractorCoordArray = null;
-        this.contractorContactInformationArray = null;
-        this.contractorName = '';
-        this.contractorDescription = '';
-        this.contractorEmail = '';
-        this.contractorAddress = '';
-        this.contractorPhone = '';
-        this.contractorInputLat = null;
-        this.contractorInputLng = null;
-      });
-    });
+    
   }
 }

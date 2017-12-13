@@ -137,11 +137,16 @@
               <div class="panel-body">
                 <div class="form-group">
                   <div class="col-sm-10">
-                    <label class="btn btn-primary" for="my-file-selector">
-                      <input [(ngModel)]="brokerImage" id="my-file-selector" accept="image/*" name="file" type="file" required style="display:none;" onchange="$('#upload-file-info').html(this.files[0].name)">
+                      <div *ngIf="currentUpload">
+                          <div class="progress">
+                            <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+                          </div>
+                          Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+                        </div>
+                    <label class="btn btn-primary">
+                      <input [(ngModel)]="brokerImage" accept="image/*" name="file" type="file" required style="display:none;" (change)="detectFiles($event)">
                       Välj bild
                     </label>
-                    <span class='label label-info' id="upload-file-info"></span>
                     <img id="blah" *ngIf="brokerImage" src="#">
                   </div>
 
@@ -186,125 +191,7 @@
     <div class="tab-pane fade" id="contractor">
       <div class="col-md-9" >
         <form class="example-form">
-
-          <div class="panel panel-info" style="margin: 1em;">
-            <div class="panel-heading">
-              <h3 class="panel-title"><label class="control-label panel-title">Namn och beskrivning</label></h3>
-            </div>
-            <div class="panel-body">
-              <div class="form-group">
-                <div class="col-sm-10">
-                  <mat-form-field class="example-full-width">
-                    <input matInput type="text" name="text" class="text" [(ngModel)]="contractorName" required>
-                    <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-map fa-fw"></i> <i>Namn</i></mat-placeholder>
-                    <button mat-button *ngIf="contractorName" matSuffix mat-icon-button aria-label="Clear" (click)="contractorName=''">
-                      <mat-icon>close</mat-icon>
-                    </button>
-                  </mat-form-field>
-                  <mat-form-field class="example-full-width">
-                    <textarea matInput placeholder="Beskrivning" name="description" [(ngModel)]="contractorDescription" required> </textarea>
-                  </mat-form-field>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="panel panel-info" style="margin: 1em;">
-            <div class="panel-heading">
-              <h3 class="panel-title"><label class="control-label panel-title">Platsposition Lat/Lng</label></h3>
-            </div>
-            <div class="panel-body">
-              <div class="form-group">
-                <div class="col-sm-10">
-                  <mat-form-field class="example-full-width">
-                    <input matInput type="number" name="number" class="number" [(ngModel)]="contractorInputLat" required>
-                    <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-map-marker fa-fw"></i> <i>Latitude</i></mat-placeholder>
-                    <button mat-button *ngIf="contractorInputLat" matSuffix mat-icon-button aria-label="Clear" (click)="contractorInputLat=''">
-                      <mat-icon>close</mat-icon>
-                    </button>
-                  </mat-form-field>
-                  <mat-form-field class="example-full-width">
-                    <input matInput type="number" name="number" class="number" [(ngModel)]="contractorInputLng" required>
-                    <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-map-marker fa-fw"></i> <i>Langitude</i></mat-placeholder>
-                    <button mat-button *ngIf="contractorInputLng" matSuffix mat-icon-button aria-label="Clear" (click)="contractorInputLng=''">
-                      <mat-icon>close</mat-icon>
-                    </button>
-                  </mat-form-field>
-                  <button mat-raised-button color="primary" (click)="getCoordsContractor()">Coordinates</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="panel panel-info" style="margin: 1em;">
-            <div class="panel-heading">
-              <h3 class="panel-title"><label class="control-label panel-title">Kontaktinformation</label></h3>
-            </div>
-            <div class="panel-body">
-              <div class="form-group">
-                <div class="col-sm-10">
-                  <mat-form-field class="example-full-width">
-                    <input matInput type="text" name="text" class="text" [(ngModel)]="contractorPhone"  required>
-                    <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-phone fa-fw"></i><i>Telefon Nummer</i></mat-placeholder>
-                    <button mat-button *ngIf="contractorPhone" matSuffix mat-icon-button aria-label="Clear" (click)="contractorPhone=''">
-                      <mat-icon>close</mat-icon>
-                    </button>
-                  </mat-form-field>
-                  <mat-form-field class="example-full-width">
-                    <input matInput type="text" name="text" class="text" [(ngModel)]="contractorAddress"  required>
-                    <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-location-arrow fa-fw"></i><i>Adress</i></mat-placeholder>
-                    <button mat-button *ngIf="contractorAddress" matSuffix mat-icon-button aria-label="Clear" (click)="contractorAddress=''">
-                      <mat-icon>close</mat-icon>
-                    </button>
-                  </mat-form-field>
-                  <mat-form-field class="example-full-width">
-                    <input matInput [formControl]="emailFormControl" type="text" name="text" class="text" [(ngModel)]="contractorEmail"  required>
-                    <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-envelope fa-fw"></i><i>Email</i></mat-placeholder>
-                    <button mat-button *ngIf="contractorEmail" matSuffix mat-icon-button aria-label="Clear" (click)="contractorEmail=''">
-                      <mat-icon>close</mat-icon>
-                    </button>
-                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                      Var god ange en giltig email-adress
-                    </mat-error>
-                    <mat-error *ngIf="emailFormControl.hasError('required')">
-                      Email är <strong>krävd</strong>
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-info border" style="margin: 1em;">
-            <div class="panel-body">
-              <div class="form-group">
-                <div class="pull-left">
-                  <div *ngIf="error" class="alert alert-warning alert-dismissable" role="alert">
-                    <a class="panel-close close" data-dismiss="alert">×</a>
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    <span class="sr-only">Error:</span>
-                    {{error}}
-                  </div>
-                  <div *ngIf="contractorAlert" class="alert alert-success alert-dismissable" role="alert">
-                    <a class="panel-close close" data-dismiss="alert">×</a>
-                    <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-                    <span class="sr-only">Success:</span>
-                    Informationen har sparats!
-                  </div>
-                  <div *ngIf="contractorFillInValuesAlert" class="alert alert-warning alert-dismissable" role="alert">
-                    <a class="panel-close close" data-dismiss="alert">×</a>
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    <span class="sr-only">Success:</span>
-                    Var god fyll i alla värden!
-                  </div>
-                  <button color="primary" *ngIf="!isLoading" mat-raised-button (click)="createContractor()">Ok</button>
-                  <mat-error *ngIf="error">
-                    {{error}}
-                  </mat-error>
-                  <mat-spinner *ngIf="isLoading"></mat-spinner>
-                </div>
-              </div>
-            </div>
-          </div>
+          <app-contractor></app-contractor>
         </form>
       </div>
     </div>

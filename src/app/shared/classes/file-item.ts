@@ -1,9 +1,12 @@
+
 export class FileItem {
 
-  public file: File;
-  public url: string = '';
-  public isUploading: boolean = false;
-  public progress: number = 0;
+  $key: string;
+  file:File;
+  name:string;
+  url:string;
+  progress:number;
+  createdAt: Date = new Date();
 
   public constructor(file: File) {
     this.file = file;
