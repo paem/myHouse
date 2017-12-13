@@ -1,3 +1,4 @@
+import { GoogleSearchService } from './../../services/google-search.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { InformationSearchService } from './../../services/information-search.service';
 import { YoutubeService } from './../../services/youtube.service';
@@ -21,12 +22,18 @@ export class InformationcenterComponent implements OnInit {
   endAt: BehaviorSubject<string|null> = new BehaviorSubject("\uf8ff");
   lastKeypress: number = 0;
 
-  constructor(private videos: YoutubeService, private ISS:InformationSearchService, private sanitizer:DomSanitizer) {
+  googleQuery:any;
+  googleMessage:any;
+  googleList:any;
+
+
+  constructor(private videos: YoutubeService, private ISS:InformationSearchService, private sanitizer:DomSanitizer, private gSS:GoogleSearchService) {
     this.getVideos();
     console.log(this.getVideos());
+    console.log(this.getGoogleInfo())
   }
   googleCSE(){
-    this.gcsesearch = this.sanitizer.bypassSecurityTrustHtml("<gcse:search></gcse:search>");    
+    this.gcsesearch = this.sanitizer.bypassSecurityTrustHtml("<gcse:search></gcse:search>");
     var cx = '009919926379902841576:myydqnu_qyk';
     var gcse = document.createElement('script');
     gcse.type = 'text/javascript';
@@ -35,7 +42,7 @@ export class InformationcenterComponent implements OnInit {
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(gcse, s);
   }
-  
+
   filter(){
     this.show = true;
     // if(this.show == true){
@@ -56,9 +63,9 @@ export class InformationcenterComponent implements OnInit {
  .subscribe(info => this.info = info)
 
   }
-  
+
 search($event) {
- 
+
     let q = $event.target.value
     this.startAt.next(q)
     this.endAt.next(q+"\uf8ff")
@@ -72,8 +79,15 @@ search($event) {
       this.message = 'Sök efter videos';
     }
     else if(this.query != null) {
-   this.videos.youtubeSearch(this.query).subscribe(data => { this.videoList = data
-    });
+   this.videos.youtubeSearch(this.query).subscribe(data => { this.videoList = data});
+  }
+}
+getGoogleInfo(){
+  if(this.googleQuery == null){
+    this.googleMessage = 'Informationen är här';
+  }
+  else if(this.googleQuery != null){
+    this.gSS.googleSearch(this.googleQuery).subscribe(data => {console.log(this.googleList = data)});
   }
 }
 }

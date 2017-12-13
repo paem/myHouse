@@ -1,50 +1,65 @@
 <div class="row">
     <h1>Informationscenter</h1>
     <div class="col-sm-4"></div>
-   
+
     <div *ngIf="show">
     <div class="col-sm-2">
         <input type="checkbox" value="Hus">Hus<br>
-        <input type="checkbox" value="Bostad">Bostad 
+        <input type="checkbox" value="Bostad">Bostad
     </div>
     <div class="col-sm-2">
         <input type="checkbox" value="buy">Köp<br>
-        <input type="checkbox" value="selfWork">Självrenovering 
+        <input type="checkbox" value="selfWork">Självrenovering
     </div>
     <div class="col-sm-2">
         <input type="checkbox" value="text">Textformat<br>
         <input type="checkbox" value="video">Videoformat
     </div>
-    <div>
-    <button (click)="filter2()">
+    <div (click)="filter2()">
+    <button class="extra" >
      <i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
         </button>
     </div>
-  </div>  
+  </div>
   <div *ngIf="!show">
         <div class="col-sm-2">
-              
             </div>
             <div class="col-sm-2">
-              
             </div>
             <div class="col-sm-2">
-               
             </div>
    <div (click)="filter()">
-    <button>
+    <button class="extra">
      <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
         </button>
     </div>
     </div>
 </div>
-  
+
   <div class="row">
+
   <div class="col-sm-3">
-        <div class="google-media-search" [innerHTML]="gcsesearch">Sök</div>        
+      <h2>Firebase Sök</h2>
+      <input class="form-control" type="text" (keydown)="search($event)" placeholder="What u searchafor?">
+      <br>
+      <h2>Youtube Sök</h2>
+      <form #f="ngForm" novalidate class="form-inline">
+          <div class="form-group mx-sm-3">
+            <input type="text" placeholder={{message}} class="form-control" ngModel required [(ngModel)]="query" name="query">
+          </div>
+          <button type="button" class="btn btn-primary" [disabled]="!f.form.valid" (click)="getVideos()">Search</button>
+        </form>
+        <br>
+        <h2>Google Sök</h2>
+        <form #s="ngForm" novalidate class="form-inline">
+            <div class="form-group mx-sm-3">
+              <input type="text" placeholder={{googleMessage}} class="form-control" ngModel required [(ngModel)]="googleQuery" name="query">
+            </div>
+            <button type="button" class="btn btn-primary" [disabled]="!s.form.valid" (click)="getGoogleInfo()">Search</button>
+          </form>
   </div>
-  <div class="col-sm-3">  
-    <input class="form-control" type="text" (keydown)="search($event)" placeholder="What u searchafor?">                        
+  <div class="col-sm-6">
+
       <div *ngFor="let i of info">
         <h4>{{i?.title}}</h4>
         <p>
@@ -56,25 +71,26 @@
         <p>
           No results
         </p>
-      </div></div>
-  <div class="col-sm-6">
-      <div class="content" id="content">
-          <div class="centerSearch">
-            <form #f="ngForm" novalidate class="form-inline">
-              <div class="form-group mx-sm-3">
-                <input type="text" placeholder={{message}} class="form-control" ngModel required [(ngModel)]="query" name="query">
-              </div>
-              <button type="button" class="btn btn-primary" [disabled]="!f.form.valid" (click)="getVideos()">Search</button>
-            </form>
-            
-          </div>
-        </div>
+      </div>
       <div *ngFor="let v of videoList">
           <h2>{{v.snippet.title}}</h2>
           <iframe width="640" height="360" [src]='"https://www.youtube.com/embed/"+v.id.videoId+""| safe' frameborder="0" allowfullscreen></iframe>
           {{v.snippet.publishedAt | date}}
         </div>
-       
+      <div *ngFor="let i of googleList">
+          <!-- <img [src]='i.pagemap?.cse_image?.src'> -->
+          <h4>{{i.title}}</h4>
+        </div>
+
+    </div>
+  <div class="col-sm-3">
+      <div class="content" id="content">
+          <div class="centerSearch">
+              <div class="google-media-search" [innerHTML]="gcsesearch"></div>
+
+          </div>
+        </div>
+
+
   </div>
-  
 </div>

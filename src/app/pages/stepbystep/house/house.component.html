@@ -6,10 +6,10 @@
           <mat-progress-bar mode="determinate" value="10"></mat-progress-bar>
           <mat-horizontal-stepper [linear]="isLinear">
               <mat-step [stepControl]="firstFormGroup">
-                <form [formGroup]="firstFormGroup">
+                  <ng-template matStepLabel>Innan köpet</ng-template>
+                  <form [formGroup]="firstFormGroup">
                     <div *ngFor="let item of items | async">
 
-                  <ng-template matStepLabel>Innan köpet</ng-template>
                   <div class="row"
                   *ngIf="item.tab == 'Innan Köp' ||
                   item.tab == 'Innan Köp,Under Köp' ||
@@ -45,10 +45,10 @@
               </mat-step>
 
               <mat-step [stepControl]="secondFormGroup">
+                <ng-template matStepLabel>Under köpet</ng-template>
                 <form [formGroup]="secondFormGroup">
                     <div *ngFor="let item of items | async">
 
-                  <ng-template matStepLabel>Under köpet</ng-template>
                   <div class="row"
                   *ngIf="item.tab == 'Under Köp' ||
                   item.tab == 'Innan Köp,Under Köp' ||
@@ -83,10 +83,10 @@
                     </div>
               </mat-step>
               <mat-step [stepControl]="secondFormGroup">
+                <ng-template matStepLabel>Efter köpet</ng-template>
                   <form [formGroup]="secondFormGroup">
                       <div *ngFor="let item of items | async">
 
-                    <ng-template matStepLabel>Efter köpet</ng-template>
                     <div class="row"
                     *ngIf="item.tab == 'Efter Köp' ||
                     item.tab == 'Innan Köp,Under Köp' ||

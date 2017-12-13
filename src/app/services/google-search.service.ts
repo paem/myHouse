@@ -17,7 +17,7 @@ test = "https://www.googleapis.com/customsearch/v1?q=k%C3%B6p%20hus&key=AIzaSyA_
 
 constructor(public http:Http) { }
 
-youtubeSearch(query){
+googleSearch(query){
   return this.http.get(this.base_url+'?q='+query+'&lr='+this.lr+'&safe='+this.safe+'&cx='+this.cx+'&gl='+this.gl+'&cr='+this.cr+'&hl='+this.hl+'&key='+this.apiKey)
   .map((res:Response) => res.json())
   .map(json => json.items);

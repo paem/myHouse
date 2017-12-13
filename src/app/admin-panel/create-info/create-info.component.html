@@ -13,7 +13,13 @@
               {{tab}}
             </mat-option>
           </mat-select>
-        </mat-form-field> <br>
+        </mat-form-field>
+
+        <img style="float:right" [src]="item?.image" height="200" width="200">
+        <mat-form-field>
+            <input matInput placeholder="Bild Url"
+            [(ngModel)]="item.image">
+          </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Title"
         [(ngModel)]="item.title"
@@ -31,9 +37,12 @@
         <textarea matInput placeholder="Sub Body"
         [(ngModel)]="item.subBody"></textarea>
       </mat-form-field>
-    
+
       <button class="btn btn-primary" (click)="createInfo()" >Create</button>
+
+
+
+
     </fieldset>
-    
+
     </div>
-        
