@@ -1,8 +1,8 @@
-import { FirebaseService } from './../services/firebase.service';
+import { FirebaseService } from './../../../services/firebase.service';
+import { Item } from './../../../shared/classes/item';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { Item } from '../shared/classes/item';
 
 
 @Component({
@@ -25,7 +25,7 @@ export class HouseComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
-    
+
     this.items = this.fbService.getInfo();
   }
 

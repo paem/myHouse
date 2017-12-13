@@ -1,10 +1,9 @@
-import { FirebaseService } from './../services/firebase.service';
+import { FirebaseService } from './../../../services/firebase.service';
+import { Item } from './../../../shared/classes/item';
+import {  } from './../services/firebase.service';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { Item } from '../shared/classes/item';
-
-
 
 @Component({
   selector: 'app-bostad',
@@ -13,7 +12,7 @@ import { Item } from '../shared/classes/item';
 })
 export class BostadComponent implements OnInit {
 
-  public items:Observable<Item[]>;  
+  public items:Observable<Item[]>;
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;

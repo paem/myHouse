@@ -1,7 +1,8 @@
+import { HouseComponent } from './pages/stepbystep/house/house.component';
+import { BostadComponent } from './pages/stepbystep/bostad/bostad.component';
 import { InformationSearchService } from './services/information-search.service';
 import { ShowInfoComponent } from './admin-panel/show-info/show-info.component';
 import { CreateInfoComponent } from './admin-panel/create-info/create-info.component';
-import { BostadComponent } from './bostad/bostad.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FirebaseService } from './services/firebase.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -28,7 +29,7 @@ import { HttpModule } from '@angular/http';
 import { SafePipe } from './shared/pipes/safe.pipe';
 import { AgmCoreModule } from '@agm/core';
 import {GeoService} from './services/geo.service';
-import { HouseComponent } from './house/house.component';
+
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { UpdateInfoComponent } from './admin-panel/update-info/update-info.component';
 import { GoogleSearchService } from './services/google-search.service';
