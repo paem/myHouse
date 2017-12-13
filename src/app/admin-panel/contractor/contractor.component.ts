@@ -100,6 +100,7 @@ export class ContractorComponent implements OnInit {
     }
     */
       this.isLoading = true;
+      this.contractorImage = item;
       
 
       this.contractorCoordArray.push(this.contractorInputLat, this.contractorInputLng);

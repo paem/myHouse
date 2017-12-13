@@ -13,6 +13,7 @@ import {FirebaseService} from './services/firebase.service';
 
 export class AppComponent implements OnInit {
   public css_class = 'hamburger is-closed';
+  public overlay_class = 'overlay';
   isLoggedIn = false;
   isAuthenticated = false;
   private subscription: Subscription;
@@ -29,10 +30,12 @@ export class AppComponent implements OnInit {
               this.router.navigate(['/login']);
               this.isLoggedIn = false;
               this.css_class = 'hidden';
+              this.overlay_class = 'hidden';
             } else {
               console.log('Logged in.');
               this.isLoggedIn = true;
               this.css_class = 'hamburger is-closed';
+              this.overlay_class = 'overlay';
             }
           });
       }

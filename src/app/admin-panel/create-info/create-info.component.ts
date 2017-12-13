@@ -62,12 +62,11 @@ upload(fileItem:FileItem){
 }
 private saveFileData(item: FileItem) {
 //  this.image = item;
- console.log()
  this.item.tab = this.tab;
  this.item.type = this.type; 
-  console.log(this.item);
+  // console.log(this.item);
   this.item.image = item;
-  console.log(this.item.image = item);
+  // console.log(this.item.image = item);
 
   this.fbService.createInfo(this.item);
   this.item = new Item();

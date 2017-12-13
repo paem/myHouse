@@ -47,6 +47,7 @@ export class GeoService {
       .on('key_entered', (key, location, distance) => {
         const brokerRef: any = this.afDb.object('brokers/' + key);
         brokerRef.valueChanges().subscribe(items => { this.loadBrokers = {
+          key: key,
           contactInformation: items.contactInformation,
           name: items.name,
           description: items.description
@@ -75,6 +76,7 @@ export class GeoService {
       .on('key_entered', (key, location, distance) => {
         const contractorRef: any = this.afDb.object('contractors/' + key);
         contractorRef.valueChanges().subscribe(items => { this.loadContractors = {
+          key: key,
           contactInformation: items.contactInformation,
           name: items.name,
           description: items.description

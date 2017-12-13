@@ -101,7 +101,6 @@ export class AdminPanelComponent implements OnInit {
     }
     */
     this.isLoading = true;
-
     this.brokerImage = item;
 
       this.brokerCoordArray.push(this.brokerInputLat, this.brokerInputLng);

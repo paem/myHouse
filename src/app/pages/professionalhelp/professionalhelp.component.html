@@ -41,6 +41,9 @@
         <div class="media-body">
           <h4 class="media-heading">{{item.name}}</h4>
          {{item.description}}
+          <a [routerLink]="['/details-brokers', item.key]">
+            <button style="float:right;" mat-raised-button color="primary">Mer info</button>
+          </a>
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@ import {StepbystepComponent} from './pages/stepbystep/stepbystep.component';
 import {ProfessionalhelpComponent} from './pages/professionalhelp/professionalhelp.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { UpdateInfoComponent } from './admin-panel/update-info/update-info.component';
+import {BrokerMoreInfoComponent} from './pages/broker-more-info/broker-more-info.component';
 
 const APP_ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
@@ -22,6 +23,7 @@ const APP_ROUTES: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'adminpanel', component: AdminPanelComponent, canActivate: [AuthGuard] },
   { path: 'edit/:key', component: UpdateInfoComponent, canActivate: [AuthGuard]},
+  { path: 'details-brokers/:key', component: BrokerMoreInfoComponent, canActivate: [AuthGuard]},
   { path: '',   redirectTo: '/hem', pathMatch: 'full' },
 ];
 
