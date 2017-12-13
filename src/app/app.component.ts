@@ -1,5 +1,5 @@
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 import {Router} from '@angular/router';
 import {FirebaseService} from './services/firebase.service';
@@ -11,7 +11,8 @@ import {FirebaseService} from './services/firebase.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
+  public css_class = 'hamburger is-closed';
   isLoggedIn = false;
   isAuthenticated = false;
   private subscription: Subscription;
@@ -21,19 +22,17 @@ export class AppComponent {
     );
   }
   ngOnInit() {
-
         this.af.authState.subscribe(
           (auth) => {
             if (auth == null) {
-              console.log("Not Logged in.");
+              console.log('Not Logged in.');
               this.router.navigate(['/login']);
               this.isLoggedIn = false;
-            }
-            else {
-              console.log("Successfully Logged in.");
-
+              this.css_class = 'hidden';
+            } else {
+              console.log('Logged in.');
               this.isLoggedIn = true;
-
+              this.css_class = 'hamburger is-closed';
             }
           });
       }
@@ -41,5 +40,9 @@ export class AppComponent {
   onSignOut() {
     this._firebaseService.logout();
     this.router.navigate(['/login']);
+  }
+
+  isAuth() {
+    return this.isAuthenticated;
   }
 }

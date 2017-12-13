@@ -1,8 +1,8 @@
 
 <div id="wrapper">
-  <div class="overlay"></div>
+  <div *ngIf="isAuth()" class="overlay"></div>
   <!-- Sidebar -->
-  <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+  <nav *ngIf="isAuth()" class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav">
       <li class="sidebar-brand">
         <a href="#">
@@ -22,7 +22,7 @@
         <a [routerLink]="['/naradig']" routerLinkActive="active" href="#"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>&nbsp; Hjälp nära dig</a>
       </li>
       <li>
-        <a [routerLink]="['/adminpanel']" routerLinkActive="active" href="#"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>&nbsp; Admin Panel</a>
+        <a *ngIf="isAuthenticated" [routerLink]="['/adminpanel']" routerLinkActive="active" href="#"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>&nbsp; Admin Panel</a>
       </li>
       <li *ngIf="!isAuthenticated">
         <a [routerLink]="['/login']" routerLinkActive="active" href="#"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i>&nbsp; Logga in</a>
@@ -34,7 +34,7 @@
   </nav>
   <!-- /#sidebar-wrapper -->
   <div id="page-content-wrapper">
-    <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+    <button type="button" id="menu" class="{{css_class}}" data-toggle="offcanvas">
       <span class="hamb-top"></span>
       <span class="hamb-middle"></span>
       <span class="hamb-bottom"></span>
@@ -43,7 +43,6 @@
   </div>
 </div>
 <!-- /#wrapper -->
-
 
 
 
