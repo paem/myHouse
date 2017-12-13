@@ -80,7 +80,6 @@ export class AdminPanelComponent implements OnInit {
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, (snapshot) =>  (error) => {}, () => {
       const downloadURL = uploadTask.snapshot.downloadURL;
       console.log(downloadURL);
-
       this.brokerCoordArray.push(this.brokerInputLat, this.brokerInputLng);
       this.brokerContactInformationArray.push(this.brokerPhone, this.brokerAddress, this.brokerEmail);
       this.geo.createBroker(this.brokerCoordArray, this.brokerName, this.brokerDescription, this.brokerContactInformationArray, downloadURL).then( () => {

@@ -29,10 +29,10 @@ import { HttpModule } from '@angular/http';
 import { SafePipe } from './shared/pipes/safe.pipe';
 import { AgmCoreModule } from '@agm/core';
 import {GeoService} from './services/geo.service';
-
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { UpdateInfoComponent } from './admin-panel/update-info/update-info.component';
 import { GoogleSearchService } from './services/google-search.service';
+import { BrokerMoreInfoComponent } from './pages/broker-more-info/broker-more-info.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,8 @@ import { GoogleSearchService } from './services/google-search.service';
     AdminPanelComponent,
     CreateInfoComponent,
     UpdateInfoComponent,
-    ShowInfoComponent
+    ShowInfoComponent,
+    BrokerMoreInfoComponent
   ],
   imports: [
     BrowserModule,
