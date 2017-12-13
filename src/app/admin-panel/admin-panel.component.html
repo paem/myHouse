@@ -130,6 +130,24 @@
                 </div>
               </div>
             </div>
+            <div class="panel panel-info" style="margin: 1em;">
+              <div class="panel-heading">
+                <h3 class="panel-title"><label class="control-label panel-title">Lägg till en bild</label></h3>
+              </div>
+              <div class="panel-body">
+                <div class="form-group">
+                  <div class="col-sm-10">
+                    <label class="btn btn-primary" for="my-file-selector">
+                      <input [(ngModel)]="brokerImage" id="my-file-selector" accept="image/*" name="file" type="file" required style="display:none;" onchange="$('#upload-file-info').html(this.files[0].name)">
+                      Välj bild
+                    </label>
+                    <span class='label label-info' id="upload-file-info"></span>
+                    <img id="blah" *ngIf="brokerImage" src="#">
+                  </div>
+
+                </div>
+              </div>
+            </div>
             <div class="panel panel-info border" style="margin: 1em;">
               <div class="panel-body">
                 <div class="form-group">
@@ -294,3 +312,8 @@
   </div>
   </div>
 </div>
+
+<script>
+
+
+</script>

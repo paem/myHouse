@@ -94,25 +94,27 @@ export class GeoService {
       });
   }
 
-  createBroker(coords: Array<string>, name: string, description: string, contactInformation: Array<string>) {
+  createBroker(coords: Array<string>, name: string, description: string, contactInformation: Array<string>, url: string) {
      return this.geoFireBroker.set(this.brokerId, coords)
       .then(_ => {
         this.dbrefBrokers.child(this.brokerId).update( {
           name : name,
           description: description,
-          contactInformation: contactInformation
+          contactInformation: contactInformation,
+          imageUrl: url
         });
         console.log('brokers updated');
       }).catch(err => console.log(err));
   }
 
-  createContractor(coords: Array<string>, name: string, description: string, contactInformation: Array<string>) {
+  createContractor(coords: Array<string>, name: string, description: string, contactInformation: Array<string>, url: string) {
     return this.geoFireContractor.set(this.contractorId, coords)
       .then(_ => {
         this.dbrefContractors.child(this.contractorId).update( {
           name : name,
           description: description,
-          contactInformation: contactInformation
+          contactInformation: contactInformation,
+          imageUrl: url
         });
         console.log('contractors updated');
       }).catch(err => console.log(err));
