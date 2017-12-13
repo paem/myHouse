@@ -1,6 +1,5 @@
 import { FirebaseService } from './../../../services/firebase.service';
 import { Item } from './../../../shared/classes/item';
-import {  } from './../services/firebase.service';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
