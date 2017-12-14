@@ -58,17 +58,11 @@ export class AdminPanelComponent implements OnInit {
   detectFiles(event) {
     this.selectedFiles = event.target.files;
   }
-    
-  uploadSingle() {
-    let file = this.selectedFiles.item(0)
-    this.currentUpload = new FileItem(file);
-    this.upload(this.currentUpload)
-  
-  }
 
   upload(fileItem:FileItem){
     let storageRef = firebase.storage().ref();
-    let uploadTask = storageRef.child(`Images/${fileItem.file.name}`).put(fileItem.file);
+    const filename = Math.floor(Date.now() / 1000);    
+    let uploadTask = storageRef.child(`Images/${filename}`).put(fileItem.file);
   
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot) =>  {
@@ -82,7 +76,7 @@ export class AdminPanelComponent implements OnInit {
       () => {
         // upload success
         fileItem.url = uploadTask.snapshot.downloadURL
-        fileItem.name = fileItem.file.name
+        fileItem.name = filename.toString();
         this.saveFileData(fileItem)
       }
     );
@@ -117,6 +111,7 @@ export class AdminPanelComponent implements OnInit {
         this.brokerPhone = '';
         this.brokerInputLat = null;
         this.brokerInputLng = null;
+        this.brokerImage = null;
       }).catch(err => {
         this.error = err;
         this.isLoading = false;
@@ -129,6 +124,7 @@ export class AdminPanelComponent implements OnInit {
         this.brokerPhone = '';
         this.brokerInputLat = null;
         this.brokerInputLng = null;
+        this.brokerImage = null;
       });
     
   }

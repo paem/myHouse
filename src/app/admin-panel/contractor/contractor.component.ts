@@ -60,7 +60,8 @@ export class ContractorComponent implements OnInit {
 
   upload(fileItem:FileItem){
     let storageRef = firebase.storage().ref();
-    let uploadTask = storageRef.child(`Images/${fileItem.file.name}`).put(fileItem.file);
+    const filename = Math.floor(Date.now() / 1000)
+    let uploadTask = storageRef.child(`Images/${filename}`).put(fileItem.file);
   
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot) =>  {
@@ -74,7 +75,7 @@ export class ContractorComponent implements OnInit {
       () => {
         // upload success
         fileItem.url = uploadTask.snapshot.downloadURL
-        fileItem.name = fileItem.file.name
+        fileItem.name = filename.toString();
         this.saveFileData(fileItem)
       }
     );
@@ -111,6 +112,7 @@ export class ContractorComponent implements OnInit {
         this.contractorPhone = '';
         this.contractorInputLat = null;
         this.contractorInputLng = null;
+        this.contractorImage = null;
       }).catch(err => {
         this.error = err;
         this.isLoading = false;
@@ -123,6 +125,7 @@ export class ContractorComponent implements OnInit {
         this.contractorPhone = '';
         this.contractorInputLat = null;
         this.contractorInputLng = null;
+        this.contractorImage = null;
     });
   }
 }

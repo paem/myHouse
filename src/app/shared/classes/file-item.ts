@@ -1,3 +1,4 @@
+import * as firebase from 'firebase';
 
 export class FileItem {
 
@@ -6,8 +7,8 @@ export class FileItem {
   name:string;
   url:string;
   progress:number;
-  createdAt: Date = new Date();
-
+  createdAt:any = firebase.database.ServerValue.TIMESTAMP;
+  
   public constructor(file: File) {
     this.file = file;
   }

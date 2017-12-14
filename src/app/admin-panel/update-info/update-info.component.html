@@ -2,9 +2,9 @@
 <div class="form-group">
   <div class="col-sm-8">
     <fieldset>
-
+        <img [src]="(info | async)?.image.url">
         <mat-form-field>
-
+          
             <mat-select [(ngModel)]="type" placeholder="{{(info | async)?.type}}" multiple>
               <mat-option *ngFor="let type of types" [value]="type">
                 {{type}}
@@ -28,8 +28,7 @@
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input matInput  [(ngModel)]="subTitle" placeholder="{{(info | async)?.subTitle}}"
-          >
+        <input matInput  [(ngModel)]="subTitle" placeholder="{{(info | async)?.subTitle}}">
       </mat-form-field>
       <mat-form-field>
         <textarea matInput  [(ngModel)]="subBody" placeholder="{{(info | async)?.subBody}}"
