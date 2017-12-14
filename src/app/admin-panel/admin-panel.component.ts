@@ -1,3 +1,4 @@
+import { ContactInfo } from './../shared/classes/contact-info';
 import { FileItem } from './../shared/classes/file-item';
 import { Component, OnInit } from '@angular/core';
 import {GeoService} from '../services/geo.service';
@@ -20,7 +21,6 @@ export class AdminPanelComponent implements OnInit {
   public brokerEmail: string;
   public brokerImage: FileItem;
   brokerCoordArray = [];
-  brokerContactInformationArray = [];
   brokerAlert = false;
   
   contractorCoordArray = [];
@@ -33,6 +33,8 @@ export class AdminPanelComponent implements OnInit {
   
   selectedFiles: FileList;
   currentUpload: FileItem;
+
+  contactInfo = new ContactInfo();
 
   constructor(private geo: GeoService) { }
   emailFormControl = new FormControl('', [
@@ -94,16 +96,19 @@ export class AdminPanelComponent implements OnInit {
       this.brokerFillInValuesAlert = true;
     }
     */
+    
     this.isLoading = true;
     this.brokerImage = item;
+    this.contactInfo.Adress = this.brokerAddress;
+    this.contactInfo.Email = this.brokerEmail;
+    this.contactInfo.Phone = this.brokerPhone;
 
       this.brokerCoordArray.push(this.brokerInputLat, this.brokerInputLng);
-      this.brokerContactInformationArray.push(this.brokerPhone, this.brokerAddress, this.brokerEmail);
-      this.geo.createBroker(this.brokerCoordArray, this.brokerName, this.brokerDescription, this.brokerContactInformationArray, this.brokerImage).then( () => {
+      this.geo.createBroker(this.brokerCoordArray, this.brokerName, this.brokerDescription, this.contactInfo, this.brokerImage).then( () => {
         this.brokerAlert = true;
         this.isLoading = false;
         this.brokerCoordArray = null;
-        this.brokerContactInformationArray = null;
+        this.contactInfo = null;
         this.brokerName = '';
         this.brokerDescription = '';
         this.brokerEmail = '';
@@ -116,7 +121,7 @@ export class AdminPanelComponent implements OnInit {
         this.error = err;
         this.isLoading = false;
         this.brokerCoordArray = null;
-        this.brokerContactInformationArray = null;
+        this.contactInfo = null;
         this.brokerName = '';
         this.brokerDescription = '';
         this.brokerEmail = '';

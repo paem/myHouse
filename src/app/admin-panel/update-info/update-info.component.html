@@ -1,8 +1,10 @@
+<mat-card>
 <div class="container" style="padding: 50px;">
 <div class="form-group">
   <div class="col-sm-8">
     <fieldset>
-        <img [src]="(info | async)?.image.url">
+      
+        <img mat-card-image [src]="(info | async)?.image.url">
         <mat-form-field>
           
             <mat-select [(ngModel)]="type" placeholder="{{(info | async)?.type}}" multiple>
@@ -36,6 +38,7 @@
       </mat-form-field>
 
     </fieldset>
+    
     <a class="hover" [routerLink]="['/adminpanel']" routerLinkActive="active" href="#">
       <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
     </a>
@@ -43,3 +46,4 @@
   </div>
     </div>
 </div>
+</mat-card>

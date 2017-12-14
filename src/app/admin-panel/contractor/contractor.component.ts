@@ -1,3 +1,4 @@
+import { ContactInfo } from './../../shared/classes/contact-info';
 import { FileItem } from '../../shared/classes/file-item';
 import { Component, OnInit } from '@angular/core';
 import {GeoService} from '../../services/geo.service';
@@ -20,8 +21,6 @@ export class ContractorComponent implements OnInit {
   public contractorAddress: string;
   public contractorEmail: string;
   public contractorImage: FileItem;
-  contractorContactInformationArray = [];
-  brokerContactInformationArray = [];
   
   contractorCoordArray = [];
   contractorAlert = false;
@@ -33,7 +32,9 @@ export class ContractorComponent implements OnInit {
   
   selectedFiles: FileList;
   currentUpload: FileItem;
-  
+
+  contactInfo = new ContactInfo();
+
   constructor(private geo: GeoService) {
    
    }
@@ -96,15 +97,17 @@ export class ContractorComponent implements OnInit {
     */
       this.isLoading = true;
       this.contractorImage = item;
-      
+
+      this.contactInfo.Adress = this.contractorAddress;
+      this.contactInfo.Email = this.contractorEmail;
+      this.contactInfo.Phone = this.contractorPhone;
 
       this.contractorCoordArray.push(this.contractorInputLat, this.contractorInputLng);
-      this.contractorContactInformationArray.push(this.contractorPhone, this.contractorAddress, this.contractorEmail);
-      this.geo.createContractor(this.contractorCoordArray, this.contractorName, this.contractorDescription, this.contractorContactInformationArray, this.contractorImage).then( () => {
+      this.geo.createContractor(this.contractorCoordArray, this.contractorName, this.contractorDescription, this.contactInfo, this.contractorImage).then( () => {
         this.contractorAlert = true;
         this.isLoading = false;
         this.contractorCoordArray = null;
-        this.contractorContactInformationArray = null;
+        this.contactInfo = null;
         this.contractorName = '';
         this.contractorDescription = '';
         this.contractorEmail = '';
@@ -117,7 +120,7 @@ export class ContractorComponent implements OnInit {
         this.error = err;
         this.isLoading = false;
         this.contractorCoordArray = null;
-        this.contractorContactInformationArray = null;
+        this.contactInfo = null;
         this.contractorName = '';
         this.contractorDescription = '';
         this.contractorEmail = '';

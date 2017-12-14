@@ -1,3 +1,4 @@
+import { ContactInfo } from './../shared/classes/contact-info';
 import { FileItem } from './../shared/classes/file-item';
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase, AngularFireList, AngularFireObject} from 'angularfire2/database';
@@ -97,7 +98,7 @@ export class GeoService {
       });
   }
 
-  createBroker(coords: Array<string>, name: string, description: string, contactInformation: Array<string>, url: FileItem) {
+  createBroker(coords: Array<string>, name: string, description: string, contactInformation: ContactInfo, url: FileItem) {
      return this.geoFireBroker.set(this.brokerId, coords)
       .then(_ => {
         this.dbrefBrokers.child(this.brokerId).update( {
@@ -110,7 +111,7 @@ export class GeoService {
       }).catch(err => console.log(err));
   }
 
-  createContractor(coords: Array<string>, name: string, description: string, contactInformation: Array<string>, url: FileItem) {
+  createContractor(coords: Array<string>, name: string, description: string, contactInformation: ContactInfo, url: FileItem) {
     return this.geoFireContractor.set(this.contractorId, coords)
       .then(_ => {
         this.dbrefContractors.child(this.contractorId).update( {

@@ -43,8 +43,9 @@
           </div>
           Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
         </div>
-      <label>
-          <input type="file" accept="image/*" (change)="detectFiles($event)">
+      <label class="btn btn-primary">
+          <input type="file" accept="image/*" required style="display:none;" (change)="detectFiles($event)">
+          Välj Bild
        </label>
       <button style="float:right;" class="btn btn-primary" (click)="createInfo()" >Create</button>
 
