@@ -30,13 +30,6 @@ detectFiles(event) {
 
 constructor(private fbService: FirebaseService) { }
 
-uploadSingle() {
-  let file = this.selectedFiles.item(0)
-  this.currentUpload = new FileItem(file);
-  this.upload(this.currentUpload)
-
-}
-
 
 upload(fileItem:FileItem){
   
@@ -72,7 +65,6 @@ private saveFileData(item: FileItem) {
   this.item = new Item();
   this.tab = null;
   this.type = null;
-  this.currentUpload =  null;
 }
 
     types = [
@@ -94,7 +86,6 @@ private saveFileData(item: FileItem) {
       let file = this.selectedFiles.item(0)
       this.currentUpload = new FileItem(file);
       this.upload(this.currentUpload)
-      
      
     }
 

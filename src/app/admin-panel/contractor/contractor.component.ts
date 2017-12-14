@@ -56,13 +56,7 @@ export class ContractorComponent implements OnInit {
   detectFiles(event) {
     this.selectedFiles = event.target.files;
   }
-    
-  uploadSingle() {
-    let file = this.selectedFiles.item(0)
-    this.currentUpload = new FileItem(file);
-    this.upload(this.currentUpload)
   
-  }
 
   upload(fileItem:FileItem){
     let storageRef = firebase.storage().ref();

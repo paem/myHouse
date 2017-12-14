@@ -1,13 +1,13 @@
 <div class="form-group">
     <fieldset>
-        <mat-form-field>
+        <mat-form-field class="example-full-width">
             <mat-select [(ngModel)]="type" placeholder="Välj typ av köp" multiple required>
               <mat-option *ngFor="let type of types" [value]="type">
                 {{type}}
               </mat-option>
             </mat-select>
           </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
           <mat-select [(ngModel)]="tab" placeholder="Välj tab" multiple required>
             <mat-option *ngFor="let tab of tabs" [value]="tab">
               {{tab}}
@@ -20,20 +20,20 @@
             <input matInput placeholder="Bild Url"
             [(ngModel)]="item.image">
           </mat-form-field> -->
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <input matInput placeholder="Title"
         [(ngModel)]="item.title"
         required minlength="2" maxlength="25">
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <textarea matInput placeholder="Body" [(ngModel)]="item.body"></textarea>
       </mat-form-field>
       <br>
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <input matInput placeholder="SubTitle"
           [(ngModel)]="item.subTitle">
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <textarea matInput placeholder="Sub Body"
         [(ngModel)]="item.subBody"></textarea>
       </mat-form-field>
@@ -46,7 +46,7 @@
       <label>
           <input type="file" accept="image/*" (change)="detectFiles($event)">
        </label>
-      <button class="btn btn-primary" (click)="createInfo()" >Create</button>
+      <button style="float:right;" class="btn btn-primary" (click)="createInfo()" >Create</button>
 
 
 
