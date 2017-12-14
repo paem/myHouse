@@ -3,15 +3,15 @@
     <div class="col-sm-4"></div>
 
     <div *ngIf="show">
-    <div class="col-sm-2">
+    <div class="col-sm-1">
         <input type="checkbox" value="Hus">Hus<br>
         <input type="checkbox" value="Bostad">Bostad
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-1">
         <input type="checkbox" value="buy">Köp<br>
         <input type="checkbox" value="selfWork">Självrenovering
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-1">
         <input type="checkbox" value="text">Textformat<br>
         <input type="checkbox" value="video">Videoformat
     </div>
@@ -22,11 +22,11 @@
     </div>
   </div>
   <div *ngIf="!show">
-        <div class="col-sm-2">
+        <div class="col-sm-1">
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-1">
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-1">
             </div>
    <div (click)="filter()">
     <button class="extra">

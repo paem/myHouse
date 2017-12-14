@@ -1,13 +1,13 @@
 <div class="form-group">
     <fieldset>
-        <mat-form-field>
+        <mat-form-field class="example-full-width">
             <mat-select [(ngModel)]="type" placeholder="Välj typ av köp" multiple required>
               <mat-option *ngFor="let type of types" [value]="type">
                 {{type}}
               </mat-option>
             </mat-select>
           </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
           <mat-select [(ngModel)]="tab" placeholder="Välj tab" multiple required>
             <mat-option *ngFor="let tab of tabs" [value]="tab">
               {{tab}}
@@ -15,30 +15,39 @@
           </mat-select>
         </mat-form-field>
 
-        <img style="float:right" [src]="item?.image" height="200" width="200">
+        <!-- <img style="float:right" [src]="item?.image" height="200" width="200">
         <mat-form-field>
             <input matInput placeholder="Bild Url"
             [(ngModel)]="item.image">
-          </mat-form-field>
-      <mat-form-field>
+          </mat-form-field> -->
+      <mat-form-field class="example-full-width">
         <input matInput placeholder="Title"
         [(ngModel)]="item.title"
         required minlength="2" maxlength="25">
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <textarea matInput placeholder="Body" [(ngModel)]="item.body"></textarea>
       </mat-form-field>
       <br>
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <input matInput placeholder="SubTitle"
           [(ngModel)]="item.subTitle">
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <textarea matInput placeholder="Sub Body"
         [(ngModel)]="item.subBody"></textarea>
       </mat-form-field>
-
-      <button class="btn btn-primary" (click)="createInfo()" >Create</button>
+      <div *ngIf="currentUpload">
+          <div class="progress">
+            <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+          </div>
+          Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+        </div>
+      <label class="btn btn-primary">
+          <input type="file" accept="image/*" required style="display:none;" (change)="detectFiles($event)">
+          Välj Bild
+       </label>
+      <button style="float:right;" class="btn btn-primary" (click)="createInfo()" >Create</button>
 
 
 

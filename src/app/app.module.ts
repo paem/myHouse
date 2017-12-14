@@ -1,3 +1,4 @@
+import { ContractorComponent } from './admin-panel/contractor/contractor.component';
 import { HouseComponent } from './pages/stepbystep/house/house.component';
 import { BostadComponent } from './pages/stepbystep/bostad/bostad.component';
 import { InformationSearchService } from './services/information-search.service';
@@ -10,9 +11,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireDatabase} from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireAuth } from 'angularfire2/auth';
 import {routing} from './app.routing';
 import { LoginComponent } from './pages/login/login.component';
 import {AuthGuard} from './shared/guard/auth.guard';
@@ -52,7 +51,9 @@ import { ContractorMoreInfoComponent } from './pages/contractor-more-info/contra
     UpdateInfoComponent,
     ShowInfoComponent,
     BrokerMoreInfoComponent,
-    ContractorMoreInfoComponent
+    ContractorMoreInfoComponent,
+    ContractorComponent,
+    BrokerMoreInfoComponent
   ],
   imports: [
     BrowserModule,

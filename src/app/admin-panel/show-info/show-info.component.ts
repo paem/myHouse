@@ -1,3 +1,5 @@
+import { FileItem } from './../../shared/classes/file-item';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Item } from './../../shared/classes/item';
 import { FirebaseService } from './../../services/firebase.service';
@@ -5,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router/src/router_state';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-show-info',
@@ -15,7 +18,7 @@ export class ShowInfoComponent implements OnInit {
   public items:Observable<Item[]>;  
   item: Item = new Item();
   
-  constructor(private fbService: FirebaseService, private router: Router) { }
+  constructor(private fbService: FirebaseService, private router: Router, private afDb: AngularFireDatabase) { }
 
   ngOnInit() {
     this.items = this.fbService.getInfo();
@@ -28,8 +31,26 @@ export class ShowInfoComponent implements OnInit {
 
   }
   
+  //DELETE Image from storage
+  // deleteUpload(item: FileItem) {
+  //   this.deleteFileData(item.$key)
+  //   .then( () => {
+  //     this.deleteFileStorage(item.name)
+  //   })
+  //   .catch(error => console.log(error))
+  // }
+  // private deleteFileData(key: string) {
+  //   return this.afDb.list(`Images/`).remove(key);
+  // }
+
+  // private deleteFileStorage(name:string) {
+  
+  // }
+
+
   deleteInfo(key:any){
     this.fbService.deleteInfo(key);
+    
   }
 
 }
