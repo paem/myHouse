@@ -11,6 +11,7 @@ import {ProfessionalhelpComponent} from './pages/professionalhelp/professionalhe
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { UpdateInfoComponent } from './admin-panel/update-info/update-info.component';
 import {BrokerMoreInfoComponent} from './pages/broker-more-info/broker-more-info.component';
+import {ContractorMoreInfoComponent} from './pages/contractor-more-info/contractor-more-info.component';
 
 const APP_ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
@@ -24,6 +25,7 @@ const APP_ROUTES: Routes = [
   { path: 'adminpanel', component: AdminPanelComponent, canActivate: [AuthGuard] },
   { path: 'edit/:key', component: UpdateInfoComponent, canActivate: [AuthGuard]},
   { path: 'details-brokers/:key', component: BrokerMoreInfoComponent, canActivate: [AuthGuard]},
+  { path: 'details-contractors/:key', component: ContractorMoreInfoComponent, canActivate: [AuthGuard]},
   { path: '',   redirectTo: '/hem', pathMatch: 'full' },
 ];
 

@@ -22,21 +22,20 @@
 </mat-card>
 </div>
 
-
+<div style="margin: 25px;">
 <p style="margin-top: 20px;">
   <mat-checkbox [disabled]="contractors" (click)="getContractors()">Byggfirmor</mat-checkbox>
 </p>
 <p>
   <mat-checkbox [disabled]="brokers" (click)="getBrokers()">Mäklarfirmor</mat-checkbox>
 </p>
+</div>
 
-  <div class="row" *ngIf="brokers" style="margin-top: 50px;">
-    <div class="col-md-6" *ngFor="let item of loadBrokers">
+  <div class="row" *ngIf="brokers" style="margin-top: 50px; padding: 35px;">
+    <mat-card class="col-md-6 card" *ngFor="let item of loadBrokers">
       <div class="media">
         <div class="media-left">
-          <a href="#">
-            <img class="media-object" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjEzLjQ2MDkzNzUiIHk9IjMyIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9nPjwvc3ZnPg==" alt="...">
-          </a>
+            <img class="media-object img-thumbnail" [src]="item.url" alt="...">
         </div>
         <div class="media-body">
           <h4 class="media-heading">{{item.name}}</h4>
@@ -46,22 +45,23 @@
           </a>
         </div>
       </div>
-    </div>
+    </mat-card>
   </div>
 
-<div class="row" *ngIf="contractors" style="margin-top: 50px;">
-  <div class="col-md-6" *ngFor="let item of loadContractors">
+<div class="row" *ngIf="contractors" style="margin-top: 50px; padding: 35px;">
+  <mat-card class="col-md-6 card" *ngFor="let item of loadContractors">
     <div class="media">
       <div class="media-left">
-        <a href="#">
-          <img class="media-object" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjEzLjQ2MDkzNzUiIHk9IjMyIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9nPjwvc3ZnPg==" alt="...">
-        </a>
+          <img class="media-object img-thumbnail" [src]="item.url" alt="...">
       </div>
       <div class="media-body">
         <h4 class="media-heading">{{item.name}}</h4>
         {{item.description}}
+        <a [routerLink]="['/details-contractors', item.key]">
+          <button style="float:right;" mat-raised-button color="primary">Mer info</button>
+        </a>
       </div>
     </div>
-  </div>
+  </mat-card>
 </div>
 

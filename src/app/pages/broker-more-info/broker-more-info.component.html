@@ -1,3 +1,39 @@
-<p>
-  broker-more-info works!
-</p>
+
+
+<div *ngIf="!isLoading">
+<div *ngIf="lat && lng">
+  <mat-card>
+    <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-marker [latitude]="lat" [longitude]="lng">
+        <agm-info-window>
+          <h3><strong>{{locationName}}</strong></h3>
+        </agm-info-window>
+      </agm-marker>
+    </agm-map>
+  </mat-card>
+</div>
+
+
+<div *ngIf="brokers" class="container">
+  <a class="hover" [routerLink]="['/naradig']" routerLinkActive="active" href="#">
+    <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Gå tillbaka
+  </a>
+  <div class="row">
+    <div class="col-md-7">
+      <img [src]="brokers.imageUrl.url" alt="404" class="img-thumbnail" style="opacity: 1; display: block;">
+    </div>
+    <div class="col-md-5" data-wow-duration="700ms" data-wow-delay="500ms" style="visibility: visible; animation-duration: 700ms; animation-delay: 500ms; animation-name: zoomIn;">
+      <div class="heading"><h2>{{brokers.name}}</h2></div>
+      <p>{{brokers.description}}</p>
+      <hr>
+      <h3>Kontaktinformation</h3>
+      <ul class="work-detail-list">
+        <li><span>Telefon nummer :</span>{{brokers.contactInformation[0]}}</li>
+        <li><span>Adress :</span>{{brokers.contactInformation[1]}}</li>
+        <li><span>Email :</span>{{brokers.contactInformation[2]}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+<mat-spinner class="loading" *ngIf="isLoading"></mat-spinner>

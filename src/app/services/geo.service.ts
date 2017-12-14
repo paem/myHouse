@@ -49,21 +49,23 @@ export class GeoService {
           key: key,
           contactInformation: items.contactInformation,
           name: items.name,
-          description: items.description
+          description: items.description,
+          url: items.imageUrl.url
         };
           const currentBrokers = this.brokers.value;
           currentBrokers.push(this.loadBrokers);
           this.brokers.next(currentBrokers);
           console.log(this.brokers);
+          const hit = {
+            location: location,
+            distance: distance,
+            name: items.name
+          };
+          const currentHits = this.hits.value;
+          currentHits.push(hit);
+          this.hits.next(currentHits);
+          console.log(this.hits);
         });
-        const hit = {
-          location: location,
-          distance: distance
-        };
-        const currentHits = this.hits.value;
-        currentHits.push(hit);
-        this.hits.next(currentHits);
-        console.log(this.hits);
       });
   }
 
@@ -78,7 +80,8 @@ export class GeoService {
           key: key,
           contactInformation: items.contactInformation,
           name: items.name,
-          description: items.description
+          description: items.description,
+          url: items.imageUrl.url
         };
           const currentContractors = this.contractors.value;
           currentContractors.push(this.loadContractors);

@@ -35,7 +35,7 @@ html { height: 100%;}
   margin-left: -220px;
   overflow-y: auto;
   overflow-x: hidden;
-  background: #1a1a1a;
+  background: #673ab7;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -70,6 +70,7 @@ html { height: 100%;}
   margin: 0;
   padding: 0;
   list-style: none;
+  font: 400 16px 'Proxima Nova';
 }
 
 .sidebar-nav li {
@@ -87,7 +88,7 @@ html { height: 100%;}
   z-index: -1;
   height: 100%;
   width: 3px;
-  background-color: #1c1c1c;
+  background-color: #673ab7;
   -webkit-transition: width .2s ease-in;
   -moz-transition:  width .2s ease-in;
   -ms-transition:  width .2s ease-in;
@@ -96,7 +97,7 @@ html { height: 100%;}
 }
 .sidebar-nav li:first-child a {
   color: #fff;
-  background-color: #1a1a1a;
+  background-color: #673ab7;
 }
 .sidebar-nav li:nth-child(2):before {
   background-color: #ec1b5a;
@@ -151,8 +152,8 @@ html { height: 100%;}
 }
 
 .sidebar-nav > .sidebar-brand {
-  height: 65px;
-  font-size: 20px;
+  height: 84px;
+  font-size: 48px;
   line-height: 44px;
 }
 .sidebar-nav .dropdown-menu {

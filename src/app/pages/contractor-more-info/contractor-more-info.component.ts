@@ -1,27 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute, Params} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
 import {AngularFireDatabase} from 'angularfire2/database';
+import {Observable} from 'rxjs/Observable';
 import {Firm} from '../../shared/classes/firm';
 
 @Component({
-  selector: 'app-broker-more-info',
-  templateUrl: './broker-more-info.component.html',
-  styleUrls: ['./broker-more-info.component.css']
+  selector: 'app-contractor-more-info',
+  templateUrl: './contractor-more-info.component.html',
+  styleUrls: ['./contractor-more-info.component.css']
 })
-export class BrokerMoreInfoComponent implements OnInit {
+export class ContractorMoreInfoComponent implements OnInit {
   key: any;
   paramsSubscription: Subscription;
-  brokerRef: any;
-  brokerLocationRef: any;
+  contractorRef: any;
+  contractorLocationRef: any;
   isLoading = false;
-  brokers: any;
-  brokerLocation: any;
+  contractors: any;
   lat: any;
   lng: any;
   locationName: any;
-  constructor( private route: ActivatedRoute, private afDb: AngularFireDatabase) { }
+  constructor(private route: ActivatedRoute, private afDb: AngularFireDatabase) { }
 
   ngOnInit() {
     this.key = this.route.snapshot.params['key'];
@@ -34,8 +33,8 @@ export class BrokerMoreInfoComponent implements OnInit {
   }
 
   getBrokerLocation() {
-    this.brokerLocationRef = this.afDb.object('locations/brokers/' + this.key);
-    const location$ = this.brokerLocationRef.valueChanges();
+    this.contractorLocationRef = this.afDb.object('locations/contractors/' + this.key);
+    const location$ = this.contractorLocationRef.valueChanges();
     location$.subscribe( location => {
       this.lat = location.l[0];
       this.lng = location.l[1];
@@ -44,12 +43,12 @@ export class BrokerMoreInfoComponent implements OnInit {
 
   getBrokerDetailsByKey() {
     this.isLoading = true;
-    this.brokerRef = this.afDb.object('brokers/' + this.key);
-    const items$: Observable<Firm> = this.brokerRef.valueChanges();
+    this.contractorRef = this.afDb.object('contractors/' + this.key);
+    const items$: Observable<Firm> = this.contractorRef.valueChanges();
     items$.subscribe( items => {
-      this.brokers = items;
+      this.contractors = items;
       this.locationName = items.name;
-      console.log(this.brokers);
+      console.log(this.contractors);
       this.isLoading = false;
     });
   }
