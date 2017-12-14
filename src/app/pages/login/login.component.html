@@ -37,6 +37,10 @@
         <h2 [@fadeIn]="'true'" style="color: #fff; margin-top: 40px">Logga in på ditt konto</h2>
 
         <mat-card class="example-card" [@slideUp]="'true'">
+          <h2 *ngIf="!isLoading" style="font-size: 22px;"><img
+            src="../../pages/../../assets/images/myhouselogo_.png" height="84" width="84"/></h2>
+          <h2 *ngIf="isLoading" style="font-size: 22px;"><img src="../../pages/../../assets/images/myhouselogo_.png" height="200"
+                                                                                     width="200"/></h2>
           <form *ngIf="!isLoading" class="example-form">
             <mat-form-field class="example-full-width">
               <input matInput [formControl]="emailFormControl" type="email" name="email" class="email" [(ngModel)]="loginEmail" required>
@@ -64,7 +68,7 @@
               <br>
               <p *ngIf="error" class="error-text">{{errorMessage}}</p>
             </div>
-            <button class="button-f" mat-raised-button style="margin-top: 10px;" (click)="logInWithFacebook()"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>Logga in med Facebook</button>
+            <button class="button-f" mat-raised-button style="margin-top: 10px;" (click)="logInWithFacebook()"><i class="fa fa-facebook-official fa-2x" style="float: left;" aria-hidden="true"></i>Logga in med Facebook</button>
 
             <a href="#" style="font-size: 15px;"> Glömt ditt lösenord?</a>
 

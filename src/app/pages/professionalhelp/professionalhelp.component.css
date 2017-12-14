@@ -34,3 +34,7 @@ agm-map {
 button:hover{
   background-color: purple;
 }
+
+.media-heading {
+  margin: 10px;
+}

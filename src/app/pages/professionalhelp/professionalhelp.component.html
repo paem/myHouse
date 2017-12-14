@@ -38,11 +38,9 @@
             <img class="media-object img-thumbnail" [src]="item.url" alt="...">
         </div>
         <div class="media-body">
-          <h4 class="media-heading">{{item.name}}</h4>
-         {{item.description}}
-          <a [routerLink]="['/details-brokers', item.key]">
+          <h4 class="media-heading">{{item.name}} <a [routerLink]="['/details-brokers', item.key]">
             <button style="float:right;" mat-raised-button color="primary">Mer info</button>
-          </a>
+          </a></h4>
         </div>
       </div>
     </mat-card>
@@ -55,11 +53,9 @@
           <img class="media-object img-thumbnail" [src]="item.url" alt="...">
       </div>
       <div class="media-body">
-        <h4 class="media-heading">{{item.name}}</h4>
-        {{item.description}}
-        <a [routerLink]="['/details-contractors', item.key]">
+        <h4 class="media-heading">{{item.name}}  <a [routerLink]="['/details-contractors', item.key]">
           <button style="float:right;" mat-raised-button color="primary">Mer info</button>
-        </a>
+        </a></h4>
       </div>
     </div>
   </mat-card>
