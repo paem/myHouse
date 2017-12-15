@@ -3,6 +3,9 @@ import {Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 import {Router} from '@angular/router';
 import {FirebaseService} from './services/firebase.service';
+import { Observable } from 'rxjs/Observable';
+import * as firebase from 'firebase';
+import {AngularFireDatabase} from 'angularfire2/database';
 
 
 @Component({
@@ -17,10 +20,20 @@ export class AppComponent implements OnInit {
   isLoggedIn = false;
   isAuthenticated = false;
   private subscription: Subscription;
-  constructor(private _firebaseService: FirebaseService, private af: AngularFireAuth, private router: Router) {
+  currentUser:any;
+  userRole:any;
+  userData: any;
+
+  constructor(private afDb: AngularFireDatabase, private _firebaseService: FirebaseService, private af: AngularFireAuth, private router: Router) {
     this.subscription = this._firebaseService.isAuthenticated().subscribe(
       authStatus => this.isAuthenticated = authStatus
     );
+
+  }
+  adminAccess(){
+
+
+
   }
   ngOnInit() {
         this.af.authState.subscribe(
@@ -36,8 +49,20 @@ export class AppComponent implements OnInit {
               this.isLoggedIn = true;
               this.css_class = 'hamburger is-closed';
               this.overlay_class = 'overlay';
+              this.userRole = this._firebaseService.getAdminRole();
+
+              if(this.userRole == true){
+                this.currentUser = true;
+                console.log(this.currentUser)
+              }
+              if(this.userRole == false){
+                this.currentUser = false
+                console.log(this.currentUser)
+              }
+
             }
           });
+
       }
 
   onSignOut() {

@@ -1,10 +1,15 @@
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Roles, User } from './../shared/classes/Roles';
 import {Injectable} from '@angular/core';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
 import { Subject} from 'rxjs/Subject';
 import {Router} from '@angular/router';
-import { Item } from '../shared/classes/item'; 
+import { Item } from '../shared/classes/item';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/switchMap';
 
 @Injectable()
 export class FirebaseService {
@@ -18,28 +23,56 @@ export class FirebaseService {
     messagingSenderId: '178332113016'
   };
 
-  items: Observable<Item[]> = null;
-  itemsRef: AngularFireList<Item> = null;  
-  // keyInfo:any;
+  user: Observable<User>
 
-  constructor(private router: Router, private afDb:AngularFireDatabase) {
+  items: Observable<Item[]> = null;
+  itemsRef: AngularFireList<Item> = null;
+  roles: Roles;
+  currentUser: any;
+
+  constructor(private router: Router, private afDb:AngularFireDatabase, private afAuth: AngularFireAuth) {
+    this.roles = {user: true}
   if(!firebase.apps.length){
-    firebase.initializeApp(this.firebaseConfig);      
+    firebase.initializeApp(this.firebaseConfig);
+
+    // this.afAuth.authState
+    // .switchMap(auth => {
+    //   if (auth) {
+    //     /// signed in
+    //     return this.afDb.object('users/' + auth.uid)
+    //   } else {
+    //     /// not signed in
+    //     return Observable.of(null)
+    //   }
+    // })
+    // .subscribe(user => {
+    //   this.user = user
+    // })
   }
   }
 
   getInfo(): Observable<Item[]>{
-    this.itemsRef = this.afDb.list('Information/');    
+    this.itemsRef = this.afDb.list('Information/');
     this.items = this.itemsRef.snapshotChanges().map(changes => {
       return changes.map(c => ({key: c.payload.key, ...c.payload.val()}));
     })
     return this.items;
   }
-  // getInfoByKey(key: string){
-  //   const afObj = this.afDb.object('Information/'+key);    
-  //   this.keyInfo = afObj.valueChanges();
-  //   this.keyInfo.subscribe(a => { return a; });  
-  // }
+
+  getCurrentUser() {
+   this.userData = firebase.auth().currentUser;
+   const afObj = this.afDb.object('users/' + this.userData.uid);
+   this.currentUser = afObj.valueChanges();
+   this.currentUser.subscribe(a => { return a; });
+  return this.currentUser;
+  }
+  getAdminRole() {
+    this.userData = firebase.auth().currentUser;
+    const afObj = this.afDb.object('users/' + this.userData.uid +'/role/user');
+    this.currentUser = afObj.valueChanges();
+    this.currentUser.subscribe(a => { return a; });
+   return this.currentUser;
+   }
   createInfo(item: Item): void{
     this.itemsRef.push(item);
     }
@@ -47,14 +80,16 @@ export class FirebaseService {
     this.itemsRef.update(key, value);
   }
   deleteInfo(key: string):void{
-    this.itemsRef.remove(key); 
+    this.itemsRef.remove(key);
   }
+
+
 
   isAuthenticated(): Observable<boolean> {
     const subject = new Subject<boolean>();
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        subject.next(true);
+        subject.next(true)
       } else {
         subject.next(false);
       }
@@ -77,7 +112,8 @@ export class FirebaseService {
 
         firebase.database().ref('/').child('/users/' + authenticatedUser.uid).update( {
           email: account['email'],
-          name:  account['name']
+          name:  account['name'],
+          role: this.roles
         });
       });
     });
@@ -90,7 +126,7 @@ export class FirebaseService {
       // Creates or Updates /users/uid
       firebase.database().ref('/').child('/users/' + authState.uid).update({
         uid: authState.uid,
-        email: account['email']
+        email: account['email'],
       });
     });
   }
@@ -113,7 +149,8 @@ export class FirebaseService {
         name: result.additionalUserInfo.profile.name,
         profilePicture: result.additionalUserInfo.profile.picture.data.url,
         gender: result.additionalUserInfo.profile.gender,
-        link: result.additionalUserInfo.profile.link
+        link: result.additionalUserInfo.profile.link,
+        role: user.roles,
 
       });
     });

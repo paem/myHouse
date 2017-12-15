@@ -24,15 +24,10 @@ export class ProfileComponent implements OnInit {
     Validators.email,
   ]);
   ngOnInit() {
-    this.getCurrentUser();
-  }
+    this.currentUser = this._firebaseService.getCurrentUser();
+    }
 
-  getCurrentUser() {
-   this.userData = firebase.auth().currentUser;
-   const afObj = this.afDb.object('users/' + this.userData.uid);
-   this.currentUser = afObj.valueChanges();
-   this.currentUser.subscribe(a => { return a; });
-  }
+
 
   updatePassword() {
     this.isLoading = true;
