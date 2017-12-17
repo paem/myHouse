@@ -16,9 +16,11 @@ export class LoginComponent implements OnInit {
   public loginEmail: string;
   public loginPassword: string;
   public email: string;
+  public resetEmail: string;
   public password: string;
   selectedAuthType = 'signin';
   isLoading = false;
+  passReset: boolean = false;
   public error: any;
   constructor(private _firebaseService: FirebaseService, private router: Router) {
   }
@@ -26,8 +28,19 @@ export class LoginComponent implements OnInit {
     Validators.required,
     Validators.email,
   ]);
+  resetEmailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
   ngOnInit() {
   }
+
+
+  resetPassword(resetEmail) {
+    this._firebaseService.resetPassword(resetEmail)
+      .then(() => this.passReset = true);
+  }
+
   loginWithEmail() {
     const account = {
       email: this.loginEmail,
@@ -53,6 +66,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/profile']);
     }).catch(error => {
       this.isLoading = false;
+      console.log(error);
       this.router.navigate(['/login']);
     });
   }

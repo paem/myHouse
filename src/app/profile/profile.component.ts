@@ -11,7 +11,7 @@ import {AngularFireDatabase} from 'angularfire2/database';
 })
 export class ProfileComponent implements OnInit {
   currentUser: any;
-  userData: any;
+  updateUserEmail = firebase.auth().currentUser;
   public newEmail: string;
   public oldPassword: string;
   public newPassword: string;
@@ -46,9 +46,10 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
-  updateEmail() {
+  updateEmail(newEmail) {
     this.isLoading = true;
-    this.userData.updateEmail(this.newEmail).then((data) => {
+    this.updateUserEmail.updateEmail(newEmail).then((data) => {
+      this.updateUserEmail.sendEmailVerification();
       this.emailAlert = true;
       this.isLoading = false;
       this.newEmail = null;

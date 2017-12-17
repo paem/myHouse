@@ -139,7 +139,7 @@
             <div class="panel-body">
               <div class="form-group">
                 <div class="pull-left">
-                  <button *ngIf="!isLoading" (click)="updateEmail()" class="btn btn-primary">Uppdatera</button>
+                  <button *ngIf="!isLoading" (click)="updateEmail(newEmail)" class="btn btn-primary">Uppdatera</button>
                   <mat-spinner *ngIf="isLoading"></mat-spinner>
                 </div>
               </div>

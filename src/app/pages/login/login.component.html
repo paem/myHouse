@@ -70,7 +70,7 @@
             </div>
             <button class="button-f" mat-raised-button style="margin-top: 10px;" (click)="logInWithFacebook()"><i class="fa fa-facebook-official fa-2x" style="float: left;" aria-hidden="true"></i>Logga in med Facebook</button>
 
-            <a href="#" style="font-size: 15px;"> Glömt ditt lösenord?</a>
+            <a data-toggle="modal" data-target="#resetPasswordModal" href="#" style="font-size: 15px;"> Glömt ditt lösenord?</a>
 
           </form>
           <mat-spinner *ngIf="isLoading"></mat-spinner>
@@ -129,4 +129,38 @@
 </div>
 
 
+<div class="modal fade" id="resetPasswordModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <a type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+        <h4 class="modal-title">Byt lösenord</h4>
+      </div>
+      <div class="modal-body">
+       <form>
+           <mat-form-field class="example-full-width">
+             <input matInput [formControl]="resetEmailFormControl" type="email" name="email" class="email" [(ngModel)]="resetEmail"  required>
+             <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-envelope fa-fw"></i> <i>Email</i></mat-placeholder>
+             <button mat-button *ngIf="resetEmail" matSuffix mat-icon-button aria-label="Clear" (click)="resetEmail=''">
+               <mat-icon>close</mat-icon>
+             </button>
+             <mat-error *ngIf="resetEmailFormControl.hasError('email') && !resetEmailFormControl.hasError('required')">
+               Var god ange en giltig email-adress
+             </mat-error>
+           </mat-form-field>
+       </form>
+        <p *ngIf="!passReset">Reset Password for:&nbsp;{{resetEmail}}</p>
+        <div *ngIf="passReset" class="alert alert-success alert-dismissable" role="alert">
+          <a class="panel-close close" data-dismiss="alert">×</a>
+          <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+          <span class="sr-only">Success:</span>
+          Återställning efterfrågad. Kontrollera din e-post för instruktioner.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mat-raised-button (click)="resetPassword(resetEmail)" class="btn" >Skicka instruktioner</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 

@@ -22,7 +22,7 @@ export class FirebaseService {
     storageBucket: 'myhouse-58a88.appspot.com',
     messagingSenderId: '178332113016'
   };
-  
+
   items: Observable<Item[]> = null;
   itemsRef: AngularFireList<Item> = null;
   roles: Roles;
@@ -54,9 +54,9 @@ export class FirebaseService {
   }
 
   getAdminRole(): Observable<Roles[]> {
-    
+
     this.userData = firebase.auth().currentUser;
-    const afObj = this.afDb.object('users/' + this.userData.uid +'/role/superUser');    
+    const afObj = this.afDb.object('users/' + this.userData.uid +'/role/superUser');
     this.currentUser = afObj.valueChanges();
     this.currentUser.subscribe(a => {return a});
     return this.currentUser;
@@ -71,7 +71,12 @@ export class FirebaseService {
     this.itemsRef.remove(key);
   }
 
-
+  resetPassword(email: string) {
+    const auth = firebase.auth();
+    return auth.sendPasswordResetEmail(email)
+      .then(() => console.log('email sent'))
+      .catch((error) => console.log(error));
+  }
 
   isAuthenticated(): Observable<boolean> {
     const subject = new Subject<boolean>();
@@ -98,6 +103,11 @@ export class FirebaseService {
 
       firebase.auth().signInWithEmailAndPassword(account['email'], account['password']).then(authenticatedUser =>  {
 
+        if (authenticatedUser.emailVerified) {
+          console.log('email is verified');
+        } else {
+          authenticatedUser.sendEmailVerification();
+        }
         firebase.database().ref('/').child('/users/' + authenticatedUser.uid).update( {
           email: account['email'],
           name:  account['name'],
@@ -110,7 +120,11 @@ export class FirebaseService {
 
   loginWithPassword(account: {}) {
     return firebase.auth().signInWithEmailAndPassword(account['email'], account['password']).then(authState => {
-
+      if (authState.emailVerified) {
+        console.log('email is verified');
+      } else {
+        authState.sendEmailVerification();
+      }
       // Creates or Updates /users/uid
       firebase.database().ref('/').child('/users/' + authState.uid).update({
         uid: authState.uid,
@@ -138,7 +152,7 @@ export class FirebaseService {
         profilePicture: result.additionalUserInfo.profile.picture.data.url,
         gender: result.additionalUserInfo.profile.gender,
         link: result.additionalUserInfo.profile.link,
-        role: user.roles,
+       // role: user.roles,
 
       });
     });
