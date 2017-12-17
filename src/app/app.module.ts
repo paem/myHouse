@@ -35,6 +35,7 @@ import { BrokerMoreInfoComponent } from './pages/broker-more-info/broker-more-in
 import { ContractorMoreInfoComponent } from './pages/contractor-more-info/contractor-more-info.component';
 import {MatSliderModule} from '@angular/material/slider';
 import { MaterialModule } from './material.module';
+import {JsonpModule} from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { MaterialModule } from './material.module';
     MaterialModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCQbC86Nv2dHAU3hNBJZ1hOVn4O1NYj7Gg'
-    })
+    }),
+    JsonpModule
   ],
   providers: [FirebaseService, AuthGuard, AdminAuthGuard, YoutubeService, GeoService, GoogleSearchService, InformationSearchService],
   bootstrap: [AppComponent],

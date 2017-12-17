@@ -198,6 +198,52 @@
 
   </div>
   </div>
+
+  <div class="col-md-12 col-lg-6">
+    <h2>Lat/Lng Sökare</h2>
+
+    <h3>För att hitta en latitud / longitud koordinat, ange en startadress.</h3>
+
+    <form>
+      <div class="form-group">
+        <div class="col-sm-10">
+          <mat-form-field class="example-full-width">
+            <input matInput type="text" name="text" class="text" [(ngModel)]="street"  required>
+            <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-road fa-fw"></i><i>Gatu adress</i></mat-placeholder>
+            <button mat-button *ngIf="street" matSuffix mat-icon-button aria-label="Clear" (click)="street=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="text" name="text" class="text" [(ngModel)]="city"  required>
+            <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-location-arrow fa-fw"></i><i>Stad</i></mat-placeholder>
+            <button mat-button *ngIf="city" matSuffix mat-icon-button aria-label="Clear" (click)="city=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="text" #postalCode name="text" class="text" [(ngModel)]="postalCodee"  required>
+            <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+            <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-map-marker fa-fw"></i><i>Postnummer</i></mat-placeholder>
+            <button mat-button *ngIf="postalCodee" matSuffix mat-icon-button aria-label="Clear" (click)="postalCodee=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-select placeholder="Ange land" name="country" [(ngModel)]="country" required>
+              <mat-option>Inget</mat-option>
+              <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button color="primary" *ngIf="!isLoading" mat-raised-button (click)="getLatLng(country, street, city, postalCodee)">Ok</button>
+          <mat-spinner *ngIf="isLoading"></mat-spinner>
+          <h1 *ngIf="geoCodeResult">{{geoCodeResult.lat}} , {{geoCodeResult.lng}} </h1>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
 </div>
 
 <script>
