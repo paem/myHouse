@@ -33,6 +33,7 @@ import { UpdateInfoComponent } from './admin-panel/update-info/update-info.compo
 import { GoogleSearchService } from './services/google-search.service';
 import { BrokerMoreInfoComponent } from './pages/broker-more-info/broker-more-info.component';
 import { ContractorMoreInfoComponent } from './pages/contractor-more-info/contractor-more-info.component';
+import {JsonpModule} from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { ContractorMoreInfoComponent } from './pages/contractor-more-info/contra
     MaterialModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCQbC86Nv2dHAU3hNBJZ1hOVn4O1NYj7Gg'
-    })
+    }),
+    JsonpModule
   ],
   providers: [FirebaseService, AuthGuard, YoutubeService, GeoService, GoogleSearchService, InformationSearchService],
   bootstrap: [AppComponent],
