@@ -22,32 +22,18 @@ export class FirebaseService {
     storageBucket: 'myhouse-58a88.appspot.com',
     messagingSenderId: '178332113016'
   };
-
-  user: Observable<User>
-
+  
   items: Observable<Item[]> = null;
   itemsRef: AngularFireList<Item> = null;
   roles: Roles;
   currentUser: any;
 
   constructor(private router: Router, private afDb:AngularFireDatabase, private afAuth: AngularFireAuth) {
-    this.roles = {user: true}
+    this.roles = {user: true, superUser: false}
   if(!firebase.apps.length){
     firebase.initializeApp(this.firebaseConfig);
 
-    // this.afAuth.authState
-    // .switchMap(auth => {
-    //   if (auth) {
-    //     /// signed in
-    //     return this.afDb.object('users/' + auth.uid)
-    //   } else {
-    //     /// not signed in
-    //     return Observable.of(null)
-    //   }
-    // })
-    // .subscribe(user => {
-    //   this.user = user
-    // })
+
   }
   }
 
@@ -66,12 +52,14 @@ export class FirebaseService {
    this.currentUser.subscribe(a => { return a; });
   return this.currentUser;
   }
-  getAdminRole() {
+
+  getAdminRole(): Observable<Roles[]> {
+    
     this.userData = firebase.auth().currentUser;
-    const afObj = this.afDb.object('users/' + this.userData.uid +'/role/user');
+    const afObj = this.afDb.object('users/' + this.userData.uid +'/role/superUser');    
     this.currentUser = afObj.valueChanges();
-    this.currentUser.subscribe(a => { return a; });
-   return this.currentUser;
+    this.currentUser.subscribe(a => {return a});
+    return this.currentUser;
    }
   createInfo(item: Item): void{
     this.itemsRef.push(item);

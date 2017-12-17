@@ -4,7 +4,7 @@
       <div class="col-sm-8">
         <br>
           <!-- <mat-progress-bar mode="determinate" value="10"></mat-progress-bar> -->
-          <mat-horizontal-stepper [linear]="isLinear">
+          <mat-vertical-stepper [linear]="isLinear">
               <mat-step [stepControl]="firstFormGroup">
               <ng-template matStepLabel>Innan köpet</ng-template>
                 <form [formGroup]="firstFormGroup">
@@ -121,7 +121,7 @@
                         </button>
                       </div>
                 </mat-step>
-            </mat-horizontal-stepper>
+            </mat-vertical-stepper>
 
       <div class="col-sm-2"></div>
 </div>

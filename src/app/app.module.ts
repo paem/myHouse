@@ -1,3 +1,4 @@
+import { AdminAuthGuard } from './shared/guard/adminAuth.guard';
 import { ContractorComponent } from './admin-panel/contractor/contractor.component';
 import { HouseComponent } from './pages/stepbystep/house/house.component';
 import { BostadComponent } from './pages/stepbystep/bostad/bostad.component';
@@ -22,7 +23,6 @@ import { ProfessionalhelpComponent } from './pages/professionalhelp/professional
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import 'hammerjs';
-import { MaterialModule } from './material.module';
 import { YoutubeService } from './services/youtube.service';
 import { HttpModule } from '@angular/http';
 import { SafePipe } from './shared/pipes/safe.pipe';
@@ -33,6 +33,8 @@ import { UpdateInfoComponent } from './admin-panel/update-info/update-info.compo
 import { GoogleSearchService } from './services/google-search.service';
 import { BrokerMoreInfoComponent } from './pages/broker-more-info/broker-more-info.component';
 import { ContractorMoreInfoComponent } from './pages/contractor-more-info/contractor-more-info.component';
+import {MatSliderModule} from '@angular/material/slider';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,7 @@ import { ContractorMoreInfoComponent } from './pages/contractor-more-info/contra
       apiKey: 'AIzaSyCQbC86Nv2dHAU3hNBJZ1hOVn4O1NYj7Gg'
     })
   ],
-  providers: [FirebaseService, AuthGuard, YoutubeService, GeoService, GoogleSearchService, InformationSearchService],
+  providers: [FirebaseService, AuthGuard, AdminAuthGuard, YoutubeService, GeoService, GoogleSearchService, InformationSearchService],
   bootstrap: [AppComponent],
   exports: [FormsModule],
 })

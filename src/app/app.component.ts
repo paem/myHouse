@@ -20,9 +20,7 @@ export class AppComponent implements OnInit {
   isLoggedIn = false;
   isAuthenticated = false;
   private subscription: Subscription;
-  currentUser:any;
   userRole:any;
-  userData: any;
 
   constructor(private afDb: AngularFireDatabase, private _firebaseService: FirebaseService, private af: AngularFireAuth, private router: Router) {
     this.subscription = this._firebaseService.isAuthenticated().subscribe(
@@ -30,11 +28,7 @@ export class AppComponent implements OnInit {
     );
 
   }
-  adminAccess(){
 
-
-
-  }
   ngOnInit() {
         this.af.authState.subscribe(
           (auth) => {
@@ -49,17 +43,7 @@ export class AppComponent implements OnInit {
               this.isLoggedIn = true;
               this.css_class = 'hamburger is-closed';
               this.overlay_class = 'overlay';
-              this.userRole = this._firebaseService.getAdminRole();
-
-              if(this.userRole == true){
-                this.currentUser = true;
-                console.log(this.currentUser)
-              }
-              if(this.userRole == false){
-                this.currentUser = false
-                console.log(this.currentUser)
-              }
-
+              this.userRole = this._firebaseService.getAdminRole();              
             }
           });
 

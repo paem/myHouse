@@ -1,3 +1,4 @@
+import { AdminAuthGuard } from './shared/guard/adminAuth.guard';
 import { BostadComponent } from './pages/stepbystep/bostad/bostad.component';
 import { HouseComponent } from './pages/stepbystep/house/house.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -22,7 +23,7 @@ const APP_ROUTES: Routes = [
   { path: 'stegforsteg/bostad', component: BostadComponent, canActivate: [AuthGuard] },
   { path: 'naradig', component: ProfessionalhelpComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'adminpanel', component: AdminPanelComponent, canActivate: [AuthGuard] },
+  { path: 'adminpanel', component: AdminPanelComponent, canActivate:[AuthGuard],resolve: [AdminAuthGuard] },
   { path: 'edit/:key', component: UpdateInfoComponent, canActivate: [AuthGuard]},
   { path: 'details-brokers/:key', component: BrokerMoreInfoComponent, canActivate: [AuthGuard]},
   { path: 'details-contractors/:key', component: ContractorMoreInfoComponent, canActivate: [AuthGuard]},

@@ -21,12 +21,26 @@ export class ProfessionalhelpComponent implements OnInit, OnDestroy {
   isLoading: any;
   brokers = false;
   contractors = false;
+
+
+  radius:number;
+  max = 300;
+  min = 20;
+  thumbLabel = true;
+  
+
+
+
+ 
   constructor(private geo: GeoService, private afDb: AngularFireDatabase) {
   }
 
   disableBrokers = new FormControl(false);
   disableContractors = new FormControl(true);
   ngOnInit() {
+    if(this.radius == null){
+      this.radius = 30;
+    }
     this.getUserLocation();
     this.subscription = this.geo.hits
       .subscribe(hits => this.markers = hits);
@@ -47,8 +61,8 @@ export class ProfessionalhelpComponent implements OnInit, OnDestroy {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
         console.log(this.lat, this.lng);
-        this.geo.getLocationsBroker(100, [this.lat, this.lng]);
-        this.geo.getLocationsContractor(100, [this.lat, this.lng]);
+        this.geo.getLocationsBroker(this.radius, [this.lat, this.lng]);
+        this.geo.getLocationsContractor(this.radius, [this.lat, this.lng]);
       });
     }
   }
