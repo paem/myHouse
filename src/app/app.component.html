@@ -20,7 +20,7 @@
         <a [routerLink]="['/naradig']" routerLinkActive="active" href="#"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>&nbsp; Hjälp nära dig</a>
       </li>
       <li *ngIf="(userRole | async)">
-        <a [routerLink]="['/adminpanel']" routerLinkActive="active" href="#"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>&nbsp; Admin Panel</a>
+        <a [routerLink]="['/adminpanel']" routerLinkActive="active" href="#"><i class="fa fa-lock fa-fw" aria-hidden="true"></i>&nbsp; Admin Panel</a>
       </li>
       <li *ngIf="!isAuthenticated">
         <a [routerLink]="['/login']" routerLinkActive="active" href="#"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i>&nbsp; Logga in</a>
