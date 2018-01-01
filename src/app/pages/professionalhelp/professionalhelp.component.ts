@@ -21,24 +21,17 @@ export class ProfessionalhelpComponent implements OnInit, OnDestroy {
   isLoading: any;
   brokers = false;
   contractors = false;
-
-
-  radius:number;
+  radius: number;
   max = 300;
   min = 20;
   thumbLabel = true;
-  
-
-
-
- 
   constructor(private geo: GeoService, private afDb: AngularFireDatabase) {
   }
 
   disableBrokers = new FormControl(false);
   disableContractors = new FormControl(true);
   ngOnInit() {
-    if(this.radius == null){
+    if (this.radius == null) {
       this.radius = 30;
     }
     this.getUserLocation();

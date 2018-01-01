@@ -21,6 +21,7 @@ export class GeoService {
   loadContractors: any;
   contractors = new BehaviorSubject([]);
   brokers= new BehaviorSubject([]);
+  currentBrokers = this.brokers.value;
   hits = new BehaviorSubject([]);
   constructor(private afDb: AngularFireDatabase) {
     this.dbrefBrokers = firebase.database().ref('/brokers');
@@ -46,6 +47,7 @@ export class GeoService {
       radius: radius
     })
       .on('key_entered', (key, location, distance) => {
+        this.brokers.value.pop();
         const brokerRef: any = this.afDb.object('brokers/' + key);
         brokerRef.valueChanges().subscribe(items => { this.loadBrokers = {
           key: key,
@@ -54,9 +56,8 @@ export class GeoService {
           description: items.description,
           url: items.imageUrl.url
         };
-          const currentBrokers = this.brokers.value;
-          currentBrokers.push(this.loadBrokers);
-          this.brokers.next(currentBrokers);
+          this.currentBrokers.push(this.loadBrokers);
+          this.brokers.next(this.currentBrokers);
           console.log(this.brokers);
           const hit = {
             location: location,
@@ -70,15 +71,15 @@ export class GeoService {
         });
       });
   }
-
   getLocationsContractor(radius: number, coords: Array<number>) {
     this.geoFireContractor.query({
       center: coords,
       radius: radius
     })
       .on('key_entered', (key, location, distance) => {
+        this.contractors.value.pop();
         const contractorRef: any = this.afDb.object('contractors/' + key);
-        contractorRef.valueChanges().subscribe(items => { this.loadContractors = {
+        contractorRef.valueChanges().subscribe(items => {   this.loadContractors = null; this.loadContractors = {
           key: key,
           contactInformation: items.contactInformation,
           name: items.name,
