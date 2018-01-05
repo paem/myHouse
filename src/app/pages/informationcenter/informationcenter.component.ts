@@ -25,7 +25,7 @@ export class InformationcenterComponent implements OnInit {
   googleQuery:any;
   googleMessage:any;
   googleList:any;
-
+  isLoading: boolean;
 
   constructor(private videos: YoutubeService, private ISS:InformationSearchService, private sanitizer:DomSanitizer, private gSS:GoogleSearchService) {
     this.getVideos();
@@ -79,7 +79,8 @@ search($event) {
       this.message = 'Sök efter videos';
     }
     else if(this.query != null) {
-   this.videos.youtubeSearch(this.query).subscribe(data => { this.videoList = data});
+      this.isLoading = true;
+   this.videos.youtubeSearch(this.query).subscribe(data => { this.videoList = data , this.isLoading = false; });
   }
 }
 getGoogleInfo(){

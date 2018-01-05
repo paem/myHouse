@@ -59,9 +59,10 @@
           </form>
           <br>
                   <div class="google-media-search" [innerHTML]="gcsesearch"></div>
-          
+
   </div>
   <div class="col-sm-6">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
 
       <div *ngFor="let i of info">
         <h4>{{i?.title}}</h4>
@@ -75,20 +76,24 @@
           No results
         </p>
       </div>
-      <div *ngFor="let v of videoList">
-          <h2>{{v.snippet.title}}</h2>
-          <iframe width="640" height="360" [src]='"https://www.youtube.com/embed/"+v.id.videoId+""| safe' frameborder="0" allowfullscreen></iframe>
-          {{v.snippet.publishedAt | date}}
-        </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+       <mat-card class="youtube-cards" style="margin-bottom: 20px; width: 350px;" *ngFor="let v of videoList">
+          <a class="video-thumbnail" [href]='"https://www.youtube.com/watch?v="+v.id.videoId+""| safe' data-lity
+          > <img class="mat-card-image" style="width: 350px;"  src="{{v.snippet.thumbnails.medium.url}}" data-src="{{v.snippet.thumbnails.medium.url}}">
+          </a>
+         <mat-card-content>
+          <div class="clip-info"><p class="title"><span class="title">{{v.snippet.title}}</span></p>
+            <span class="info"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp; VISNINGAR<i class="fa fa-clock-o" style="margin-left: 5px;" aria-hidden="true"></i> <span class="need_to_be_rendered">{{v.snippet.publishedAt | date}}</span></span>
+          </div>
+         </mat-card-content>
+        </mat-card>
+    </div>
       <div *ngFor="let i of googleList">
           <!-- <img [src]='i.pagemap?.cse_image?.src'> -->
           <h4>{{i.title}}</h4>
         </div>
 
     </div>
-  <div class="col-sm-1">
-   
 
-
-  </div>
 </div>
