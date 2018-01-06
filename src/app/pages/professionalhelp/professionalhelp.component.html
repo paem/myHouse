@@ -23,7 +23,7 @@
 </div>
 
 <div style="margin: 25px;">
-  <mat-slider min="{{min}}" max="{{max}}" step="0.5" thumbLabel [(ngModel)]="radius"></mat-slider>
+  <mat-slider min="{{min}}" max="{{max}}" step="0.5" thumbLabel (change)="changeRadius($event.value)"></mat-slider>
 
 <p style="margin-top: 20px;">
   <mat-checkbox [disabled]="contractors" (click)="getContractors()">Byggfirmor</mat-checkbox>
@@ -34,6 +34,7 @@
 </div>
 
   <div class="row" *ngIf="brokers" style="margin-top: 50px; padding: 35px;">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
     <mat-card class="col-md-6 card" *ngFor="let item of loadBrokers">
       <div class="media">
         <div class="media-left">
@@ -49,6 +50,7 @@
   </div>
 
 <div class="row" *ngIf="contractors" style="margin-top: 50px; padding: 35px;">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
   <mat-card class="col-md-6 card" *ngFor="let item of loadContractors">
     <div class="media">
       <div class="media-left">

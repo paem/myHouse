@@ -60,6 +60,24 @@ export class ProfessionalhelpComponent implements OnInit, OnDestroy {
     }
   }
 
+  changeRadius(newVal) {
+    this.geo.brokers.value.pop();
+    this.geo.contractors.value.pop();
+    this.geo.hits.value.pop();
+    this.loadBrokers = null;
+    this.loadContractors = null;
+    this.isLoading = true;
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
+        console.log(this.lat, this.lng);
+        this.geo.getLocationsBroker(newVal, [this.lat, this.lng]);
+        this.geo.getLocationsContractor(newVal, [this.lat, this.lng]);
+        this.isLoading = false;
+      });
+    }
+  }
   getBrokers() {
     this.contractors = false;
     this.brokers = true;

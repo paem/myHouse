@@ -21,7 +21,6 @@ export class GeoService {
   loadContractors: any;
   contractors = new BehaviorSubject([]);
   brokers= new BehaviorSubject([]);
-  currentBrokers = this.brokers.value;
   hits = new BehaviorSubject([]);
 
   items: Observable<any[]> = null;
@@ -52,16 +51,18 @@ export class GeoService {
     })
       .on('key_entered', (key, location, distance) => {
         this.brokers.value.pop();
+        this.hits.value.pop();
         const brokerRef: any = this.afDb.object('brokers/' + key);
-        brokerRef.valueChanges().subscribe(items => { this.loadBrokers = {
+        brokerRef.valueChanges().subscribe(items => { this.loadBrokers = null; this.loadBrokers = {
           key: key,
           contactInformation: items.contactInformation,
           name: items.name,
           description: items.description,
           url: items.imageUrl.url
         };
-          this.currentBrokers.push(this.loadBrokers);
-          this.brokers.next(this.currentBrokers);
+          const currentBrokers = this.brokers.value;
+          currentBrokers.push(this.loadBrokers);
+          this.brokers.next(currentBrokers);
           console.log(this.brokers);
           const hit = {
             location: location,
@@ -82,6 +83,7 @@ export class GeoService {
     })
       .on('key_entered', (key, location, distance) => {
         this.contractors.value.pop();
+        this.hits.value.pop();
         const contractorRef: any = this.afDb.object('contractors/' + key);
         contractorRef.valueChanges().subscribe(items => {   this.loadContractors = null; this.loadContractors = {
           key: key,
@@ -131,7 +133,7 @@ export class GeoService {
         console.log('contractors updated');
       }).catch(err => console.log(err));
   }
-  
+
   getBrokerInfo(){
     this.itemsRef = this.afDb.list('brokers/');
     this.items = this.itemsRef.snapshotChanges().map(changes => {
