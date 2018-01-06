@@ -1,8 +1,18 @@
 <div class="row">
+  <div class="row">
     <h1>Informationscenter</h1>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        <div class="main">
+          <input class="input" type="text" ngModel [(ngModel)]="mainInput" />
+          <input type="submit" value="Go" (click)="mainSearch()">
+        </div>
+    </div>
+    <div class="col-sm-3"></div>  
+  </div>  
     <div class="col-sm-4"></div>
 
-    <div *ngIf="show">
+    <!-- <div *ngIf="show">
     <div class="col-sm-1">
         <input type="checkbox" value="Hus">Hus<br>
         <input type="checkbox" value="Bostad">Bostad
@@ -33,11 +43,11 @@
      <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
         </button>
     </div>
-    </div>
-</div>
+    </div>-->
+</div> 
 
-  <div class="row">
-<div class="col-sm-1"></div>
+  <div layout="row" layout-align="center center">
+<!-- <div class="col-sm-1"></div>
   <div class="col-sm-4">
       <h2>Firebase Sök</h2>
       <input class="form-control" type="text" (keydown)="search($event)" placeholder="What u searchafor?">
@@ -60,11 +70,8 @@
           <br>
                   <div class="google-media-search" [innerHTML]="gcsesearch"></div>
 
-  </div>
-  <div class="col-sm-6">
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
-
-      <div *ngFor="let i of info">
+  </div> -->
+     <!-- <div *ngFor="let i of info">
         <h4>{{i?.title}}</h4>
         <p>
           {{i?.body}}
@@ -75,9 +82,30 @@
         <p>
           No results
         </p>
-      </div>
+      </div> -->
 
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="col-sm-9">
+            <mat-card *ngFor="let i of googleList">
+              
+              <a [href]='i.link' data-lity
+              > 
+              <div *ngFor="let a of i.pagemap?.cse_image"> 
+                <img class="mat-card-image" style="width: 350px;" [src]='a.src'>
+             </div>
+             <mat-card-title>{{i.title}}</mat-card-title>
+            </a>
+             <mat-card-content>
+              <div class="clip-info"><p class="title"><span class="title">{{i.snippet}}</span></p>
+              </div>
+             </mat-card-content>
+          
+            </mat-card>
+     
+          </div>
+
+  <div class="col-sm-3">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+
        <mat-card class="youtube-cards" style="margin-bottom: 20px; width: 350px;" *ngFor="let v of videoList">
           <a class="video-thumbnail" [href]='"https://www.youtube.com/watch?v="+v.id.videoId+""| safe' data-lity
           > <img class="mat-card-image" style="width: 350px;"  src="{{v.snippet.thumbnails.medium.url}}" data-src="{{v.snippet.thumbnails.medium.url}}">
@@ -88,12 +116,7 @@
           </div>
          </mat-card-content>
         </mat-card>
-    </div>
-      <div *ngFor="let i of googleList">
-          <!-- <img [src]='i.pagemap?.cse_image?.src'> -->
-          <h4>{{i.title}}</h4>
-        </div>
-
-    </div>
+      </div>
+      
 
 </div>

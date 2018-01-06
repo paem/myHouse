@@ -26,11 +26,12 @@ export class InformationcenterComponent implements OnInit {
   googleMessage:any;
   googleList:any;
   isLoading: boolean;
+  mainInput:any;
 
   constructor(private videos: YoutubeService, private ISS:InformationSearchService, private sanitizer:DomSanitizer, private gSS:GoogleSearchService) {
-    this.getVideos();
-    console.log(this.getVideos());
-    console.log(this.getGoogleInfo())
+    // this.getVideos();
+    // console.log(this.getVideos());
+    // console.log(this.getGoogleInfo())
   }
   googleCSE(){
     this.gcsesearch = this.sanitizer.bypassSecurityTrustHtml("<gcse:search></gcse:search>");
@@ -55,8 +56,24 @@ export class InformationcenterComponent implements OnInit {
     this.show = false;
   }
 
+  mainSearch(){
+    if(this.mainInput == null){
+      this.googleMessage = 'Informationen är här';
+    }
+    else if(this.mainInput != null){
+      this.gSS.googleSearch(this.mainInput).subscribe(data => {console.log(this.googleList = data)});
+    }
+    if (this.mainInput == null) {
+      this.message = 'Sök efter videos';
+    }
+    else if(this.mainInput != null) {
+      this.isLoading = true;
+   this.videos.youtubeSearch(this.mainInput).subscribe(data => { this.videoList = data , this.isLoading = false; });
+  }
+  }
+
   ngOnInit() {
- this.getVideos();
+//  this.getVideos();
  this.googleCSE();
 
  this.ISS.getInfo(this.startAt, this.endAt)
@@ -74,21 +91,21 @@ search($event) {
   clicked() {
      console.log(this.query);
     console.log(this.videoList); }
-  getVideos() {
-    if (this.query == null) {
-      this.message = 'Sök efter videos';
-    }
-    else if(this.query != null) {
-      this.isLoading = true;
-   this.videos.youtubeSearch(this.query).subscribe(data => { this.videoList = data , this.isLoading = false; });
-  }
-}
-getGoogleInfo(){
-  if(this.googleQuery == null){
-    this.googleMessage = 'Informationen är här';
-  }
-  else if(this.googleQuery != null){
-    this.gSS.googleSearch(this.googleQuery).subscribe(data => {console.log(this.googleList = data)});
-  }
-}
+//   getVideos() {
+//     if (this.query == null) {
+//       this.message = 'Sök efter videos';
+//     }
+//     else if(this.query != null) {
+//       this.isLoading = true;
+//    this.videos.youtubeSearch(this.query).subscribe(data => { this.videoList = data , this.isLoading = false; });
+//   }
+// }
+// getGoogleInfo(){
+//   if(this.googleQuery == null){
+//     this.googleMessage = 'Informationen är här';
+//   }
+//   else if(this.googleQuery != null){
+//     this.gSS.googleSearch(this.googleQuery).subscribe(data => {console.log(this.googleList = data)});
+//   }
+// }
 }

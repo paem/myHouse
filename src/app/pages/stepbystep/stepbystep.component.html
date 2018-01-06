@@ -3,9 +3,11 @@
     <div class="col-sm-2"></div>
       <div class="col-sm-8">
         <br>
-          <mat-progress-bar mode="determinate" value="0"></mat-progress-bar>
-            <div class="row">
-              <h1>Välj typ av köp</h1>
+          <!-- <mat-progress-bar mode="determinate" value="0"></mat-progress-bar> -->
+           
+                <div class="row" *ngIf="switch == true">
+                    <mat-slide-toggle [checked]="checked()" [(ngModel)]="switch">Toggle Sälj</mat-slide-toggle>                    
+              <h1>Typ av köp?</h1>
               <br>
 
                 <div class="col-sm-6">
@@ -26,6 +28,29 @@
                       </mat-card></a>
                  </div>
                  </div>
+                 <div class="row" *ngIf="switch == false">
+                    <mat-slide-toggle [checked]="checked()" [(ngModel)]="switch">Toggle Köp</mat-slide-toggle>                                        
+                    <h1>Typ av sälj?</h1>
+                    <br>
+      
+                      <div class="col-sm-6">
+                        <a class="hover" [routerLink]="['../stegforsteg/hus']" routerLinkActive="active" href="#">
+                          <mat-card>
+                              <img mat-card-image src="https://cdn.houseplans.com/product/o2d2ui14afb1sov3cnslpummre/w1024.jpg?v=15" alt="House">
+                              <mat-card-content><h1>Hus</h1></mat-card-content>
+                            </mat-card>
+                          </a>
+                       </div>
+                       <div class="col-sm-6">
+                        <a class="hover" [routerLink]="['../stegforsteg/bostad']" routerLinkActive="active" href="#">
+                          <mat-card>
+                              <img mat-card-image src="https://cdn.houseplans.com/product/o2d2ui14afb1sov3cnslpummre/w1024.jpg?v=15" alt="House">
+                              <mat-card-content>
+                                <h1>Bostadsrätt</h1>
+                                </mat-card-content>
+                            </mat-card></a>
+                       </div>
+                       </div>
           <div>
           </div>
       <div class="col-sm-2"></div>

@@ -18,6 +18,10 @@ a{
     font-size: 30px;
     font-family: sans-serif;
 }
+a:hover{
+    text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+    color: #673ab7;
+}
 .extra{
     text-decoration: none;
     color: black;
@@ -55,4 +59,43 @@ i:hover{
 
 .youtube-cards:hover {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.input{
+    border: none;
+    padding: 10px;
+    margin: 10px;
+  //  height: 20px;
+    width: 500px;
+    border:1px solid #eaeaea;
+    outline:none;
+}
+input:hover{
+    border-color: #a0a0a0 #b9b9b9 #b9b9b9 #b9b9b9;
+}
+input:focus{
+    border-color:#4d90fe;
+}
+
+input[type="submit"] {
+    border-radius: 2px;
+    background: #f2f2f2;
+    border: 1px solid #f2f2f2;
+    color: #757575;
+    cursor: default;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100px;
+    padding: 0 16px;
+    height:36px;
+}
+input[type="submit"]:hover {
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    background: #f8f8f8;
+    border: 1px solid #c6c6c6;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    color: #222;
+}
+p{
+    font-size: 14px;
 }
