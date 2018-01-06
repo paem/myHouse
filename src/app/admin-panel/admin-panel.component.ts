@@ -52,6 +52,7 @@ export class AdminPanelComponent implements OnInit {
     'Tanzania', 'Thailand', 'Togo', 'Tonga', 'Trinidad & Tobago', 'Tunisia', 'Turkey', 'Turkmenistan', 'Tuvalu', 'Uganda', 'Ukraine', 'United Arab Emirates',
     'United Kingdom', 'United States', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Vatican City', 'Venezuela', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe',
   ];
+  items:any;
 
   constructor(private geo: GeoService, private _jsonp: Jsonp) { }
   emailFormControl = new FormControl('', [
@@ -60,8 +61,14 @@ export class AdminPanelComponent implements OnInit {
   ]);
   ngOnInit() {
 
-  }
+    this.items = this.geo.getBrokerInfo();
 
+  }
+  deleteInfo(key:any){
+    console.log(key);
+    this.geo.deleteBrokerInfo(key);
+    
+  }
 
   searchLatLng(country, street, city, postalCode) {
     return this._jsonp.get('http://www.mapquestapi.com/geocoding/v1/address?callback=JSONP_CALLBACK&key=' + this.apiKey + '&location=' + street + ',' + city + ',' + postalCode + ',' + country)

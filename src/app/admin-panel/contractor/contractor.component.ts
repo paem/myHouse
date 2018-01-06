@@ -35,6 +35,8 @@ export class ContractorComponent implements OnInit {
 
   contactInfo = new ContactInfo();
 
+  items:any;
+
   constructor(private geo: GeoService) {
    
    }
@@ -44,7 +46,15 @@ export class ContractorComponent implements OnInit {
   ]);
 
   ngOnInit() {
+    this.items = this.geo.getContractorInfo();
+
   }
+  deleteInfo(key:any){
+    console.log(key)
+    this.geo.deleteContractorInfo(key);
+    
+  }
+ 
 
   getCoordsContractor() {
     if (navigator.geolocation) {

@@ -23,6 +23,10 @@ export class GeoService {
   brokers= new BehaviorSubject([]);
   currentBrokers = this.brokers.value;
   hits = new BehaviorSubject([]);
+
+  items: Observable<any[]> = null;
+  itemsRef:any;
+
   constructor(private afDb: AngularFireDatabase) {
     this.dbrefBrokers = firebase.database().ref('/brokers');
     this.brokerId = this.dbrefBrokers.push().key;
@@ -126,5 +130,34 @@ export class GeoService {
         });
         console.log('contractors updated');
       }).catch(err => console.log(err));
+  }
+  
+  getBrokerInfo(){
+    this.itemsRef = this.afDb.list('brokers/');
+    this.items = this.itemsRef.snapshotChanges().map(changes => {
+      return changes.map(c => ({key: c.payload.key, ...c.payload.val()}));
+    })
+    return this.items;
+  }
+
+  getContractorInfo(){
+    const itemsRef = this.afDb.list('contractors/');
+    this.items = itemsRef.snapshotChanges().map(changes => {
+      return changes.map(c => ({key: c.payload.key, ...c.payload.val()}));
+    })
+    return this.items;
+  }
+
+  updateBrokerInfo(key: string, value:any):void{
+    this.itemsRef.update(key, value);
+  }
+  deleteBrokerInfo(key: string):void{
+    this.itemsRef.remove(key);
+  }
+  updateContractorInfo(key: string, value:any):void{
+    this.itemsRef.update(key, value);
+  }
+  deleteContractorInfo(key: string):void{
+    this.itemsRef.remove(key);
   }
 }

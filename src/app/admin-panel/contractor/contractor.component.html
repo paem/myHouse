@@ -139,3 +139,26 @@
       </div>
     </div>
   </div>
+
+  <!-- edit -->
+  <div class="panel panel-info" style="margin: 1em;">
+      <div class="panel-heading">
+        <h3 class="panel-title"><label class="control-label panel-title">Editera</label></h3>
+      </div>
+      <form>
+      <div class="panel-body">
+        <div class="form-group">
+          <div class="col-sm-10">
+              <!-- Mäklar brokers  -->
+              <div *ngFor="let item of items | async">
+                <mat-card>
+                  {{item.name}}
+                  <button style="float:right;" mat-raised-button color="warn" (click)="deleteInfo(item.key)">Delete</button>
+                </mat-card>
+              </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+ 
