@@ -1,15 +1,27 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-inverse">
+  <div class="container-fluid nopadding">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Informationscenter</a>
+      </div>
+
+
+      <ul class="navbar-nav ml-auto">
+        <form  class="form-inline">
+          <div class="input-group">
+            <input class="form-control" type="text" ngModel [(ngModel)]="mainInput" name="search" placeholder="Sök" value="" required="">
+            <span class="input-group-btn">
+                                <button class="btn search-btn" type="submit" (click)="mainSearch()">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                              </span>
+          </div>
+        </form>
+      </ul>
+  </div>
+</nav>
+
 <div class="row">
-  <div class="row">
-    <h1>Informationscenter</h1>
-    <div class="col-sm-3"></div>
-    <div class="col-sm-6">
-        <div class="main">
-          <input class="input" type="text" ngModel [(ngModel)]="mainInput" />
-          <input type="submit" value="Go" (click)="mainSearch()">
-        </div>
-    </div>
-    <div class="col-sm-3"></div>  
-  </div>  
+
     <div class="col-sm-4"></div>
 
     <!-- <div *ngIf="show">
@@ -44,7 +56,7 @@
         </button>
     </div>
     </div>-->
-</div> 
+</div>
 
   <div layout="row" layout-align="center center">
 <!-- <div class="col-sm-1"></div>
@@ -84,12 +96,12 @@
         </p>
       </div> -->
 
-      <div class="col-sm-9">
+      <div style="margin-top: 100px;" class="col-sm-9">
             <mat-card *ngFor="let i of googleList">
-              
-              <a [href]='i.link' data-lity
-              > 
-              <div *ngFor="let a of i.pagemap?.cse_image"> 
+
+              <a [href]='i.link | safe' data-lity
+              >
+              <div *ngFor="let a of i.pagemap?.cse_image">
                 <img class="mat-card-image" style="width: 350px;" [src]='a.src'>
              </div>
              <mat-card-title>{{i.title}}</mat-card-title>
@@ -98,12 +110,12 @@
               <div class="clip-info"><p class="title"><span class="title">{{i.snippet}}</span></p>
               </div>
              </mat-card-content>
-          
+
             </mat-card>
-     
+
           </div>
 
-  <div class="col-sm-3">
+  <div  style="margin-top: 100px;" class="col-sm-3">
     <mat-spinner *ngIf="isLoading"></mat-spinner>
 
        <mat-card class="youtube-cards" style="margin-bottom: 20px; width: 350px;" *ngFor="let v of videoList">
@@ -117,6 +129,6 @@
          </mat-card-content>
         </mat-card>
       </div>
-      
+
 
 </div>
