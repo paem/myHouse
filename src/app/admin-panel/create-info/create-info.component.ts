@@ -51,6 +51,8 @@ upload(fileItem:FileItem){
       fileItem.url = uploadTask.snapshot.downloadURL
       fileItem.name = filename.toString();
       this.saveFileData(fileItem)
+      this.item = new Item();
+      // window.location.reload();
     }
   );
 }
@@ -87,7 +89,6 @@ private saveFileData(item: FileItem) {
       let file = this.selectedFiles.item(0)
       this.currentUpload = new FileItem(file);
       this.upload(this.currentUpload)
-     
     }
 
   }

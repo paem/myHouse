@@ -36,6 +36,7 @@ import { ContractorMoreInfoComponent } from './pages/contractor-more-info/contra
 import {MatSliderModule} from '@angular/material/slider';
 import { MaterialModule } from './material.module';
 import {JsonpModule} from '@angular/http';
+import { ReversePipe } from './shared/pipes/reverse';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {JsonpModule} from '@angular/http';
     BrokerMoreInfoComponent,
     ContractorMoreInfoComponent,
     ContractorComponent,
-    BrokerMoreInfoComponent
+    BrokerMoreInfoComponent,
+    ReversePipe
   ],
   imports: [
     BrowserModule,

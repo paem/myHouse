@@ -7,8 +7,6 @@ export class Item{
     type:any;
     title: string;
     body: string;
-    subTitle:string;
-    subBody: string;
     createdAt:any = firebase.database.ServerValue.TIMESTAMP;
     
 

@@ -29,14 +29,6 @@
         <textarea matInput placeholder="Body" [(ngModel)]="item.body"></textarea>
       </mat-form-field>
       <br>
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="SubTitle"
-          [(ngModel)]="item.subTitle">
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Sub Body"
-        [(ngModel)]="item.subBody"></textarea>
-      </mat-form-field>
       <div *ngIf="currentUpload">
           <div class="progress">
             <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>

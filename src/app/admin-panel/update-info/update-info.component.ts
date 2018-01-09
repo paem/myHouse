@@ -26,8 +26,6 @@ export class UpdateInfoComponent implements OnInit, OnDestroy {
   
   title:any;
   body:any;
-  subTitle:any;
-  subBody:any;
   type:any;
   tab:any;
   itemsRef:AngularFireList<Item>;
@@ -66,8 +64,6 @@ export class UpdateInfoComponent implements OnInit, OnDestroy {
   updateInfo(){
     this.item.tab = this.tab;
     this.item.type = this.type;  
-    this.item.subBody = this.subBody;
-    this.item.subTitle = this.subTitle;  
     this.item.title = this.title;    
     this.item.body = this.body;  
     
