@@ -8,7 +8,7 @@
     </agm-info-window>
   </agm-marker>
 
-  <agm-marker *ngFor="let marker of markers" [latitude]="marker.location[0]" [longitude]="marker.location[1]" >
+  <agm-marker [@fadeIn]="'true'" *ngFor="let marker of markers" [latitude]="marker.location[0]" [longitude]="marker.location[1]" >
     <agm-info-window>
       <h3><strong>Plats information</strong></h3>
       <p>{{marker.name}}</p>
@@ -44,7 +44,7 @@
 
 
 </div>
-  <div class="row" *ngIf="brokers" style="margin-top: 20px; padding: 35px;">
+  <div [@fadeIn]="'true'" class="row" *ngIf="brokers" style="margin-top: 20px; padding: 35px;">
     <mat-card class="col-md-6 card" *ngFor="let item of loadBrokers">
       <div class="media">
         <div class="media-left">
@@ -59,7 +59,7 @@
     </mat-card>
   </div>
 
-<div class="row" *ngIf="contractors" style="margin-top: 50px; padding: 35px;">
+<div [@fadeIn]="'true'" class="row" *ngIf="contractors" style="margin-top: 50px; padding: 35px;">
   <mat-card class="col-md-6 card" *ngFor="let item of loadContractors">
     <div class="media">
       <div class="media-left">

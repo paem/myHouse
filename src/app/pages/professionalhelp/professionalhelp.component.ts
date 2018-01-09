@@ -3,12 +3,13 @@ import { GeoService } from '../../services/geo.service';
 import * as firebase from 'firebase';
 import {FormControl, Validators} from '@angular/forms';
 import {AngularFireDatabase} from 'angularfire2/database';
-import {isNullOrUndefined, isUndefined} from "util";
+import {fadeInAnimation} from '../../shared/animations/fadeIn.animation';
 
 @Component({
   selector: 'app-professionalhelp',
   templateUrl: './professionalhelp.component.html',
-  styleUrls: ['./professionalhelp.component.css']
+  styleUrls: ['./professionalhelp.component.css'],
+  animations: [fadeInAnimation],
 })
 export class ProfessionalhelpComponent implements OnInit, OnDestroy {
   public lat: number;

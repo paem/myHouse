@@ -97,7 +97,7 @@
       </div> -->
 
       <div style="margin-top: 100px;" class="col-sm-9">
-            <mat-card *ngFor="let i of googleList">
+            <mat-card [@fadeIn]="'true'"  *ngFor="let i of googleList">
 
               <a [href]='i.link | safe' data-lity
               >
@@ -117,7 +117,7 @@
           </div>
 
   <div  style="margin-top: 100px;" class="col-sm-3">
-       <mat-card class="youtube-cards" style="margin-bottom: 20px; width: 350px;" *ngFor="let v of videoList">
+       <mat-card [@fadeIn]="'true'"  class="youtube-cards" style="margin-bottom: 20px; width: 350px;" *ngFor="let v of videoList">
           <a class="video-thumbnail" [href]='"https://www.youtube.com/watch?v="+v.id.videoId+""| safe' data-lity
           > <img class="mat-card-image" style="width: 350px;"  src="{{v.snippet.thumbnails.medium.url}}" data-src="{{v.snippet.thumbnails.medium.url}}">
           </a>

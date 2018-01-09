@@ -4,11 +4,13 @@ import { InformationSearchService } from './../../services/information-search.se
 import { YoutubeService } from './../../services/youtube.service';
 import { Component, OnInit } from '@angular/core';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
+import {fadeInAnimation} from '../../shared/animations/fadeIn.animation';
 
 @Component({
   selector: 'app-informationcenter',
   templateUrl: './informationcenter.component.html',
-  styleUrls: ['./informationcenter.component.scss']
+  styleUrls: ['./informationcenter.component.scss'],
+  animations: [fadeInAnimation],
 })
 export class InformationcenterComponent implements OnInit {
 

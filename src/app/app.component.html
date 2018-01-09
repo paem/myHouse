@@ -1,8 +1,8 @@
 
-<div id="wrapper">
+<div  id="wrapper">
   <div class="{{overlay_class}}"></div>
   <!-- Sidebar -->
-  <nav *ngIf="isAuth()" class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+  <nav *ngIf="isAuthenticated" class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav">
       <li class="sidebar-brand" style="margin-bottom: 15px; background-color: #F7FFF7;">
          <a [routerLink]="['/hem']" routerLinkActive="active" href="#"><img class="img-thumbnail" style=" width: 84px; height: 84px; float: left; background-color: #F7FFF7;" src="../assets/images/myhouselogo_.png" alt="myHouse"></a>
