@@ -23,17 +23,28 @@
 </div>
 
 <div style="margin: 25px;">
-  <mat-slider min="{{min}}" max="{{max}}" step="0.5" thumbLabel (change)="changeRadius($event.value)"></mat-slider>
+  <h3>Hitta Byggfirmor och Mäklarfirmor nära dig</h3>
+  <mat-radio-group style="margin-top: 20px;">
+    <mat-radio-button  value="1" color="primary" (click)="getContractors()">Byggfirmor</mat-radio-button>
+    <mat-radio-button value="2"  color="primary" (click)="getBrokers()" >Mäklarfirmor</mat-radio-button>
+  </mat-radio-group>
 
-<p style="margin-top: 20px;">
-  <mat-checkbox [disabled]="contractors" (click)="getContractors()">Byggfirmor</mat-checkbox>
-</p>
+  <mat-form-field style="margin-left: 10px;">
+    <mat-select placeholder="Välj en annan stad">
+      <mat-option *ngFor="let city of chooseCity" (click)="changeCoords(city.lat, city.lng)" [value]="city.name">
+        {{city.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 <p>
-  <mat-checkbox [disabled]="brokers" (click)="getBrokers()">Mäklarfirmor</mat-checkbox>
+  <label> Öka sök radius </label>
+  <mat-slider min="{{min}}" max="{{max}}" step="0.5" color="primary" thumbLabel (change)="changeRadius($event.value)"></mat-slider>
 </p>
-</div>
 
-  <div class="row" *ngIf="brokers" style="margin-top: 50px; padding: 35px;">
+
+
+</div>
+  <div class="row" *ngIf="brokers" style="margin-top: 20px; padding: 35px;">
     <mat-spinner *ngIf="isLoading"></mat-spinner>
     <mat-card class="col-md-6 card" *ngFor="let item of loadBrokers">
       <div class="media">

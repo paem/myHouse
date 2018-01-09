@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {
   MatButtonModule, MatProgressBarModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatSidenavModule,
   MatToolbarModule, MatTooltipModule, MatProgressSpinnerModule, MatTabsModule, MatButtonToggleModule, MatListModule, MatCheckboxModule, MatStepperModule, MatChipsModule, MatCommonModule, MatDialogModule
-  , MatExpansionModule, MatSlideToggleModule, MatLineModule, MatGridListModule, MatRadioModule, MatSelectModule, MatSliderModule
+  , MatExpansionModule, MatSlideToggleModule, MatLineModule, MatGridListModule, MatRadioModule, MatSelectModule, MatSliderModule, MatAutocompleteModule
 } from '@angular/material';
 @NgModule({
   imports: [  MatButtonModule,
@@ -31,7 +31,8 @@ import {
     MatGridListModule,
     MatRadioModule,
     MatSliderModule,
-    MatSelectModule],
+    MatSelectModule,
+  MatAutocompleteModule],
   exports: [  MatButtonModule,
     MatMenuModule,
     MatSlideToggleModule,
@@ -57,6 +58,7 @@ import {
     MatGridListModule,
     MatRadioModule,
     MatSliderModule,
-    MatSelectModule],
+    MatSelectModule,
+  MatAutocompleteModule],
 })
 export class MaterialModule { }
