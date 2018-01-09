@@ -4,7 +4,7 @@
 body {
   position: relative;
   overflow-x: hidden;
-  font-family:  proxima-nova, sans-serif;
+  font-family:  "Proxima Nova", sans-serif !important;
   font-style: normal;
   font-weight: 100;
 }
@@ -34,6 +34,7 @@ html { height: 100%;}
   z-index: 1000;
   left: 220px;
   width: 0;
+  font-family:  "Proxima Nova", sans-serif;
   height: 100%;
   margin-left: -220px;
   overflow-y: auto;

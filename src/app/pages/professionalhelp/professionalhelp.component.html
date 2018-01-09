@@ -45,7 +45,6 @@
 
 </div>
   <div class="row" *ngIf="brokers" style="margin-top: 20px; padding: 35px;">
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
     <mat-card class="col-md-6 card" *ngFor="let item of loadBrokers">
       <div class="media">
         <div class="media-left">
@@ -61,7 +60,6 @@
   </div>
 
 <div class="row" *ngIf="contractors" style="margin-top: 50px; padding: 35px;">
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
   <mat-card class="col-md-6 card" *ngFor="let item of loadContractors">
     <div class="media">
       <div class="media-left">
@@ -76,3 +74,4 @@
   </mat-card>
 </div>
 
+<mat-spinner class="loading" *ngIf="isLoading"></mat-spinner>

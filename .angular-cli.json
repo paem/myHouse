@@ -20,6 +20,7 @@
       "prefix": "app",
       "styles": [
         "../node_modules/lity/dist/lity.css",
+        "../src/assets/fonts/fonts.css",
         "styles.css"
       ],
       "scripts": [
