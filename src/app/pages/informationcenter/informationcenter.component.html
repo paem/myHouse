@@ -117,8 +117,6 @@
           </div>
 
   <div  style="margin-top: 100px;" class="col-sm-3">
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
-
        <mat-card class="youtube-cards" style="margin-bottom: 20px; width: 350px;" *ngFor="let v of videoList">
           <a class="video-thumbnail" [href]='"https://www.youtube.com/watch?v="+v.id.videoId+""| safe' data-lity
           > <img class="mat-card-image" style="width: 350px;"  src="{{v.snippet.thumbnails.medium.url}}" data-src="{{v.snippet.thumbnails.medium.url}}">
@@ -130,6 +128,6 @@
          </mat-card-content>
         </mat-card>
       </div>
-
+    <mat-spinner class="loading" *ngIf="isLoading"></mat-spinner>
 
 </div>
