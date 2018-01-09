@@ -101,13 +101,14 @@
 
               <a [href]='i.link | safe' data-lity
               >
-              <div *ngFor="let a of i.pagemap?.cse_image">
-                <img class="mat-card-image" style="width: 350px;" [src]='a.src'>
-             </div>
+            <!--  <div *ngFor="let a of i.pagemap?.cse_image">
+                <img mat-card-image class="img-responsive" style="width: 350px;" [src]='a.src'>
+             </div> -->
              <mat-card-title>{{i.title}}</mat-card-title>
             </a>
              <mat-card-content>
               <div class="clip-info"><p class="title"><span class="title">{{i.snippet}}</span></p>
+                <a class="link" target="_blank" [href]="i.link | safe">Öppna i nytt fönster</a>
               </div>
              </mat-card-content>
 
