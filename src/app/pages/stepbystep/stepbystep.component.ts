@@ -24,7 +24,7 @@ export class StepbystepComponent implements OnInit {
   
   }
   checked(){
-    console.log(this.switch)
+    this.switch
     
   }
 

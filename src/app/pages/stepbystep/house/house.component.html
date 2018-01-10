@@ -8,7 +8,33 @@
               <mat-step [stepControl]="firstFormGroup">
                   <ng-template matStepLabel>Innan köpet</ng-template>
                   <form [formGroup]="firstFormGroup">
-                    <div *ngFor="let item of items | async">
+                      <h1>Innan Köp</h1>
+                      <h2>Bolån på banken</h2><p>
+                      Innan du börjar leta hus bör du se till att få ett förhandsbesked om lån av banken. Kontakta din banktjänsteman. Efter en genomgång av din ekonomi får du veta hur stor summa du har råd att köpa för. Jämför sedan bankernas räntor och lånevillkor
+                      </p>
+                      <p>
+                      Ha inte så stor respekt för banken. Våga förhandla om räntor och avgifter. Och fäst inte jättestor vikt vid siffrorna på bostadsräntorna som publiceras i tidningar och sajter. Flera banker prutar på räntan – bara du frågar.
+                      </p>
+                      Villalån brukar delas upp i två delar – bottenlån och topplån. Mellan 75 och 85 procent av huspriset kan du vanligtvis få bottenlån på. De resterande 15 till 25 procenten blir topplån. Där är räntan några procent högre än vid bottenlån. Dessutom är topplånet alltid rörligt. Det innebär att räntan kan ändras dagligen.
+                     <p> 
+                      Det vanligaste villalånet är rak amortering. Då är amorteringsbeloppet lika stort varje månad under hela lånetiden. Räntan beräknas på restskulden. Därför kommer ett lån med rak amortering att kosta mindre varje gång som du betalar av på lånet.
+                    </p>
+                    <p>
+                      Du kan välja mellan bunden och rörlig ränta eller ha en kombination av båda. Räntan kan bindas i olika perioder. Det vanligaste är att binda den i två eller fem år.
+                   </p>
+
+                   <h2>Hitta huset – gå på många visningar</h2>
+                   <p>
+                    Förbered dig noga innan du slår till. Gå på flera husvisningar och ställ många frågor till mäklare och säljare. Dra dig inte för att knacka på hos grannar i området där du tittar på hus. En del grannar brukar hålla sig mycket väl informerade och vet ofta vilka hus som har skavanker. Ju mer du kan, desto enklare blir det att slå till när du har hittat drömhuset.
+                  </p>
+                  <p>
+Ignorera inte din magkänsla vid husvisningar. Om du kommer in i ett hus och känner en obehaglig lukt från källaren ska du inte strunta i det utan försöka ta reda på orsaken. Du kan även själv kolla att alla kranar fungerar, om det drar någonstans och hur det ser ut i skåpen, bland annat. Studera även de närmaste omgivningarna. Hur är grannarnas insyn?
+</p>
+<p>
+Håll bevakning på Hemnet, Blocket bostad, Booli och Bovision när det gäller nya hus som läggs ut på nätet. Då kan du ha tur att vara först och ligga steget före de andra hågade husköparna.
+</p>
+
+<div *ngFor="let item of items | async">
 
                   <div class="row"
                   *ngIf="item.tab == 'Innan Köp' ||

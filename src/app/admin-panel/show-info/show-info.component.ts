@@ -24,29 +24,6 @@ export class ShowInfoComponent implements OnInit {
     this.items = this.fbService.getInfo();
   }
 
-  
-  updateInfo(key:any){
-    // this.router.navigate(['/edit'])
-    //this.route.data = key;
-
-  }
-  
-  //DELETE Image from storage
-  // deleteUpload(item: FileItem) {
-  //   this.deleteFileData(item.$key)
-  //   .then( () => {
-  //     this.deleteFileStorage(item.name)
-  //   })
-  //   .catch(error => console.log(error))
-  // }
-  // private deleteFileData(key: string) {
-  //   return this.afDb.list(`Images/`).remove(key);
-  // }
-
-  // private deleteFileStorage(name:string) {
-  
-  // }
-
 
   deleteInfo(key:any){
     this.fbService.deleteInfo(key);

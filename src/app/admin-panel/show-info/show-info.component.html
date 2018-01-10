@@ -2,7 +2,7 @@
 <br>
 <mat-card>
     <h2>{{item.title}}</h2>   
-    <img  mat-card-image [src]="item.image.url">
+    <img mat-card-image [src]="item.image.url">
     <button mat-raised-button color="warn" (click)="deleteInfo(item.key)">Delete</button>
     <a [routerLink]="['/edit', item.key]">
     <button style="float:right;" mat-raised-button color="primary">Edit</button>
