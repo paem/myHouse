@@ -49,6 +49,7 @@ Håll bevakning på Hemnet, Blocket bostad, Booli och Bovision när det gäller 
                   item.type == 'Hus,Bostadsrätt' ||
                   item.type == 'Bostadsrätt,Hus'">
 
+                  <img [src]="item.image.url">
 
                     <h2>{{item.title}}</h2>
                     <p>{{item.body}}</p>
@@ -85,10 +86,11 @@ Håll bevakning på Hemnet, Blocket bostad, Booli och Bovision när det gäller 
                   item.type == 'Bostadsrätt,Hus'">
 
 
+                  <img [src]="item.image.url">
+
                     <h2>{{item.title}}</h2>
                     <p>{{item.body}}</p>
-                    <!-- {{item.tab}}
-                    {{item.type}} -->
+
                   </div>
                 </div>
                 </div>
@@ -120,11 +122,11 @@ Håll bevakning på Hemnet, Blocket bostad, Booli och Bovision när det gäller 
                     item.type == 'Hus,Bostadsrätt' ||
                     item.type == 'Bostadsrätt,Hus'">
 
+                    <img [src]="item.image.url">
 
                       <h2>{{item.title}}</h2>
                       <p>{{item.body}}</p>
-                      <!-- {{item.tab}}
-                      {{item.type}} -->
+
                     </div>
                   </div>
                   </div>
