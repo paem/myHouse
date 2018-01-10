@@ -13,7 +13,7 @@
   </div>
 
 
-  <div *ngIf="contractors" class="container">
+  <div *ngIf="contractors" class="container" style="margin-top: 15px;">
     <a class="hover" [routerLink]="['/naradig']" routerLinkActive="active" href="#">
       <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Gå tillbaka
     </a>
@@ -23,13 +23,13 @@
       </div>
       <div class="col-md-5" data-wow-duration="700ms" data-wow-delay="500ms" style="visibility: visible; animation-duration: 700ms; animation-delay: 500ms; animation-name: zoomIn;">
         <div class="heading"><h2>{{contractors.name}}</h2></div>
-        <p>{{contractors.description}}</p>
+        <p class="description">{{contractors.description}}</p>
         <hr>
-        <h3>Kontaktinformation</h3>
+        <h2>Kontaktinformation</h2>
         <ul class="work-detail-list">
-          <li><span>Telefon nummer :</span>{{contractors.contactInformation.Phone}}</li>
-          <li><span>Adress :</span>{{contractors.contactInformation.Adress}}</li>
-          <li><span>Email :</span>{{contractors.contactInformation.Email}}</li>
+          <li><span>Telefon nummer:&nbsp;</span>{{contractors.contactInformation.Phone}}</li>
+          <li><span>Adress:&nbsp;</span>{{contractors.contactInformation.Adress}}</li>
+          <li><span>Email:&nbsp;</span>{{contractors.contactInformation.Email}}</li>
         </ul>
       </div>
     </div>

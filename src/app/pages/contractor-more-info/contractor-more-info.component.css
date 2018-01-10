@@ -43,3 +43,9 @@ i:hover{
   width: 100%;
   height: 100%;
 }
+.work-detail-list {
+  font-size: 16px;
+}
+.description {
+  font-size: 16px;
+}

@@ -14,7 +14,7 @@
 </div>
 
 
-<div *ngIf="brokers" class="container">
+<div *ngIf="brokers" class="container" style="margin-top: 15px;">
   <a class="hover" [routerLink]="['/naradig']" routerLinkActive="active" href="#">
     <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Gå tillbaka
   </a>
@@ -24,13 +24,13 @@
     </div>
     <div class="col-md-5" data-wow-duration="700ms" data-wow-delay="500ms" style="visibility: visible; animation-duration: 700ms; animation-delay: 500ms; animation-name: zoomIn;">
       <div class="heading"><h2>{{brokers.name}}</h2></div>
-      <p>{{brokers.description}}</p>
+      <p class="description">{{brokers.description}}</p>
       <hr>
-      <h3>Kontaktinformation</h3>
+      <h2>Kontaktinformation</h2>
       <ul class="work-detail-list">
-        <li><span>Telefon nummer :</span>{{brokers.contactInformation.Phone}}</li>
-        <li><span>Adress :</span>{{brokers.contactInformation.Adress}}</li>
-        <li><span>Email :</span>{{brokers.contactInformation.Email}}</li>
+        <li><span>Telefon nummer:&nbsp;</span>{{brokers.contactInformation.Phone}}</li>
+        <li><span>Adress:&nbsp;</span>{{brokers.contactInformation.Adress}}</li>
+        <li><span>Email:&nbsp;</span>{{brokers.contactInformation.Email}}</li>
       </ul>
     </div>
   </div>

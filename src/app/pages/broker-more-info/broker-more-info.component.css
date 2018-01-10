@@ -47,3 +47,9 @@ i:hover{
 .container {
   word-wrap: break-word;
 }
+.work-detail-list {
+  font-size: 16px;
+}
+.description {
+  font-size: 16px;
+}
