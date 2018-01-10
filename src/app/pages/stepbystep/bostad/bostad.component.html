@@ -3,7 +3,7 @@
     <div class="col-sm-2"></div>
       <div class="col-sm-8">
         <br>
-          <!-- <mat-progress-bar mode="determinate" value="10"></mat-progress-bar> -->
+        <mat-progress-bar mode="determinate" [value]="determinateProgressValue"></mat-progress-bar>
           <mat-vertical-stepper [linear]="isLinear">
               <mat-step [stepControl]="firstFormGroup">
               <ng-template matStepLabel>Innan köpet</ng-template>
@@ -34,7 +34,7 @@
                   <a class="hover" [routerLink]="['/stegforsteg']" routerLinkActive="active" href="#">
                     <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
                   </a>
-                  <button style="float:right;" matStepperNext>
+                  <button style="float:right;" matStepperNext (click)="stepDeterminateProgressVal(33.33)">
                     <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                   </button>
                 </div>
@@ -68,10 +68,10 @@
                 </div>
                 </form>
                 <div class="row">
-                    <button matStepperPrevious>
+                    <button matStepperPrevious (click)="stepDeterminateProgressVal(-33.33)">
                         <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
                     </button>
-                      <button style="float:right;" matStepperNext>
+                      <button style="float:right;" matStepperNext (click)="stepDeterminateProgressVal(33.33)">
                         <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                       </button>
                     </div>
@@ -105,10 +105,10 @@
                   </div>
                   </form>
                   <div class="row">
-                      <button matStepperPrevious>
+                      <button matStepperPrevious (click)="stepDeterminateProgressVal(-33.33)">
                           <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
                       </button>
-                        <button style="float:right;" matStepperNext>
+                        <button style="float:right;" matStepperNext (click)="stepDeterminateProgressVal(33.33)">
                           <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                         </button>
                       </div>

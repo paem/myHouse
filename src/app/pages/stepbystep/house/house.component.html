@@ -3,7 +3,7 @@
     <div class="col-sm-2"></div>
       <div class="col-sm-8">
         <br>
-          <mat-progress-bar mode="determinate" value="10"></mat-progress-bar>
+          <mat-progress-bar mode="determinate" [value]="determinateProgressValue"></mat-progress-bar>
           <mat-vertical-stepper [linear]="isLinear">
               <mat-step [stepControl]="firstFormGroup">
                   <ng-template matStepLabel>Innan köpet</ng-template>
@@ -16,7 +16,7 @@
                       Ha inte så stor respekt för banken. Våga förhandla om räntor och avgifter. Och fäst inte jättestor vikt vid siffrorna på bostadsräntorna som publiceras i tidningar och sajter. Flera banker prutar på räntan – bara du frågar.
                       </p>
                       Villalån brukar delas upp i två delar – bottenlån och topplån. Mellan 75 och 85 procent av huspriset kan du vanligtvis få bottenlån på. De resterande 15 till 25 procenten blir topplån. Där är räntan några procent högre än vid bottenlån. Dessutom är topplånet alltid rörligt. Det innebär att räntan kan ändras dagligen.
-                     <p> 
+                     <p>
                       Det vanligaste villalånet är rak amortering. Då är amorteringsbeloppet lika stort varje månad under hela lånetiden. Räntan beräknas på restskulden. Därför kommer ett lån med rak amortering att kosta mindre varje gång som du betalar av på lånet.
                     </p>
                     <p>
@@ -61,13 +61,13 @@ Håll bevakning på Hemnet, Blocket bostad, Booli och Bovision när det gäller 
                   <a class="hover" [routerLink]="['/stegforsteg']" routerLinkActive="active" href="#">
                     <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
                   </a>
-                  <button style="float:right;" matStepperNext>
+                  <button style="float:right;" matStepperNext (click)="stepDeterminateProgressVal(33.33)">
                     <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                   </button>
                 </div>
               </mat-step>
 
-              <mat-step [stepControl]="secondFormGroup">
+              <mat-step  [stepControl]="secondFormGroup">
                 <ng-template matStepLabel>Under köpet</ng-template>
                 <form [formGroup]="secondFormGroup">
                     <div *ngFor="let item of items | async">
@@ -96,10 +96,10 @@ Håll bevakning på Hemnet, Blocket bostad, Booli och Bovision när det gäller 
                 </div>
                 </form>
                 <div class="row">
-                    <button matStepperPrevious>
+                    <button matStepperPrevious (click)="stepDeterminateProgressVal(-33.33)">
                         <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
                     </button>
-                      <button style="float:right;" matStepperNext>
+                      <button style="float:right;" matStepperNext (click)="stepDeterminateProgressVal(33.33)">
                         <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                       </button>
                     </div>
@@ -132,10 +132,10 @@ Håll bevakning på Hemnet, Blocket bostad, Booli och Bovision när det gäller 
                   </div>
                   </form>
                   <div class="row">
-                      <button matStepperPrevious>
+                      <button matStepperPrevious (click)="stepDeterminateProgressVal(-33.33)">
                         <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
                       </button>
-                      <button style="float:right;" matStepperNext>
+                      <button style="float:right;" matStepperNext (click)="stepDeterminateProgressVal(33.33)">
                         <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                       </button>
                    </div>

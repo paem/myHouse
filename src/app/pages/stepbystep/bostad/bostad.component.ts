@@ -15,6 +15,7 @@ export class BostadComponent implements OnInit {
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  determinateProgressValue: number = 33.33;
   constructor(private _formBuilder: FormBuilder, private fbService: FirebaseService) { }
 
   ngOnInit() {
@@ -28,4 +29,11 @@ export class BostadComponent implements OnInit {
     this.items = this.fbService.getInfo();
   }
 
+  stepDeterminateProgressVal(val: number) {
+    this.determinateProgressValue = this.clampValue(val + this.determinateProgressValue);
+  }
+
+  private clampValue(value: number) {
+    return Math.max(0, Math.min(100, value));
+  }
 }
