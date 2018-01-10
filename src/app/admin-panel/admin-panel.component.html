@@ -46,7 +46,7 @@
           </mat-form-field>
           <button color="primary" *ngIf="!isLoading" mat-raised-button (click)="getLatLng(country, street, city, postalCodee)">Ok</button>
           <mat-spinner *ngIf="isLoading"></mat-spinner>
-          <h1 *ngIf="geoCodeResult">{{geoCodeResult.lat}} , {{geoCodeResult.lng}} </h1>
+          <h4 *ngIf="geoCodeResult">Lat: {{geoCodeResult.lat}} <br> Lng: {{geoCodeResult.lng}} </h4>
         </div>
       </div>
 
