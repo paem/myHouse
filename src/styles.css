@@ -7,3 +7,6 @@ body, html {
   font-weight: 100;
 }
 
+.panel{
+  font-family:  proxima_nova_altbold, sans-serif;
+}

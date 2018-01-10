@@ -53,7 +53,6 @@ export class AdminPanelComponent implements OnInit {
     'United Kingdom', 'United States', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Vatican City', 'Venezuela', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe',
   ];
   items:any;
-
   constructor(private geo: GeoService, private _jsonp: Jsonp) { }
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -67,7 +66,7 @@ export class AdminPanelComponent implements OnInit {
   deleteInfo(key:any){
     console.log(key);
     this.geo.deleteBrokerInfo(key);
-    
+
   }
 
   searchLatLng(country, street, city, postalCode) {
@@ -85,7 +84,9 @@ export class AdminPanelComponent implements OnInit {
         });
   }
 
-
+  makeGeoCodeResultNull() {
+    this.geoCodeResult = null;
+  }
 
   getCoordsBroker() {
     if (navigator.geolocation) {

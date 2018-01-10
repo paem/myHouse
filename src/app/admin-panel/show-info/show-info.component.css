@@ -6,3 +6,9 @@ mat-card:hover{
 mat-card{
     bottom: 1px;
 }
+.editButton:hover{
+  background-color: purple;
+}
+.deleteButton:hover {
+  background-color: green;
+}

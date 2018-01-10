@@ -24,6 +24,9 @@ mat-card{
   background-color: #673ab7;
   border-color: #673ab7;
 }
+.btn-primary:hover{
+  background-color: purple;
+}
 
 .panel {
   border-color: #bea4eb;
@@ -35,4 +38,10 @@ a:focus, a:hover {
 a {
   color: #673ab7;
   text-decoration: none;
+}
+.submitButton:hover {
+  background-color: purple;
+}
+.deleteButton:hover {
+  background-color: green;
 }

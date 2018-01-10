@@ -1,7 +1,7 @@
 .example-full-width {
     width: 100%;
   }
-  
+
   mat-card:hover{
     box-shadow: 0 8px 8px 8px rgba(0,0,0,.2), 0 8px 8px 0 rgba(0,0,0,.14), 0 8px 8px 0 rgba(0,0,0,.12) !important;
     transform: translate3d(0,0,0);
@@ -19,7 +19,7 @@ mat-card{
     background-color: #673ab7;
     border-color: #bea4eb;
   }
-  
+
   .panel {
     border-color: #bea4eb;
   }
@@ -35,4 +35,13 @@ mat-card{
     color: #fff;
     background-color: #673ab7;
     border-color: #673ab7;
+}
+  .submitButton:hover {
+    background-color: purple;
+  }
+.btn-primary:hover{
+  background-color: purple;
+}
+.deleteButton:hover {
+  background-color: green;
 }

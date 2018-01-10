@@ -1,9 +1,15 @@
 .example-full-width {
     width: 100%;
   }
-  
+
   .btn-primary {
     color: #fff;
     background-color: #673ab7;
     border-color: #673ab7;
+}
+.submitButton:hover {
+  background-color: purple;
+}
+.btn-primary:hover{
+  background-color: purple;
 }

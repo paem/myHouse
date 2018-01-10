@@ -52,8 +52,8 @@
                 Var god ange en giltig email-adress
               </mat-error>
               <mat-error *ngIf="emailFormControl.hasError('required')">
-                Email is <strong>required</strong>
-              </mat-error>
+              Email är <strong>krävd</strong>
+            </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width" style="margin-top: 50px">
               <input matInput type="password" name="password" class="password" [(ngModel)]="loginPassword"  required>

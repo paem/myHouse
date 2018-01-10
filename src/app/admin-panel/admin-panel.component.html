@@ -1,37 +1,37 @@
-<div class="container" style="margin-top: 10px;">
+<div class="container" style="margin-top: 30px;">
   <div class="row">
-    
+
   <div class="col-md-3">
-  <ul class="nav nav-pills nav-stacked admin-menu">
+  <ul class="nav nav-pills nav-stacked admin-menu" style="font-family:  proxima_nova_altbold, sans-serif;">
     <li class="active"><a href="#home" data-toggle="tab"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp; Lägg till/Hantera Info</a></li>
     <li ><a href="#broker" data-toggle="tab"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp; Lägg till Mäklarfirma</a></li>
     <li ><a href="#contractor" data-toggle="tab"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp; Lägg till Byggfirma</a></li>
   </ul>
   <br>
- 
-  <h4>Lat/Lng Sökare</h4>
 
-    <p>För att hitta en latitud / longitud koordinat, ange en startadress.</p>
+  <h4 style="font-family:  proxima_nova_altbold, sans-serif;">Lat/Lng Sökare</h4>
+
+    <p style="font-family:  proxima_nova_altbold, sans-serif;">För att hitta en latitud / longitud koordinat, ange en startadress. För bästa resultat fyll i alla fält</p>
 
     <form>
-      <div class="form-group">
-        <div class="col-sm-10">
+      <div class="form-group" >
+        <div class="col-sm-10" >
           <mat-form-field class="example-full-width">
-            <input matInput type="text" name="text" class="text" [(ngModel)]="street"  required>
+            <input matInput type="text" name="text" class="text" [(ngModel)]="street">
             <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-road fa-fw"></i><i>Gatu adress</i></mat-placeholder>
             <button mat-button *ngIf="street" matSuffix mat-icon-button aria-label="Clear" (click)="street=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
           <mat-form-field class="example-full-width">
-            <input matInput type="text" name="text" class="text" [(ngModel)]="city"  required>
+            <input matInput type="text" name="text" class="text" [(ngModel)]="city">
             <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-location-arrow fa-fw"></i><i>Stad</i></mat-placeholder>
             <button mat-button *ngIf="city" matSuffix mat-icon-button aria-label="Clear" (click)="city=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
           <mat-form-field class="example-full-width">
-            <input matInput type="text" #postalCode name="text" class="text" [(ngModel)]="postalCodee"  required>
+            <input matInput type="text" #postalCode name="text" class="text" [(ngModel)]="postalCodee">
             <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
             <mat-placeholder> <i style="margin-right: 5px;" class="fa fa-map-marker fa-fw"></i><i>Postnummer</i></mat-placeholder>
             <button mat-button *ngIf="postalCodee" matSuffix mat-icon-button aria-label="Clear" (click)="postalCodee=''">
@@ -39,14 +39,19 @@
             </button>
           </mat-form-field>
           <mat-form-field class="example-full-width">
-            <mat-select placeholder="Ange land" name="country" [(ngModel)]="country" required>
+            <mat-select placeholder="Ange land" name="country" [(ngModel)]="country">
               <mat-option>Inget</mat-option>
               <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <button color="primary" *ngIf="!isLoading" mat-raised-button (click)="getLatLng(country, street, city, postalCodee)">Ok</button>
-          <mat-spinner *ngIf="isLoading"></mat-spinner>
-          <h1 *ngIf="geoCodeResult">{{geoCodeResult.lat}} , {{geoCodeResult.lng}} </h1>
+          <button class="submitButton" color="primary" *ngIf="!isLoading" mat-raised-button (click)="getLatLng(country, street, city, postalCodee)">Ok</button>
+          <mat-spinner diameter="50" *ngIf="isLoading"></mat-spinner>
+          <div *ngIf="geoCodeResult" class="alert alert-success alert-dismissable" role="alert">
+            <a (click)="makeGeoCodeResultNull()" class="panel-close close" data-dismiss="alert">×</a>
+            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+            <span class="sr-only">Success:</span>
+            <span>Latitude: {{geoCodeResult.lat}}, Longitude: {{geoCodeResult.lng}}</span>
+          </div>
         </div>
       </div>
 
@@ -58,8 +63,8 @@
       <div class="col-md-9" >
       <form id="tab">
         <div class="panel panel-info" style="margin: 1em;">
-          <div class="panel-heading">
-            <h3 class="panel-title"><label class="control-label panel-title">Skapa</label></h3>
+          <div class="panel-heading" >
+            <h3 class="panel-title" ><label class="control-label panel-title">Skapa</label></h3>
           </div>
           <div class="panel-body">
             <div class="form-group">
@@ -132,7 +137,6 @@
                         <mat-icon>close</mat-icon>
                       </button>
                     </mat-form-field>
-                    <button mat-raised-button color="primary" (click)="getCoordsBroker()">Coordinates</button>
                   </div>
                 </div>
               </div>
@@ -221,11 +225,11 @@
                       <span class="sr-only">Success:</span>
                       Informationen har sparats!
                     </div>
-                    <button color="primary" *ngIf="!isLoading" mat-raised-button (click)="createBroker()">Ok</button>
+                    <button class="submitButton" color="primary" *ngIf="!isLoading" mat-raised-button (click)="createBroker()">Ok</button>
                     <mat-error *ngIf="error">
                       {{error}}
                     </mat-error>
-                    <mat-spinner *ngIf="isLoading"></mat-spinner>
+                    <mat-spinner diameter="50" *ngIf="isLoading"></mat-spinner>
                   </div>
                 </div>
               </div>
@@ -242,14 +246,14 @@
                       <div *ngFor="let item of items | async">
                           <mat-card>
                               {{item.name}}
-                              <button style="float:right;" mat-raised-button color="warn" (click)="deleteInfo(item.key)">Delete</button>
+                              <button class="deleteButton" style="float:right;" mat-raised-button color="warn" (click)="deleteInfo(item.key)">Delete</button>
                             </mat-card>
                       </div>
                   </div>
                 </div>
               </div>
             </div>
-          
+
           </form>
       </div>
     </div>

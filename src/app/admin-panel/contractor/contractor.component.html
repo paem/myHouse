@@ -41,7 +41,6 @@
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
-          <button mat-raised-button color="primary" (click)="getCoordsContractor()">Coordinates</button>
         </div>
       </div>
     </div>
@@ -130,11 +129,11 @@
             <span class="sr-only">Success:</span>
             Var god fyll i alla värden!
           </div>
-          <button color="primary" *ngIf="!isLoading" mat-raised-button (click)="createContractor()">Ok</button>
+          <button class="submitButton" color="primary" *ngIf="!isLoading" mat-raised-button (click)="createContractor()">Ok</button>
           <mat-error *ngIf="error">
             {{error}}
           </mat-error>
-          <mat-spinner *ngIf="isLoading"></mat-spinner>
+          <mat-spinner diameter="50" *ngIf="isLoading"></mat-spinner>
         </div>
       </div>
     </div>
@@ -153,7 +152,7 @@
               <div *ngFor="let item of items | async">
                 <mat-card>
                   {{item.name}}
-                  <button style="float:right;" mat-raised-button color="warn" (click)="deleteInfo(item.key)">Delete</button>
+                  <button class="deleteButton" style="float:right;" mat-raised-button color="warn" (click)="deleteInfo(item.key)">Delete</button>
                 </mat-card>
               </div>
           </div>
@@ -161,4 +160,4 @@
       </div>
     </form>
     </div>
- 
+

@@ -1,11 +1,11 @@
 <div *ngFor="let item of items | async | reverse">
 <br>
 <mat-card>
-    <h2>{{item.title}}</h2>   
+    <h2>{{item.title}}</h2>
     <img mat-card-image [src]="item.image.url">
-    <button mat-raised-button color="warn" (click)="deleteInfo(item.key)">Delete</button>
+    <button mat-raised-button color="warn" class="deleteButton" (click)="deleteInfo(item.key)">Delete</button>
     <a [routerLink]="['/edit', item.key]">
-    <button style="float:right;" mat-raised-button color="primary">Edit</button>
+    <button style="float:right;" class="editButton" mat-raised-button color="primary">Edit</button>
   </a>
   </mat-card>
 </div>
