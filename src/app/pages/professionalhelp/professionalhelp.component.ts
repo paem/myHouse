@@ -133,7 +133,7 @@ export class ProfessionalhelpComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.geo.getLocationsBroker(this.radius, [this.lat, this.lng]);
     this.geo.getLocationsContractor(this.radius, [this.lat, this.lng]);
-    this.isLoading = false;
+    setTimeout(() => {this.isLoading = false; }, 500);
   }
   changeCoords(newLat, newLng) {
       this.lat = newLat;
@@ -147,7 +147,7 @@ export class ProfessionalhelpComponent implements OnInit, OnDestroy {
       this.geo.getLocationsBroker(this.radius, [newLat, newLng]);
       this.geo.getLocationsContractor(this.radius, [newLat, newLng]);
       console.log(newLat, newLng);
-      this.isLoading = false;
+    setTimeout(() => {this.isLoading = false; }, 500);
   }
   getBrokers() {
     this.brokerIndeterminate = true;

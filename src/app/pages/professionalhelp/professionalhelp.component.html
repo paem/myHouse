@@ -40,11 +40,10 @@
   <label> Öka sök radius </label>
   <mat-slider min="{{min}}" max="{{max}}" step="0.5" color="primary" thumbLabel (change)="changeRadius($event.value)"></mat-slider>
 </p>
-
-
-
 </div>
-  <div [@fadeIn]="'true'" class="row" *ngIf="brokers" style="margin-top: 20px; padding: 35px;">
+
+<div *ngIf="!isLoading">
+<div [@fadeIn]="'true'" class="row" *ngIf="brokers" style="margin-top: 20px; padding: 35px;">
     <mat-card class="col-md-6 card" *ngFor="let item of loadBrokers">
       <div class="media">
         <div class="media-left">
@@ -58,7 +57,9 @@
       </div>
     </mat-card>
   </div>
+</div>
 
+<div *ngIf="!isLoading">
 <div [@fadeIn]="'true'" class="row" *ngIf="contractors" style="margin-top: 50px; padding: 35px;">
   <mat-card class="col-md-6 card" *ngFor="let item of loadContractors">
     <div class="media">
@@ -72,6 +73,7 @@
       </div>
     </div>
   </mat-card>
+</div>
 </div>
 
 <mat-spinner class="loading" *ngIf="isLoading"></mat-spinner>
