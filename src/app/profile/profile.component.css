@@ -31,3 +31,9 @@ a {
   background-color: #673ab7;
   border-color: #673ab7;
 }
+.btn-primary:hover{
+  background-color: purple;
+}
+.full-width {
+  width: 100%;
+}

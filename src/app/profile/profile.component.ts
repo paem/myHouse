@@ -3,6 +3,7 @@ import {FormControl, Validators} from '@angular/forms';
 import { FirebaseService } from '../services/firebase.service';
 import * as firebase from 'firebase';
 import {AngularFireDatabase} from 'angularfire2/database';
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'app-profile',
@@ -30,36 +31,44 @@ export class ProfileComponent implements OnInit {
 
 
   updatePassword() {
-    this.isLoading = true;
-    this._firebaseService.updatePassword(this.newPassword, this.oldPassword).then((data) => {
-      this.passwordAlert = true;
+    if (isNullOrUndefined(this.newPassword)) {
       this.isLoading = false;
-      this.oldPassword = null;
-      this.newPassword = null;
-    }).catch((error: any) => {
-      if (error) {
+    } else {
+      this.isLoading = true;
+      this._firebaseService.updatePassword(this.newPassword, this.oldPassword).then((data) => {
+        this.passwordAlert = true;
         this.isLoading = false;
-        this.error = error;
-        console.log(this.error);
         this.oldPassword = null;
         this.newPassword = null;
-      }
-    });
+      }).catch((error: any) => {
+        if (error) {
+          this.isLoading = false;
+          this.error = error;
+          console.log(this.error);
+          this.oldPassword = null;
+          this.newPassword = null;
+        }
+      });
+    }
   }
   updateEmail(newEmail) {
-    this.isLoading = true;
-    this.updateUserEmail.updateEmail(newEmail).then((data) => {
-      this.updateUserEmail.sendEmailVerification();
-      this.emailAlert = true;
+    if (isNullOrUndefined(newEmail)) {
       this.isLoading = false;
-      this.newEmail = null;
-    }).catch((error: any) => {
-      if (error) {
+    } else {
+      this.isLoading = true;
+      this.updateUserEmail.updateEmail(newEmail).then((data) => {
+        this.updateUserEmail.sendEmailVerification();
+        this.emailAlert = true;
         this.isLoading = false;
-        this.error = error;
         this.newEmail = null;
-      }
-    });
+      }).catch((error: any) => {
+        if (error) {
+          this.isLoading = false;
+          this.error = error;
+          this.newEmail = null;
+        }
+      });
+    }
   }
 }
 
